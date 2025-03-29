@@ -1,6 +1,6 @@
 "use client";
 
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import styles from "./styles.module.css";
 import Header from "@/components/Header";
 import Image from "next/image";
