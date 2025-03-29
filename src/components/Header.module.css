@@ -1,0 +1,25 @@
+@font-face {
+  font-family: "Nexa Bold Regular";
+  src: url("/fonts/Nexa-Bold.woff2") format("woff2"),
+    url("/fonts/Nexa-Bold.woff") format("woff");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Alternative Google Font that is similar to Nexa Bold */
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap");
+
+.brandLink {
+  text-decoration: none;
+  display: inline-block;
+}
+
+.brand {
+  /* Primary font with fallbacks */
+  font-family: "Nexa Bold Regular", "Montserrat", sans-serif;
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #333;
+  letter-spacing: -0.5px;
+}
