@@ -1,130 +1,108 @@
 "use client";
 
-import { Card, CardContent } from "@/components/ui/card";
-import styles from "./styles.module.css";
-import Header from "@/components/Header";
-import Image from "next/image";
-import { Button } from "@/components/ui/button";
+import React from "react";
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
+import Header from "@/components/Header";
+import Hero from "@/components/Hero";
+import HowItWorks from "@/components/HowItWorks";
+import Companies from "@/components/Companies";
+import AutomationFeatures from "@/components/AutomationFeatures";
 
 export default function Home() {
   return (
-    <>
+    <main className="flex min-h-screen flex-col items-center justify-between">
       <Header />
-      <div className="min-h-screen relative overflow-hidden pt-16">
-        <div className={styles.background}></div>
-        <div className="w-full h-[calc(100vh-64px)] max-w-7xl mx-auto relative z-10 px-4 py-6 flex items-center justify-center">
-          <Card className="w-full h-[calc(100%-32px)] shadow-xl flex flex-col bg-card/85 backdrop-blur-sm">
-            <CardContent className="text-center flex-grow flex flex-col md:flex-row p-6">
-              <div className="w-full md:w-1/2 flex flex-col justify-center items-center md:items-start px-6 md:px-10 mb-10 md:mb-0">
-                <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center md:text-left">
-                  Automate Everything
-                </h2>
-                <p className="text-muted-foreground mb-8 text-center md:text-left">
-                  Transform your business processes with our intelligent
-                  automation platform. Save time, reduce errors, and boost
-                  productivity.
-                </p>
-                <div className="flex flex-col sm:flex-row gap-4">
-                  <Button size="lg" className="px-8">
-                    Book a Call
-                  </Button>
-                  <Link href="/dashboard" passHref>
-                    <Button variant="outline" size="lg" className="px-8">
-                      View Dashboard
-                    </Button>
-                  </Link>
-                </div>
-              </div>
-              <div className="w-full md:w-1/2 flex items-center justify-center">
-                <div className="flex flex-col items-center">
-                  <Image
-                    src="/images/dashboardstats.png"
-                    alt="Dashboard Statistics"
-                    width={1736}
-                    height={500}
-                    className="w-full max-w-[868px] rounded-xl mb-6"
-                    priority
-                  />
-                  <DashboardVideo />
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-      </div>
-    </>
-  );
-}
 
-// Dashboard video component with image fallback
-function DashboardVideo() {
-  const [videoError, setVideoError] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
-  const videoRef = useRef<HTMLVideoElement>(null);
+      {/* Main content starts below header (with padding for fixed header) */}
+      <div className="w-full pt-16">
+        <Hero />
+        <Companies />
+        <HowItWorks />
+        <AutomationFeatures />
 
-  // Ensure video is visible even if loading takes time
-  useEffect(() => {
-    // Force the loading state to false after a timeout as a fallback
-    const timeout = setTimeout(() => {
-      setIsLoading(false);
-    }, 2000);
-
-    return () => {
-      clearTimeout(timeout);
-    };
-  }, []);
-
-  return (
-    <div className="relative rounded-xl overflow-hidden shadow-lg border border-gray-200/50 w-full max-w-[868px] aspect-[1736/1488]">
-      {/* Loading Spinner */}
-      {isLoading && (
-        <div className="absolute inset-0 flex items-center justify-center bg-gray-100/50 backdrop-blur-sm z-10">
-          <div className="w-10 h-10 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
-        </div>
-      )}
-
-      {/* Fallback Image (always present, hidden when video plays) */}
-      <div
-        className={`absolute inset-0 ${
-          !videoError ? "transition-opacity duration-500" : ""
-        }`}
-        style={{ opacity: videoError || isLoading ? 1 : 0 }}
-      >
-        <Image
-          src="/images/dashboard.png"
-          alt="20hours Dashboard Demo"
-          width={1736}
-          height={1488}
-          className="object-cover w-full h-full"
-          priority
-          onLoad={() => setIsLoading(false)}
-        />
-      </div>
-
-      {/* Video (with transparency transition) */}
-      <div
-        className={`absolute inset-0 ${
-          !isLoading ? "transition-opacity duration-500" : ""
-        }`}
-        style={{ opacity: !isLoading && !videoError ? 1 : 0 }}
-      >
-        <video
-          ref={videoRef}
-          className="w-full h-full object-cover"
-          autoPlay
-          loop
-          muted
-          playsInline
-          preload="auto"
-          onError={() => setVideoError(true)}
-          onCanPlay={() => setIsLoading(false)}
-          onLoadedData={() => setIsLoading(false)}
+        {/* CTA Section */}
+        <section
+          className="py-20 bg-primary text-primary-foreground"
+          id="book-call"
         >
-          <source src="/videos/dashboard.mp4" type="video/mp4" />
-        </video>
+          <div className="container mx-auto px-4 text-center">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6">
+              Ready to automate your workflows?
+            </h2>
+            <p className="text-xl mb-8 max-w-2xl mx-auto">
+              Book a call with our team to discuss how we can automate your
+              business processes and save you time.
+            </p>
+            <Button
+              size="lg"
+              variant="secondary"
+              className="font-semibold"
+              asChild
+            >
+              <Link href="#book-call">Book a Call</Link>
+            </Button>
+          </div>
+        </section>
+
+        {/* Footer */}
+        <footer className="py-12 bg-gray-100">
+          <div className="container mx-auto px-4">
+            <div className="flex flex-col md:flex-row justify-between items-center">
+              <div className="mb-6 md:mb-0">
+                <div className="text-xl text-gray-900">
+                  <span className="font-[Chunko] tracking-wide flex flex-col leading-none">
+                    <span>GHOST</span>
+                    <span>TEAM.ai</span>
+                  </span>
+                </div>
+                <p className="text-gray-600 mt-2">
+                  Empowering human genius with automation
+                </p>
+              </div>
+
+              <div className="flex flex-col md:flex-row gap-6 md:gap-12">
+                <Link
+                  href="#features"
+                  className="text-gray-600 hover:text-gray-900"
+                >
+                  Features
+                </Link>
+                <Link
+                  href="#how-it-works"
+                  className="text-gray-600 hover:text-gray-900"
+                >
+                  How It Works
+                </Link>
+                <Link
+                  href="/privacy"
+                  className="text-gray-600 hover:text-gray-900"
+                >
+                  Privacy
+                </Link>
+                <Link
+                  href="/terms"
+                  className="text-gray-600 hover:text-gray-900"
+                >
+                  Terms
+                </Link>
+              </div>
+            </div>
+
+            <Separator className="my-8" />
+
+            <div className="text-center text-gray-500 text-sm">
+              © {new Date().getFullYear()}{" "}
+              <span className="font-[Chunko] inline-flex flex-col leading-none text-center mx-auto align-middle">
+                <span>GHOST</span>
+                <span>TEAM.ai</span>
+              </span>
+              . All rights reserved.
+            </div>
+          </div>
+        </footer>
       </div>
-    </div>
+    </main>
   );
 }

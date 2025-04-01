@@ -1,6 +1,16 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+/* Custom Font for ghostteam.ai brand */
+@font-face {
+  font-family: "Chunko";
+  src: url("/fonts/chunko-bold.otf") format("opentype"),
+    url("/fonts/chunko-bold.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
