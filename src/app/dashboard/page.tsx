@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import Header from "@/components/Header";
-import Image from "next/image";
+import { PillIcon } from "@/components/ui/pill-icon";
 
 interface Workflow {
   id?: string;
@@ -244,21 +244,15 @@ const Dashboard = () => {
                     }`}
                   >
                     <div
-                      className={`p-2 rounded-full mr-3 ${
-                        workflow.status === "new" ? "bg-yellow-100" : ""
-                      } ${
+                      className={`mr-3 ${
                         workflow.id === newWorkflowId ? "icon-highlight" : ""
                       }`}
                     >
-                      <div className="h-10 w-10 flex items-center justify-center">
-                        <Image
-                          src={workflow.ghostImage}
-                          alt={`${workflow.name} Ghost`}
-                          width={40}
-                          height={40}
-                          className="object-contain"
-                        />
-                      </div>
+                      <PillIcon
+                        imageSrc={workflow.ghostImage}
+                        size="small"
+                        isHighlighted={workflow.status === "in progress"}
+                      />
                     </div>
                     <div className="flex-grow">
                       <div className="flex justify-between">

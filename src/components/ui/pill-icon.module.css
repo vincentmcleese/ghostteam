@@ -1,0 +1,9 @@
+.pillGradient {
+  background: linear-gradient(
+    90deg,
+    #59c380 0%,
+    #59c380 50%,
+    #52b194 70%,
+    #4d55e7 100%
+  );
+}

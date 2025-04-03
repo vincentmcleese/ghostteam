@@ -42,7 +42,13 @@ const HeroContent = ({
           className="w-full sm:w-auto px-8 bg-primary hover:bg-primary/90"
           asChild
         >
-          <Link href={ctaLink}>{ctaText}</Link>
+          <Link
+            href={ctaLink}
+            target={ctaLink.startsWith("http") ? "_blank" : undefined}
+            rel={ctaLink.startsWith("http") ? "noopener noreferrer" : undefined}
+          >
+            {ctaText}
+          </Link>
         </Button>
       </div>
     </div>

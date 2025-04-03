@@ -21,7 +21,7 @@ const Hero = () => {
               </>
             }
             ctaText="Book a Call"
-            ctaLink="#book-call"
+            ctaLink="https://calendar.app.google/fgShTwvhRPzf9VKZ6"
           />
 
           <HeroVisual

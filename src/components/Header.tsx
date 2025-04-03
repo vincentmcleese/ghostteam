@@ -2,8 +2,8 @@
 
 import React from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { Button } from "@/components/ui/button";
+import { Logo } from "@/components/ui/logo";
 
 const Header = () => {
   const [isOpen, setIsOpen] = React.useState(false);
@@ -15,23 +15,7 @@ const Header = () => {
   return (
     <header className="fixed top-0 w-full bg-background/80 backdrop-blur-sm z-50 border-b border-border">
       <div className="container mx-auto px-4 flex items-center justify-between h-20">
-        <Link
-          href="/"
-          className="text-2xl text-foreground flex items-center space-x-1"
-        >
-          <Image
-            src="/images/greenghost.png"
-            alt="GhostTeam Logo"
-            width={40}
-            height={40}
-            className="object-contain"
-          />
-          <span className="font-[Chunko] tracking-wide flex flex-row items-center leading-none text-3xl">
-            <span className="flex items-center">GHOST</span>
-            <span className="text-[#59c380] flex items-center">TEAM</span>
-            <span className="flex items-center">.ai</span>
-          </span>
-        </Link>
+        <Logo size="large" />
 
         {/* Mobile menu button */}
         <button
@@ -78,8 +62,26 @@ const Header = () => {
           >
             How It Works
           </Link>
+          <Link
+            href="#pricing"
+            className="text-gray-600 hover:text-gray-900 transition-colors text-lg"
+          >
+            Pricing
+          </Link>
+          <Link
+            href="/dashboard"
+            className="text-gray-600 hover:text-gray-900 transition-colors text-lg"
+          >
+            Dashboard
+          </Link>
           <Button asChild size="lg">
-            <Link href="#book-call">Book a Call</Link>
+            <Link
+              href="https://calendar.app.google/fgShTwvhRPzf9VKZ6"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Book a Call
+            </Link>
           </Button>
         </nav>
       </div>
@@ -102,8 +104,27 @@ const Header = () => {
             >
               How It Works
             </Link>
+            <Link
+              href="#pricing"
+              className="block text-gray-600 hover:text-gray-900 transition-colors text-lg"
+              onClick={() => setIsOpen(false)}
+            >
+              Pricing
+            </Link>
+            <Link
+              href="/dashboard"
+              className="block text-gray-600 hover:text-gray-900 transition-colors text-lg"
+              onClick={() => setIsOpen(false)}
+            >
+              Dashboard
+            </Link>
             <Button asChild className="w-full mt-3" size="lg">
-              <Link href="#book-call" onClick={() => setIsOpen(false)}>
+              <Link
+                href="https://calendar.app.google/fgShTwvhRPzf9VKZ6"
+                onClick={() => setIsOpen(false)}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 Book a Call
               </Link>
             </Button>
