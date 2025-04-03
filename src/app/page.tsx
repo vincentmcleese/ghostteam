@@ -9,6 +9,7 @@ import Hero from "@/components/Hero";
 import HowItWorks from "@/components/HowItWorks";
 import Companies from "@/components/Companies";
 import AutomationFeatures from "@/components/AutomationFeatures";
+import PricingSection from "@/components/PricingSection";
 
 export default function Home() {
   return (
@@ -21,6 +22,7 @@ export default function Home() {
         <Companies />
         <HowItWorks />
         <AutomationFeatures />
+        <PricingSection />
 
         {/* CTA Section */}
         <section
@@ -74,6 +76,12 @@ export default function Home() {
                   className="text-gray-600 hover:text-gray-900"
                 >
                   How It Works
+                </Link>
+                <Link
+                  href="#pricing"
+                  className="text-gray-600 hover:text-gray-900"
+                >
+                  Pricing
                 </Link>
                 <Link
                   href="/privacy"
