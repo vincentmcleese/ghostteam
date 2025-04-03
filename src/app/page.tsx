@@ -2,6 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import Header from "@/components/Header";
@@ -53,10 +54,17 @@ export default function Home() {
           <div className="container mx-auto px-4">
             <div className="flex flex-col md:flex-row justify-between items-center">
               <div className="mb-6 md:mb-0">
-                <div className="text-xl text-gray-900">
-                  <span className="font-[Chunko] tracking-wide flex flex-col leading-none">
-                    <span>GHOST</span>
-                    <span>TEAM.ai</span>
+                <div className="text-xl text-gray-900 flex items-center space-x-1">
+                  <Image
+                    src="/images/greenghost.png"
+                    alt="GhostTeam Logo"
+                    width={30}
+                    height={30}
+                    className="object-contain"
+                  />
+                  <span className="font-[Chunko] tracking-wide flex flex-col justify-center leading-none">
+                    <span className="flex items-center">GHOST</span>
+                    <span className="flex items-center">TEAM.ai</span>
                   </span>
                 </div>
                 <p className="text-gray-600 mt-2">
@@ -100,13 +108,22 @@ export default function Home() {
 
             <Separator className="my-8" />
 
-            <div className="text-center text-gray-500 text-sm">
-              © {new Date().getFullYear()}{" "}
-              <span className="font-[Chunko] inline-flex flex-col leading-none text-center mx-auto align-middle">
-                <span>GHOST</span>
-                <span>TEAM.ai</span>
+            <div className="text-center text-gray-500 text-sm flex items-center justify-center space-x-1">
+              <Image
+                src="/images/greenghost.png"
+                alt="GhostTeam Logo"
+                width={20}
+                height={20}
+                className="object-contain"
+              />
+              <span className="flex items-center">
+                © {new Date().getFullYear()}{" "}
+                <span className="font-[Chunko] inline-flex flex-col justify-center leading-none text-center mx-auto align-middle">
+                  <span className="flex items-center">GHOST</span>
+                  <span className="flex items-center">TEAM.ai</span>
+                </span>
+                . All rights reserved.
               </span>
-              . All rights reserved.
             </div>
           </div>
         </footer>
