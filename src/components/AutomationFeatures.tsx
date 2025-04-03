@@ -1,54 +1,82 @@
 "use client";
 
 import React from "react";
-import { CheckCircle2 } from "lucide-react";
+import { Check } from "lucide-react";
+import Image from "next/image";
 
-interface Feature {
+interface Department {
   title: string;
-  description: string;
+  imageSrc: string;
+  tasks: string[];
 }
 
 const AutomationFeatures = () => {
-  const features: Feature[] = [
+  const departments: Department[] = [
     {
-      title: "Email & Outreach Automation",
-      description:
-        "Automate follow-ups, newsletters, and personalized outreach campaigns that feel human.",
+      title: "Operations",
+      imageSrc: "/images/operations.png",
+      tasks: [
+        "Project management automation",
+        "Document processing & workflow",
+        "Inventory management systems",
+        "Process documentation",
+        "Team coordination & task routing",
+      ],
     },
     {
-      title: "Data Processing & Analysis",
-      description:
-        "Transform messy data into actionable insights with automated cleaning, analysis, and visualization.",
+      title: "Sales",
+      imageSrc: "/images/sales.png",
+      tasks: [
+        "Lead qualification & prioritization",
+        "CRM updates & maintenance",
+        "Automated follow-up sequences",
+        "Sales call summaries & action items",
+        "Proposal & contract generation",
+      ],
     },
     {
-      title: "Content Creation & Distribution",
-      description:
-        "Generate and distribute content across multiple platforms with AI-powered workflows.",
+      title: "Marketing",
+      imageSrc: "/images/marketing.png",
+      tasks: [
+        "Content creation & distribution",
+        "Social media management",
+        "Email campaign automation",
+        "Performance reporting & analytics",
+        "Competitor research & monitoring",
+      ],
     },
     {
-      title: "Customer Support Automation",
-      description:
-        "Resolve common issues automatically and route complex ones to the right team members.",
+      title: "Finance",
+      imageSrc: "/images/finance.png",
+      tasks: [
+        "Invoice processing & reconciliation",
+        "Expense report automation",
+        "Financial data visualization",
+        "Budget tracking & forecasting",
+        "Accounts payable/receivable workflows",
+      ],
     },
     {
-      title: "Social Media Management",
-      description:
-        "Schedule, post, and engage across platforms without manual intervention.",
+      title: "Research",
+      imageSrc: "/images/research.png",
+      tasks: [
+        "Market & industry analysis",
+        "Data collection & synthesis",
+        "Literature review & summarization",
+        "Survey creation & distribution",
+        "Trend identification & reporting",
+      ],
     },
     {
-      title: "CRM & Lead Management",
-      description:
-        "Capture, qualify, and nurture leads through automated sequences that convert.",
-    },
-    {
-      title: "Reporting & Analytics",
-      description:
-        "Get insights delivered to your inbox with automated data collection and visualization.",
-    },
-    {
-      title: "Document Processing",
-      description:
-        "Extract data from invoices, receipts, and documents and route it to the right systems.",
+      title: "Customer Support",
+      imageSrc: "/images/customersupport.png",
+      tasks: [
+        "Ticket triage & routing",
+        "Automated response generation",
+        "Knowledge base maintenance",
+        "Customer satisfaction tracking",
+        "Support analytics & insights",
+      ],
     },
   ];
 
@@ -57,25 +85,44 @@ const AutomationFeatures = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h2 className="text-4xl font-bold text-gray-900 mb-4">
-            What We Can Automate
+            Meet Your GhostTeam
           </h2>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-            You bring the genius. We automate the rest. Focus on what you do
-            best while our AI-powered workflows handle these tasks and more:
+            AI-powered specialists that work behind the scenes to automate your
+            most time-consuming tasks. Each ghost is designed to handle specific
+            functions across your organization:
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {features.map((feature, index) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {departments.map((department, index) => (
             <div
               key={index}
-              className="bg-white p-6 rounded-lg border border-gray-100 shadow-sm hover:shadow-md transition-shadow"
+              className="bg-white p-6 rounded-2xl border border-gray-100 shadow-md hover:shadow-lg transition-shadow flex flex-col"
             >
-              <CheckCircle2 className="h-6 w-6 text-primary mb-4" />
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                {feature.title}
-              </h3>
-              <p className="text-muted-foreground">{feature.description}</p>
+              <div className="flex items-center mb-6">
+                <div className="bg-gray-50 rounded-full p-3 mr-4">
+                  <Image
+                    src={department.imageSrc}
+                    alt={`${department.title} Icon`}
+                    width={60}
+                    height={60}
+                    className="object-contain"
+                  />
+                </div>
+                <h3 className="text-xl font-bold text-gray-900">
+                  {department.title} Ghost
+                </h3>
+              </div>
+
+              <ul className="space-y-3 flex-grow">
+                {department.tasks.map((task, taskIndex) => (
+                  <li key={taskIndex} className="flex items-start">
+                    <Check className="h-5 w-5 text-[#59c380] mr-2 flex-shrink-0 mt-0.5" />
+                    <span className="text-gray-700">{task}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
           ))}
         </div>
