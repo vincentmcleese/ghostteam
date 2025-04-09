@@ -136,7 +136,7 @@ const PricingSection = () => {
 
               <CardFooter>
                 <Button
-                  className="w-full bg-primary hover:bg-primary/90 text-black"
+                  className="w-full bg-black hover:bg-gray-800 text-white"
                   size="lg"
                   asChild
                 >
