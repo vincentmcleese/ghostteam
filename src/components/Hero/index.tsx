@@ -36,9 +36,14 @@ const Hero = () => {
               A full marketing team at your fingertips for a fraction of the
               cost. Discover the power of agentic powered growth.
             </p>
-            <div className="flex items-center gap-4 md:mx-0">
-              <CallToActionButton />
-              <Button variant="outline" asChild>
+            {/* Stack buttons vertically on mobile, horizontally on md+ */}
+            <div className="flex flex-col md:flex-row gap-4 items-center">
+              {/* Wrapper for CallToAction to control width */}
+              <div className="w-full md:w-auto">
+                <CallToActionButton />
+              </div>
+              {/* Apply width directly to the standard Button */}
+              <Button variant="outline" asChild className="w-full md:w-auto">
                 <Link
                   href="https://x.com/elliot_garreffa"
                   target="_blank"
