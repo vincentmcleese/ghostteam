@@ -72,7 +72,7 @@ const PricingSection = () => {
           text: "No contract, cancel any time",
         },
       ],
-      ctaText: "Apply Now (2/4 spots filled)",
+      ctaText: "Limited spots available",
       popular: true,
     },
   ];
