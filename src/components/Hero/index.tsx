@@ -34,7 +34,7 @@ const Hero = () => {
             </h1>
             <p className="text-lg md:text-xl text-gray-600 max-w-2xl">
               A full marketing team at your fingertips for a fraction of the
-              cost. Discover the power of agentic powered growth.
+              cost. Discover agentic powered growth.
             </p>
             {/* Stack buttons vertically on mobile, horizontally on md+ */}
             <div className="flex flex-col md:flex-row gap-4 items-center">
