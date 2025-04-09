@@ -19,7 +19,7 @@ const Hero = () => {
       />
 
       {/* Reduced top padding on mobile */}
-      <div className="container mx-auto px-4 pt-12 pb-24 md:py-24">
+      <div className="container mx-auto px-6 pt-12 pb-24 md:px-4 md:py-24">
         <div className="flex flex-col md:flex-row items-center justify-between gap-12 md:gap-16">
           <div className="flex-1 space-y-6 order-last md:order-none">
             <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight">
