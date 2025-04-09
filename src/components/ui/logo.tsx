@@ -28,22 +28,29 @@ export function Logo({
   const sizes = {
     small: {
       container: "space-x-1",
-      image: { width: 20, height: 20 },
+      image: { width: 25, height: 25 },
       text: "text-xl",
     },
     medium: {
       container: "space-x-1",
-      image: { width: 30, height: 30 },
+      image: { width: 40, height: 40 },
       text: "text-2xl",
     },
     large: {
       container: "space-x-2",
-      image: { width: 40, height: 40 },
+      image: { width: 50, height: 50 },
       text: "text-3xl",
     },
   };
 
   const currentSize = sizes[size];
+
+  // Apply className to the container span for color inheritance
+  const textClasses = cn(
+    "font-[Chunko] tracking-wide leading-none",
+    currentSize.text
+    // className is applied by the wrapper (Link or div) below
+  );
 
   // The actual logo markup
   const logoContent = (
@@ -60,33 +67,31 @@ export function Logo({
         // Horizontal layout - everything in one line
         <span
           className={cn(
-            "font-[Chunko] tracking-wide leading-none flex flex-row items-center",
-            currentSize.text
+            textClasses,
+            "flex flex-row items-center justify-center"
           )}
         >
           <span className="flex items-center">GHOST</span>
-          <span className="flex items-center text-[#59c380] ml-1">TEAM</span>
-          <span className="flex items-center">.ai</span>
+          <span className="flex items-center ml-1">TEAM</span>
         </span>
       ) : (
-        // Vertical layout - GHOST on first line, TEAM.ai on second line
+        // Vertical layout - GHOST on first line, TEAM on second line
         <span
           className={cn(
-            "font-[Chunko] tracking-wide leading-none flex flex-col justify-center",
-            currentSize.text
+            textClasses,
+            "flex flex-col justify-center items-center"
           )}
         >
           <span className="flex items-center">GHOST</span>
           <span className="flex items-center">
-            <span className="text-[#59c380]">TEAM</span>
-            <span>.ai</span>
+            <span>TEAM</span>
           </span>
         </span>
       )}
     </>
   );
 
-  // Render as link or div based on props
+  // Reverted to original conditional rendering
   return asLink ? (
     <Link
       href="/"

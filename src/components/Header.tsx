@@ -2,8 +2,8 @@
 
 import React from "react";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
 import { Logo } from "@/components/ui/logo";
+import CallToActionButton from "@/components/ui/CallToActionButton";
 
 const Header = () => {
   const [isOpen, setIsOpen] = React.useState(false);
@@ -48,42 +48,34 @@ const Header = () => {
           </svg>
         </button>
 
-        {/* Desktop navigation */}
-        <nav className="hidden md:flex items-center space-x-6">
-          <Link
-            href="#features"
-            className="text-gray-600 hover:text-gray-900 transition-colors text-lg"
-          >
-            Features
-          </Link>
-          <Link
-            href="#how-it-works"
-            className="text-gray-600 hover:text-gray-900 transition-colors text-lg"
-          >
-            How It Works
-          </Link>
-          <Link
-            href="#pricing"
-            className="text-gray-600 hover:text-gray-900 transition-colors text-lg"
-          >
-            Pricing
-          </Link>
-          <Link
-            href="/dashboard"
-            className="text-gray-600 hover:text-gray-900 transition-colors text-lg"
-          >
-            Dashboard
-          </Link>
-          <Button asChild size="lg">
+        {/* Desktop navigation - centered */}
+        <nav className="hidden md:flex items-center justify-center flex-1 mx-4">
+          <div className="flex items-center space-x-8">
             <Link
-              href="https://calendar.app.google/fgShTwvhRPzf9VKZ6"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="#how-it-works"
+              className="text-gray-600 hover:text-gray-900 transition-colors text-lg"
             >
-              Book a Call
+              How it works
             </Link>
-          </Button>
+            <Link
+              href="#automations"
+              className="text-gray-600 hover:text-gray-900 transition-colors text-lg"
+            >
+              AI automations
+            </Link>
+            <Link
+              href="#pricing"
+              className="text-gray-600 hover:text-gray-900 transition-colors text-lg"
+            >
+              Pricing
+            </Link>
+          </div>
         </nav>
+
+        {/* CTA Button */}
+        <div className="hidden md:block">
+          <CallToActionButton />
+        </div>
       </div>
 
       {/* Mobile navigation */}
@@ -91,18 +83,18 @@ const Header = () => {
         <div className="md:hidden bg-white border-t border-gray-200">
           <div className="container mx-auto px-4 py-3 space-y-3">
             <Link
-              href="#features"
-              className="block text-gray-600 hover:text-gray-900 transition-colors text-lg"
-              onClick={() => setIsOpen(false)}
-            >
-              Features
-            </Link>
-            <Link
               href="#how-it-works"
               className="block text-gray-600 hover:text-gray-900 transition-colors text-lg"
               onClick={() => setIsOpen(false)}
             >
-              How It Works
+              How it works
+            </Link>
+            <Link
+              href="#automations"
+              className="block text-gray-600 hover:text-gray-900 transition-colors text-lg"
+              onClick={() => setIsOpen(false)}
+            >
+              AI automations
             </Link>
             <Link
               href="#pricing"
@@ -111,23 +103,7 @@ const Header = () => {
             >
               Pricing
             </Link>
-            <Link
-              href="/dashboard"
-              className="block text-gray-600 hover:text-gray-900 transition-colors text-lg"
-              onClick={() => setIsOpen(false)}
-            >
-              Dashboard
-            </Link>
-            <Button asChild className="w-full mt-3" size="lg">
-              <Link
-                href="https://calendar.app.google/fgShTwvhRPzf9VKZ6"
-                onClick={() => setIsOpen(false)}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Book a Call
-              </Link>
-            </Button>
+            <CallToActionButton />
           </div>
         </div>
       )}

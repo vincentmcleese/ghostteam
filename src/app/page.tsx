@@ -9,8 +9,10 @@ import Hero from "@/components/Hero";
 import HowItWorks from "@/components/HowItWorks";
 import Companies from "@/components/Companies";
 import AutomationFeatures from "@/components/AutomationFeatures";
+import ComparisonSection from "@/components/ComparisonSection";
 import PricingSection from "@/components/PricingSection";
 import { Logo } from "@/components/ui/logo";
+import Image from "next/image";
 
 export default function Home() {
   return (
@@ -23,25 +25,33 @@ export default function Home() {
         <Companies />
         <HowItWorks />
         <AutomationFeatures />
+        <ComparisonSection />
         <PricingSection />
 
         {/* CTA Section */}
         <section
-          className="py-20 bg-primary text-primary-foreground"
+          className="py-20 bg-primary text-primary-foreground relative"
           id="book-call"
         >
-          <div className="container mx-auto px-4 text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">
+          <div className="container mx-auto px-4 flex flex-col items-center text-center gap-6">
+            <Image
+              src="/images/ghost_whitest_transparent.png"
+              alt="Ghost"
+              width={100}
+              height={100}
+              className="object-contain"
+            />
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
               Ready to automate your workflows?
             </h2>
-            <p className="text-xl mb-8 max-w-2xl mx-auto">
+            <p className="text-xl mb-6 max-w-2xl">
               Book a call with our team to discuss how we can automate your
               business processes and save you time.
             </p>
             <Button
               size="lg"
               variant="secondary"
-              className="font-semibold"
+              className="font-semibold text-black"
               asChild
             >
               <Link
@@ -62,7 +72,7 @@ export default function Home() {
               <div className="mb-6 md:mb-0">
                 <Logo
                   size="medium"
-                  textDirection="vertical"
+                  textDirection="horizontal"
                   className="text-gray-900"
                 />
                 <p className="text-gray-600 mt-2">

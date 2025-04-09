@@ -87,12 +87,16 @@ const VideoPlayer = ({
           controls={false}
           width={width}
           height={height}
-          className={`w-full h-auto rounded-md shadow-md transition-opacity duration-300 ${
+          className={`w-full h-auto rounded-xl shadow-md transition-opacity duration-300 ${
             isLoading ? "opacity-0" : "opacity-100"
           }`}
           style={{
             objectFit: "contain",
             maxWidth: "100%",
+            width: "100%",
+            height: "auto",
+            maxHeight: "none",
+            borderRadius: "12px",
           }}
           onCanPlay={() => {
             console.log("Video can play");
@@ -120,10 +124,14 @@ const VideoPlayer = ({
           alt={alt}
           width={width}
           height={height}
-          className="w-full h-auto object-cover rounded-md"
+          className="w-full h-auto object-cover rounded-xl"
           quality={100}
           priority
           unoptimized
+          style={{
+            borderRadius: "12px",
+            maxWidth: "100%",
+          }}
         />
       </div>
     </div>

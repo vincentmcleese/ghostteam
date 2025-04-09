@@ -1,34 +1,57 @@
 "use client";
 
 import React from "react";
-import HeroContent from "./HeroContent";
 import HeroVisual from "./HeroVisual";
+import CallToActionButton from "../ui/CallToActionButton";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 const Hero = () => {
   return (
-    <section className="bg-white w-full">
-      <div className="container mx-auto px-4 py-8 md:py-12">
-        {/* Main flex container with responsive gap */}
-        <div className="text-center md:text-left md:flex md:items-center md:justify-between md:gap-8">
-          <HeroContent
-            firstLine="YOU THINK IT."
-            brandName="GHOSTTEAM"
-            tagline="WILL DO IT."
-            subheading={
-              <>
-                <strong>5x your productivity</strong> by onboarding our expert
-                AI workflow designers.
-              </>
-            }
-            ctaText="Book a Call"
-            ctaLink="https://calendar.app.google/fgShTwvhRPzf9VKZ6"
-          />
+    <section className="w-full relative overflow-hidden bg-gradient-to-br from-gray-50 via-white to-gray-50">
+      {/* Subtle pattern overlay */}
+      <div
+        className="absolute inset-0 opacity-[0.15] pointer-events-none"
+        style={{
+          backgroundImage: `radial-gradient(circle at 1px 1px, var(--primary) 1.5px, transparent 0)`,
+          backgroundSize: "40px 40px",
+        }}
+      />
 
-          <HeroVisual
-            statsImageSrc="/images/dashboardstats.png"
-            videoSrc="/videos/dashboard.mp4"
-            fallbackImageSrc="/images/dashboard.png"
-          />
+      {/* Reduced top padding on mobile */}
+      <div className="container mx-auto px-4 pt-12 pb-24 md:py-24">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-12 md:gap-16">
+          <div className="flex-1 space-y-6 order-last md:order-none">
+            <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight">
+              <span className="underline decoration-primary decoration-4 underline-offset-4">
+                Subscribe
+              </span>{" "}
+              to your full-stack{" "}
+              <span className="underline decoration-primary decoration-4 underline-offset-4">
+                growth
+              </span>{" "}
+              team
+            </h1>
+            <p className="text-lg md:text-xl text-gray-600 max-w-2xl">
+              A full marketing team at your fingertips for a fraction of the
+              cost. Discover the power of agentic powered growth.
+            </p>
+            <div className="flex items-center gap-4 md:mx-0">
+              <CallToActionButton />
+              <Button variant="outline" asChild>
+                <Link
+                  href="https://x.com/elliot_garreffa"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Learn more about agentic growth
+                </Link>
+              </Button>
+            </div>
+          </div>
+          <div className="w-full md:w-auto order-first md:order-none">
+            <HeroVisual />
+          </div>
         </div>
       </div>
     </section>

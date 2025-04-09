@@ -56,10 +56,15 @@ export function PillIcon({
   };
 
   return (
-    <div className="flex rounded-full overflow-hidden" style={pillStyle}>
+    <div
+      className="flex rounded-lg overflow-hidden border-2 border-primary"
+      style={pillStyle}
+    >
       {/* Left circle part */}
       <div
-        className="overflow-hidden flex-shrink-0"
+        className={`${sizes[size].circle} rounded-lg ${
+          isHighlighted ? "bg-primary" : "bg-primary"
+        } flex items-center justify-center`}
         style={{
           width: currentSize.circle.width,
           height: currentSize.circle.height,

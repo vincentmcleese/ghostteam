@@ -20,42 +20,38 @@ const Companies = () => {
     "Financial Services",
   ];
 
-  const companyLogos = [
+  const clientLogos = [
     {
       id: 1,
-      name: "Company One",
-      logo: "/logos/company1.svg",
-      url: "#",
+      name: "Clippit",
+      logo: "/images/clients/clippit.avif",
+      url: "https://clippit.fm/",
+      width: 160,
+      height: 48,
     },
     {
       id: 2,
-      name: "Company Two",
-      logo: "/logos/company2.svg",
-      url: "#",
+      name: "Web3Audience",
+      logo: "/images/clients/web3audience.jpeg",
+      url: "https://www.web3audience.io/",
+      width: 180,
+      height: 48,
     },
     {
       id: 3,
-      name: "Company Three",
-      logo: "/logos/company3.svg",
-      url: "#",
+      name: "6Degrees",
+      logo: "/images/clients/6degrees.png",
+      url: "https://www.6degrees.co/",
+      width: 140,
+      height: 48,
     },
     {
       id: 4,
-      name: "Company Four",
-      logo: "/logos/company4.svg",
-      url: "#",
-    },
-    {
-      id: 5,
-      name: "Company Five",
-      logo: "/logos/company5.svg",
-      url: "#",
-    },
-    {
-      id: 6,
-      name: "Company Six",
-      logo: "/logos/company6.svg",
-      url: "#",
+      name: "Mitti",
+      logo: "/images/clients/mitti.png",
+      url: "https://mitti.com/",
+      width: 120,
+      height: 48,
     },
   ];
 
@@ -82,41 +78,37 @@ const Companies = () => {
         <Carousel
           className="w-full max-w-5xl mx-auto"
           opts={{
-            align: "start",
+            align: "center",
             loop: true,
           }}
         >
           <CarouselContent>
-            {companyLogos.map((company) => (
+            {clientLogos.map((client) => (
               <CarouselItem
-                key={company.id}
-                className="md:basis-1/3 lg:basis-1/4"
+                key={client.id}
+                className="basis-1/2 md:basis-1/3 lg:basis-1/4"
               >
                 <Card className="h-32 flex items-center justify-center bg-white border border-gray-100">
-                  {company.logo ? (
-                    <a
-                      href={company.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center justify-center w-full h-full grayscale hover:grayscale-0 transition-all duration-300"
-                    >
-                      <div className="relative h-20 w-full">
-                        <Image
-                          src={company.logo}
-                          alt={company.name}
-                          width={96}
-                          height={48}
-                          className="object-contain mx-auto"
-                        />
-                      </div>
-                    </a>
-                  ) : (
-                    <div className="bg-gray-200 w-full h-full rounded flex items-center justify-center">
-                      <span className="text-gray-500 text-xs">
-                        {company.name}
-                      </span>
+                  <a
+                    href={client.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center w-full h-full transition-all duration-300"
+                  >
+                    <div className="relative h-full w-full flex items-center justify-center p-4">
+                      <Image
+                        src={client.logo}
+                        alt={client.name}
+                        width={client.width}
+                        height={client.height}
+                        className="object-contain max-h-[80%] max-w-[80%]"
+                        unoptimized={
+                          client.logo.endsWith(".avif") ||
+                          client.logo.endsWith(".jpeg")
+                        }
+                      />
                     </div>
-                  )}
+                  </a>
                 </Card>
               </CarouselItem>
             ))}
