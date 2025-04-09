@@ -17,7 +17,7 @@ const HowItWorks = () => {
       icon: <Clock className="h-6 w-6 text-primary" />,
       title: "Onboard in minutes",
       description:
-        "Share your needs—your first automation will be live within 20 hours.",
+        "Share your needs in a 60 minute call—your first automation will be live within hours.",
       step: 1,
     },
     {
