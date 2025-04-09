@@ -28,8 +28,8 @@ export const metadata: Metadata = {
   description: siteDescription,
   // Favicons and Icons
   icons: {
-    icon: "/favicon.ico", // Place favicon.ico in /public
-    apple: "/apple-touch-icon.png", // Place apple-touch-icon.png in /public
+    icon: "/images/favicon.ico", // Updated path
+    apple: "/images/apple-touch-icon.png", // Updated path
   },
   // Open Graph (Facebook, LinkedIn, etc.)
   openGraph: {
