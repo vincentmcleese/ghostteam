@@ -80,7 +80,7 @@ export default function Home() {
                 </p>
               </div>
 
-              <div className="flex flex-col md:flex-row gap-6 md:gap-12">
+              <div className="flex flex-col md:flex-row gap-6 md:gap-12 items-start md:items-center">
                 <Link
                   href="#features"
                   className="text-gray-600 hover:text-gray-900"
