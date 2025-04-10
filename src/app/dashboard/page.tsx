@@ -3,7 +3,6 @@
 import { useState, useEffect, useRef } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
-import Header from "@/components/Header";
 import Image from "next/image";
 import { Plus, X } from "lucide-react";
 
@@ -236,7 +235,6 @@ const Dashboard = () => {
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col">
       <style>{animationStyles}</style>
-      <Header />
 
       <div className="container mx-auto px-4 pt-24 pb-24 flex-grow flex items-center justify-center">
         {/* Main workflows card - 1:1 aspect ratio */}

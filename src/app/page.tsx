@@ -66,18 +66,18 @@ export default function Home() {
         <footer className="py-12 bg-gray-100">
           <div className="container mx-auto px-4">
             <div className="flex flex-col md:flex-row justify-between items-center">
-              <div className="mb-6 md:mb-0">
+              <div className="mb-6 md:mb-0 w-full md:w-auto flex flex-col items-center md:items-start">
                 <Logo
                   size="medium"
                   textDirection="horizontal"
                   className="text-gray-900"
                 />
-                <p className="text-gray-600 mt-2">
+                <p className="text-gray-600 mt-2 text-center md:text-left">
                   Empowering human genius with automation
                 </p>
               </div>
 
-              <div className="flex flex-col md:flex-row gap-6 md:gap-12 items-start md:items-center">
+              <div className="flex flex-col md:flex-row gap-4 md:gap-12 items-start md:items-center">
                 <Link
                   href="#features"
                   className="text-gray-600 hover:text-gray-900"
