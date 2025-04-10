@@ -5,15 +5,23 @@ import Link from "next/link";
 import { Logo } from "@/components/ui/logo";
 import CallToActionButton from "@/components/ui/CallToActionButton";
 
-const Header = () => {
+interface HeaderProps {
+  isBannerVisible: boolean;
+}
+
+const Header: React.FC<HeaderProps> = ({ isBannerVisible }) => {
   const [isOpen, setIsOpen] = React.useState(false);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
 
+  const headerTopClass = isBannerVisible ? "top-[2.5rem]" : "top-0";
+
   return (
-    <header className="fixed top-0 w-full bg-background/80 backdrop-blur-sm z-50 border-b border-border">
+    <header
+      className={`fixed ${headerTopClass} w-full bg-background/80 backdrop-blur-sm z-50 border-b border-border transition-all duration-300 ease-in-out`}
+    >
       <div className="container mx-auto px-4 flex items-center justify-between h-20">
         <Logo size="large" />
 

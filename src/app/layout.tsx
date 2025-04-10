@@ -1,21 +1,22 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import MainLayout from "@/components/MainLayout";
 
 const geistSans = Geist({
-  variable: "--font-geist-sans",
   subsets: ["latin"],
+  variable: "--font-geist-sans",
 });
 
 const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
   subsets: ["latin"],
+  variable: "--font-geist-mono",
 });
 
 // --- SEO and Sharing Metadata ---
-const siteTitle = "GhostTeam.ai | Agentic Marketing & Growth Automation";
+const siteTitle = "Ghost Team AI - Your AI Automation Partner";
 const siteDescription =
-  "We partner with lean businesses to orchestrate unlimited AI agentic workflows that rival the power of a full growth team. Get your AI workforce.";
+  "We build custom AI automations to streamline your business processes and boost productivity.";
 const siteUrl = "https://www.growthteam.ai"; // <-- Replace with your actual domain
 const siteImage = "/images/og-image.png"; // <-- Create an engaging Open Graph image (1200x630px) and place it here
 
@@ -23,7 +24,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
     default: siteTitle,
-    template: `%s | GhostTeam.ai`,
+    template: `%s | ${siteTitle}`,
   },
   description: siteDescription,
   // Favicons and Icons
@@ -36,13 +37,13 @@ export const metadata: Metadata = {
     title: siteTitle,
     description: siteDescription,
     url: siteUrl,
-    siteName: "GhostTeam.ai",
+    siteName: siteTitle,
     images: [
       {
         url: siteImage,
         width: 1200,
         height: 630,
-        alt: "GhostTeam.ai - AI Growth Team",
+        alt: siteDescription,
       },
     ],
     locale: "en_US",
@@ -85,7 +86,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <MainLayout>{children}</MainLayout>
       </body>
     </html>
   );

@@ -4,7 +4,6 @@ import React from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import HowItWorks from "@/components/HowItWorks";
 import Companies from "@/components/Companies";
@@ -17,10 +16,8 @@ import Image from "next/image";
 export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between">
-      <Header />
-
-      {/* Main content starts below header (with padding for fixed header) */}
-      <div className="w-full pt-16">
+      {/* Main content starts below header (with padding applied by layout) */}
+      <div className="w-full">
         <Hero />
         <Companies />
         <HowItWorks />
