@@ -11,7 +11,7 @@ const CallToActionButton = () => (
       asChild
     >
       <Link
-        href="https://calendar.app.google/fgShTwvhRPzf9VKZ6"
+        href="https://kufzvnot.forms.app/ghostteam"
         target="_blank"
         rel="noopener noreferrer"
         className="flex items-center justify-between w-full gap-3"

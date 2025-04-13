@@ -165,7 +165,7 @@ const PricingSection = () => {
                   asChild
                 >
                   <Link
-                    href="https://calendar.app.google/fgShTwvhRPzf9VKZ6"
+                    href="https://kufzvnot.forms.app/ghostteam"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -181,7 +181,7 @@ const PricingSection = () => {
           <p className="text-muted-foreground">
             Questions about our service?{" "}
             <Link
-              href="https://calendar.app.google/fgShTwvhRPzf9VKZ6"
+              href="https://kufzvnot.forms.app/ghostteam"
               className="text-primary font-medium"
               target="_blank"
               rel="noopener noreferrer"

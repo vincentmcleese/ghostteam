@@ -73,6 +73,41 @@ const Companies = () => {
           ))}
         </div>
 
+        <div className="max-w-4xl mx-auto mb-12 bg-white rounded-xl shadow-sm overflow-hidden">
+          <div className="flex flex-col md:flex-row items-center">
+            <div className="md:w-1/3 p-6">
+              <Image
+                src="/images/clipit.jpeg"
+                alt="Clipit.fm Success Story"
+                width={300}
+                height={300}
+                className="rounded-lg object-cover w-full h-full"
+              />
+            </div>
+            <div className="md:w-2/3 p-6 md:p-8">
+              <div className="flex items-center gap-3 mb-4">
+                <Image
+                  src="/images/clients/clippit.avif"
+                  alt="Clipit Logo"
+                  width={100}
+                  height={30}
+                  className="object-contain"
+                  unoptimized
+                />
+                <span className="text-sm text-gray-500">Case Study</span>
+              </div>
+              <p className="text-lg md:text-xl font-medium text-gray-900">
+                Ghostteam helped Clipit.fm grow from 0 to 1k daily downloads and
+                $7k ARR in 2 months,{" "}
+                <span className="text-primary font-bold">
+                  without a marketing team
+                </span>
+                .
+              </p>
+            </div>
+          </div>
+        </div>
+
         <Separator className="mb-8" />
 
         <Carousel

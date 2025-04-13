@@ -52,7 +52,7 @@ export default function Home() {
               asChild
             >
               <Link
-                href="https://calendar.app.google/fgShTwvhRPzf9VKZ6"
+                href="https://kufzvnot.forms.app/ghostteam"
                 target="_blank"
                 rel="noopener noreferrer"
               >
