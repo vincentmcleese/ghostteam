@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import MainLayout from "@/components/MainLayout";
+import GoogleAnalytics from "@/components/GoogleAnalytics";
 
 const geistSans = Geist({
   subsets: ["latin"],
@@ -79,8 +80,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      {/* Favicon links are now handled by Next.js metadata object */}
       <head>
+        <GoogleAnalytics />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </head>
       <body
