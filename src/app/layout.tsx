@@ -18,7 +18,7 @@ const geistMono = Geist_Mono({
 const siteTitle = "Ghost Team AI - Your AI Automation Partner";
 const siteDescription =
   "We build custom AI automations to streamline your business processes and boost productivity.";
-const siteUrl = "https://www.growthteam.ai"; // <-- Replace with your actual domain
+const siteUrl = "https://www.ghostteam.ai"; // <-- Replace with your actual domain
 const siteImage = "/images/og-image.png"; // <-- Create an engaging Open Graph image (1200x630px) and place it here
 
 export const metadata: Metadata = {
