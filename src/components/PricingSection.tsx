@@ -49,6 +49,7 @@ const PricingSection = () => {
         { text: "1 dedicated automation specialist" },
         { text: "Custom AI agents built for your workflows" },
         { text: "Dashboard access (track all automations)" },
+        { text: "Weekly 45-min strategy call" },
         { text: "No contract, cancel any time" },
       ],
       ctaText: "Get Started",
