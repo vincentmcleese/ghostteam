@@ -1,19 +1,25 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import { Logo } from "@/components/ui/logo";
 import CallToActionButton from "@/components/ui/CallToActionButton";
+import { ChevronDown } from "lucide-react";
 
 interface HeaderProps {
   isBannerVisible: boolean;
 }
 
 const Header: React.FC<HeaderProps> = ({ isBannerVisible }) => {
-  const [isOpen, setIsOpen] = React.useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [isIndustryOpen, setIsIndustryOpen] = useState(false);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
+  };
+
+  const toggleIndustryMenu = () => {
+    setIsIndustryOpen(!isIndustryOpen);
   };
 
   const headerTopClass = isBannerVisible ? "top-[2.5rem]" : "top-0";
@@ -59,6 +65,33 @@ const Header: React.FC<HeaderProps> = ({ isBannerVisible }) => {
         {/* Desktop navigation - centered */}
         <nav className="hidden md:flex items-center justify-center flex-1 mx-4">
           <div className="flex items-center space-x-8">
+            <div className="relative">
+              <button
+                onClick={toggleIndustryMenu}
+                className="flex items-center text-gray-600 hover:text-gray-900 transition-colors text-lg"
+              >
+                Industries
+                <ChevronDown className="ml-1 h-4 w-4" />
+              </button>
+              {isIndustryOpen && (
+                <div className="absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2 z-50">
+                  <Link
+                    href="/recruiters"
+                    className="block px-4 py-2 text-gray-600 hover:bg-gray-100"
+                    onClick={() => setIsIndustryOpen(false)}
+                  >
+                    Recruiters
+                  </Link>
+                  <Link
+                    href="/coaches"
+                    className="block px-4 py-2 text-gray-600 hover:bg-gray-100"
+                    onClick={() => setIsIndustryOpen(false)}
+                  >
+                    Coaches
+                  </Link>
+                </div>
+              )}
+            </div>
             <Link
               href="#how-it-works"
               className="text-gray-600 hover:text-gray-900 transition-colors text-lg"
@@ -90,6 +123,39 @@ const Header: React.FC<HeaderProps> = ({ isBannerVisible }) => {
       {isOpen && (
         <div className="md:hidden bg-white border-t border-gray-200">
           <div className="container mx-auto px-4 py-3 space-y-3">
+            <div className="space-y-2">
+              <button
+                onClick={toggleIndustryMenu}
+                className="flex items-center text-gray-600 hover:text-gray-900 transition-colors text-lg w-full"
+              >
+                Industries
+                <ChevronDown className="ml-1 h-4 w-4" />
+              </button>
+              {isIndustryOpen && (
+                <div className="pl-4 space-y-2">
+                  <Link
+                    href="/recruiters"
+                    className="block text-gray-600 hover:text-gray-900 transition-colors text-lg"
+                    onClick={() => {
+                      setIsIndustryOpen(false);
+                      setIsOpen(false);
+                    }}
+                  >
+                    Recruiters
+                  </Link>
+                  <Link
+                    href="/coaches"
+                    className="block text-gray-600 hover:text-gray-900 transition-colors text-lg"
+                    onClick={() => {
+                      setIsIndustryOpen(false);
+                      setIsOpen(false);
+                    }}
+                  >
+                    Coaches
+                  </Link>
+                </div>
+              )}
+            </div>
             <Link
               href="#how-it-works"
               className="block text-gray-600 hover:text-gray-900 transition-colors text-lg"
