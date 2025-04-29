@@ -3,127 +3,87 @@
 import React from "react";
 import IndustryPageTemplate from "@/components/IndustryPageTemplate";
 
-const RecruitersPage = () => {
-  const industryData = {
+const recruitersData = {
+  industry: {
     name: "Recruiters",
-    description: "AI-powered automation for recruitment and staffing agencies",
-    heroTitle: "Transform Your Recruitment Process with AI",
-    heroSubtitle:
-      "Automate candidate sourcing, screening, and engagement while reducing time-to-hire by 50%. Achieve 3-7x ROI on your automation investment.",
-    heroImage: "/images/recruiters-hero.jpg",
+    heroTitle:
+      "<span class='underline'>Self-scale leads</span> with AI powered funnels for <span class='underline'>recruiters</span>.",
+    heroSubtitle: "Like having a full growth team at your fingertips",
+    description:
+      "Our AI-powered platform helps recruiters save time and improve hiring quality by automating candidate screening and matching.",
+    heroImage: "/images/hero.png",
     painPoints: [
       {
-        title: "High Volume Communication",
-        description: "Overwhelmed with candidate outreach and follow-ups",
-      },
-      {
-        title: "Inefficient Screening",
+        title: "Time-Consuming Screening",
         description:
-          "Time-consuming manual resume screening and candidate evaluation",
+          "Manual resume screening takes hours and is prone to human bias.",
       },
       {
-        title: "Scheduling Bottlenecks",
+        title: "Missed Opportunities",
         description:
-          "Complex interview coordination across multiple stakeholders",
+          "Great candidates get overlooked due to overwhelming applicant volume.",
       },
       {
-        title: "Candidate Engagement",
+        title: "Inconsistent Evaluation",
         description:
-          "Difficulty maintaining consistent communication with candidates",
-      },
-      {
-        title: "Data Management",
-        description: "Manual entry and tracking of candidate information",
-      },
-      {
-        title: "Compliance Challenges",
-        description: "Ensuring consistent documentation and compliance",
+          "Different recruiters evaluate candidates differently, leading to inconsistent hiring decisions.",
       },
     ],
     solutions: [
       {
-        title: "Automated Candidate Pipeline",
-        description: "AI-powered sourcing and screening of candidates",
-        icon: "/images/candidate-pipeline.png",
+        title: "Automated Screening",
+        description:
+          "Our AI instantly screens resumes and matches candidates to job requirements.",
+        icon: "/icons/screening.svg",
       },
       {
-        title: "Smart Outreach System",
-        description: "Personalized, automated candidate communication",
-        icon: "/images/smart-outreach.png",
+        title: "Bias-Free Evaluation",
+        description:
+          "AI-powered evaluation removes unconscious bias from the screening process.",
+        icon: "/icons/bias-free.svg",
       },
       {
-        title: "Interview Scheduling AI",
-        description: "Automated interview coordination and calendar management",
-        icon: "/images/interview-scheduling.png",
-      },
-      {
-        title: "Candidate Engagement Bot",
-        description: "24/7 automated candidate support and updates",
-        icon: "/images/engagement-bot.png",
-      },
-      {
-        title: "Data Automation",
-        description: "Automated data entry and tracking systems",
-        icon: "/images/data-automation.png",
-      },
-      {
-        title: "Compliance Automation",
-        description: "Automated documentation and compliance tracking",
-        icon: "/images/compliance-automation.png",
+        title: "Smart Matching",
+        description:
+          "Advanced algorithms match candidates to roles based on skills, experience, and culture fit.",
+        icon: "/icons/matching.svg",
       },
     ],
-    testimonials: [
-      {
-        quote:
-          "Ghost Team's automation has reduced our time-to-hire by 60% and increased our placement rate by 40%. The AI-powered screening system has been a game-changer for our team.",
-        author: "Sarah Johnson",
-        role: "Recruitment Director",
-        company: "TechTalent Solutions",
-      },
-      {
-        quote:
-          "We've been able to handle 3x more candidates with the same team size thanks to the automated systems. The ROI has been incredible.",
-        author: "Michael Chen",
-        role: "Founder",
-        company: "Elite Staffing Partners",
-      },
-    ],
-    roiCalculator: {
-      title: "Calculate Your Potential ROI",
-      description: "See how much you could save with AI automation",
-      calculator: {
-        timeSaved: "20-25 hours per week",
-        costReduction: "40-50% reduction in operational costs",
-        revenueIncrease: "3-7x return on automation investment",
-      },
-    },
     integrations: {
-      title: "Seamless Integration with Your Tools",
-      description: "Works with your existing tech stack",
+      title: "Seamless Integration",
+      description: "Works with your existing ATS and HR tools",
       tools: [
+        "Sourcewhale",
         "LinkedIn Recruiter",
+        "Bullhorn",
+        "Workable",
         "Greenhouse",
         "Lever",
+        "JobAdder",
+        "Recruitee",
+        "Teamtailor",
+        "Recruiterflow",
+        "Recruiterbox",
+        "SmartRecruiters",
+        "Zoho Recruit",
+        "Recruiter.com",
+        "RecruiterCRM",
+        "Recruiterly",
         "Workday",
-        "Bullhorn",
-        "Jobvite",
-        "Calendly",
-        "Zoom",
-        "Slack",
-        "Microsoft Teams",
-        "Google Workspace",
-        "Outlook",
+        "BambooHR",
       ],
     },
     cta: {
-      title: "Ready to Transform Your Recruitment Process?",
+      title: "Ready to Transform Your Hiring Process?",
       description:
-        "Join leading recruitment agencies who are using AI to streamline their operations and increase placements. Schedule a demo to see how we can help you automate your recruitment process.",
-      buttonText: "Schedule a Demo",
+        "Start screening candidates faster and more effectively today.",
+      buttonText: "Get Started",
     },
-  };
+  },
+};
 
-  return <IndustryPageTemplate industry={industryData} />;
+const RecruitersPage = () => {
+  return <IndustryPageTemplate {...recruitersData} />;
 };
 
 export default RecruitersPage;

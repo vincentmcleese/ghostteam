@@ -77,8 +77,8 @@ const Companies = () => {
           <div className="flex flex-col md:flex-row items-center">
             <div className="md:w-1/3 p-6">
               <Image
-                src="/images/clipit.jpeg"
-                alt="Clippit.fm Success Story"
+                src="/images/elliot.jpg"
+                alt="Elliot Garreffa"
                 width={300}
                 height={300}
                 className="rounded-lg object-cover w-full h-full"
@@ -96,18 +96,53 @@ const Companies = () => {
                 />
                 <span className="text-sm text-gray-500">Case Study</span>
               </div>
-              <p className="text-lg md:text-xl font-medium text-gray-900">
-                Ghostteam helped Clippit.fm grow from 0 to 1k daily downloads
-                and $6.6k MRR in 2 months,{" "}
-                <span className="text-primary font-bold">
-                  without a marketing team
-                </span>
-                .
-              </p>
+              <blockquote className="text-lg md:text-xl font-medium text-gray-900 italic mb-4">
+                &ldquo;Ghostteam helped Clippit.fm grow from 0 to 1k daily
+                downloads and $6.6k MRR in 2 months, without a marketing
+                team.&ldquo;
+              </blockquote>
+              <div className="flex items-center gap-3">
+                <p className="font-semibold">Elliot Garreffa</p>
+                <p className="text-gray-600">Co-Founder, Clippit</p>
+              </div>
             </div>
           </div>
         </div>
-
+        <div className="max-w-4xl mx-auto mb-12 bg-white rounded-xl shadow-sm overflow-hidden">
+          <div className="flex flex-col md:flex-row items-center">
+            <div className="md:w-1/3 p-6">
+              <Image
+                src="/images/saad.png"
+                alt="Saal El Boury"
+                width={300}
+                height={300}
+                className="rounded-lg object-cover w-full h-full"
+              />
+            </div>
+            <div className="md:w-2/3 p-6 md:p-8">
+              <div className="flex items-center gap-3 mb-4">
+                <Image
+                  src="/images/clients/web3audience.jpeg"
+                  alt="Web3Audience Logo"
+                  width={100}
+                  height={30}
+                  className="object-contain"
+                  unoptimized
+                />
+                <span className="text-sm text-gray-500">Case Study</span>
+              </div>
+              <blockquote className="text-lg md:text-xl font-medium text-gray-900 italic mb-4">
+                &ldquo;Ghost Team&apos;s content engine exploded our F500 client
+                launch—25K new followers, 10 viral posts, and 16K Discord
+                members in just six weeks.&ldquo;
+              </blockquote>
+              <div className="flex items-center gap-3">
+                <p className="font-semibold">Saal El Boury</p>
+                <p className="text-gray-600">Founder, Web3Audience</p>
+              </div>
+            </div>
+          </div>
+        </div>
         <Separator className="mb-8" />
 
         <Carousel
@@ -117,6 +152,10 @@ const Companies = () => {
             loop: true,
           }}
         >
+          <div className="flex justify-center mb-6">
+            <CarouselPrevious className="relative static mr-2" />
+            <CarouselNext className="relative static ml-2" />
+          </div>
           <CarouselContent>
             {clientLogos.map((client) => (
               <CarouselItem
@@ -148,10 +187,6 @@ const Companies = () => {
               </CarouselItem>
             ))}
           </CarouselContent>
-          <div className="flex justify-center mt-6">
-            <CarouselPrevious className="relative static mr-2" />
-            <CarouselNext className="relative static ml-2" />
-          </div>
         </Carousel>
       </div>
     </section>

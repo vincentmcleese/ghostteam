@@ -7,41 +7,44 @@ import { Check, X } from "lucide-react";
 const ComparisonSection = () => {
   const ghostAdvantages = [
     {
-      title: "Full-Stack Capabilities",
+      title: "Qualified Marketing Leads",
       description:
-        "Complete range of marketing & growth skills in one solution",
+        "High-intent prospects engage with your content and convert.",
     },
     {
-      title: "24/7 Operation",
-      description: "Works around the clock without breaks or downtime",
-    },
-    {
-      title: "Auto-Scaling Intelligence",
-      description: "Automatically upgrades with the latest AI advancements",
-    },
-    {
-      title: "Maximum Flexibility",
+      title: "More Conversions, Higher Revenue",
       description:
-        "Can be adjusted or stopped at any moment without complications",
+        "Automated nurturing drives consistent sales without the hustle.",
+    },
+    {
+      title: "Marketers Creating, Not Managing",
+      description:
+        "Your team focuses on strategy and creativity, not endless content creation.",
+    },
+    {
+      title: "24/7 Content Engine",
+      description:
+        "Always-on content creation keeps your pipeline full—even while you sleep.",
     },
   ];
 
   const humanLimitations = [
     {
-      title: "Limited Skillset",
-      description: "Specialized in one or few areas of expertise",
+      title: "Cold, Low-Intent Audiences",
+      description: "Content falls flat—or gets lost in the noise.",
     },
     {
-      title: "8-Hour Workday",
-      description: "Limited to standard working hours and needs time off",
+      title: "Hours Lost to Manual Creation",
+      description: "Team burns time creating content instead of strategizing.",
     },
     {
-      title: "Manual Upskilling",
-      description: "Requires ongoing training and development",
+      title: "Empty Content Calendar",
+      description: "Struggling to maintain consistent content across channels.",
     },
     {
-      title: "Long-Term Commitment",
-      description: "Employment contracts and lengthy notice periods",
+      title: "Stop-Start Growth",
+      description:
+        "Content pipeline stalls whenever the team is off the clock.",
     },
   ];
 
@@ -49,10 +52,8 @@ const ComparisonSection = () => {
     <section className="py-16 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="text-4xl font-bold text-center mb-16">
-          Why Choose{" "}
-          <span className="font-[Chunko] tracking-wide">
-            GHOST<span className="text-black">TEAM</span>
-          </span>
+          <span className="font-[Chunko] tracking-wide">GHOST TEAM</span> vs.
+          The Grind
         </h2>
 
         <div className="grid md:grid-cols-2 gap-12 items-start">

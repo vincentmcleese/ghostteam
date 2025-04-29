@@ -5,6 +5,13 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import Link from "next/link";
 import Image from "next/image";
+import Companies from "@/components/Companies";
+import LeadEngine from "@/components/LeadEngine";
+import ComparisonSection from "@/components/ComparisonSection";
+import { Separator } from "@/components/ui/separator";
+import { Logo } from "@/components/ui/logo";
+import CallToActionButton from "@/components/ui/CallToActionButton";
+import IntegrationLogo from "./IntegrationLogo";
 
 interface IndustryPageTemplateProps {
   industry: {
@@ -22,25 +29,10 @@ interface IndustryPageTemplateProps {
       description: string;
       icon: string;
     }[];
-    testimonials: {
-      quote: string;
-      author: string;
-      role: string;
-      company: string;
-    }[];
     cta: {
       title: string;
       description: string;
       buttonText: string;
-    };
-    roiCalculator?: {
-      title: string;
-      description: string;
-      calculator: {
-        timeSaved: string;
-        costReduction: string;
-        revenueIncrease: string;
-      };
     };
     integrations?: {
       title: string;
@@ -54,199 +46,224 @@ const IndustryPageTemplate: React.FC<IndustryPageTemplateProps> = ({
   industry,
 }) => {
   return (
-    <main className="flex min-h-screen flex-col">
-      {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-gray-50 via-white to-gray-50">
-        <div className="container mx-auto px-4 py-24">
-          <div className="flex flex-col md:flex-row items-center gap-12">
-            <div className="flex-1 space-y-6">
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
-                {industry.heroTitle}
-              </h1>
-              <p className="text-xl text-gray-600 max-w-2xl">
-                {industry.heroSubtitle}
+    <main className="flex min-h-screen flex-col items-center justify-between">
+      <div className="w-full">
+        {/* Hero Section */}
+        <section className="relative overflow-hidden bg-gradient-to-br from-gray-50 via-white to-gray-50">
+          {/* Subtle pattern overlay */}
+          <div
+            className="absolute inset-0 opacity-[0.15] pointer-events-none"
+            style={{
+              backgroundImage: `radial-gradient(circle at 1px 1px, var(--primary) 1.5px, transparent 0)`,
+              backgroundSize: "40px 40px",
+            }}
+          />
+          <div className="container mx-auto px-6 pt-12 pb-24 md:px-4 md:py-24">
+            <div className="flex flex-col md:flex-row items-center justify-between gap-12 md:gap-16">
+              <div className="flex-1 space-y-6 order-last md:order-none">
+                <h1
+                  className="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight [&_.underline]:decoration-primary [&_.underline]:decoration-4 [&_.underline]:underline-offset-4"
+                  dangerouslySetInnerHTML={{ __html: industry.heroTitle }}
+                />
+                <p className="text-lg md:text-xl text-gray-600 max-w-2xl">
+                  {industry.heroSubtitle}
+                </p>
+                <div className="w-fit">
+                  <CallToActionButton />
+                </div>
+              </div>
+              <div className="w-full md:w-auto order-first md:order-none">
+                <div className="relative w-full">
+                  <Image
+                    src={industry.heroImage}
+                    alt={`${industry.name} automation`}
+                    width={800}
+                    height={600}
+                    className="w-full h-auto"
+                    priority
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Quote Section */}
+        <section className="py-20 relative overflow-hidden bg-[#f5f7fa]">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div className="flex flex-col md:flex-row items-center md:items-start gap-8 md:gap-16">
+              <div className="flex-shrink-0">
+                <div className="w-32 h-32 relative rounded-2xl overflow-hidden">
+                  <Image
+                    src="/images/greg.jpeg"
+                    alt="Greg Isenberg"
+                    width={128}
+                    height={128}
+                    className="object-cover"
+                  />
+                </div>
+              </div>
+
+              <div className="md:flex-1 text-left">
+                <blockquote className="text-2xl md:text-3xl lg:text-4xl font-medium text-gray-900 mb-6">
+                  &ldquo;Every marketer will get a &lsquo;ghost team.&rsquo;
+                  &mdash;run by one human and 5 bots.&rdquo;
+                </blockquote>
+                <div className="flex items-center">
+                  <div className="mr-4">
+                    <div className="h-1 w-16 bg-[#31DE96]"></div>
+                  </div>
+                  <cite className="text-xl font-bold text-gray-900 not-italic">
+                    Greg Isenberg
+                  </cite>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Result Highlight Section */}
+        <section className="w-full bg-primary text-primary-foreground py-8">
+          <div className="container mx-auto px-6 md:px-4">
+            <p className="text-xl md:text-2xl font-medium text-center">
+              Result: A steady stream of pre-qualified calls and a direct
+              increase revenue—no extra headcount required.
+            </p>
+          </div>
+        </section>
+
+        {/* Companies Section */}
+        <Companies />
+
+        {/* Lead Engine Section */}
+        <LeadEngine />
+
+        {/* Comparison Section */}
+        <ComparisonSection />
+
+        {/* Integrations Section */}
+        {industry.integrations && (
+          <section className="py-20 bg-gray-50">
+            <div className="container mx-auto px-4">
+              <h2 className="text-4xl font-bold text-center mb-4">
+                {industry.integrations.title}
+              </h2>
+              <p className="text-xl text-center mb-12 max-w-3xl mx-auto">
+                {industry.integrations.description}
               </p>
-              <Button size="lg" asChild>
-                <Link
-                  href="https://kufzvnot.forms.app/ghostteam"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {industry.cta.buttonText}
-                </Link>
-              </Button>
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 max-w-7xl mx-auto">
+                {industry.integrations.tools.map((tool, index) => (
+                  <Card
+                    key={index}
+                    className="p-6 hover:shadow-md transition-shadow bg-white"
+                  >
+                    <CardContent className="flex items-center justify-center h-24">
+                      <IntegrationLogo name={tool} size={64} />
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
             </div>
-            <div className="flex-1">
-              <Image
-                src={industry.heroImage}
-                alt={`${industry.name} automation`}
-                width={600}
-                height={400}
-                className="rounded-xl shadow-lg"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
+          </section>
+        )}
 
-      {/* Pain Points Section */}
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">
-            Common Challenges in {industry.name}
-          </h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {industry.painPoints.map((point, index) => (
-              <Card key={index} className="p-6">
-                <CardContent>
-                  <h3 className="text-xl font-semibold mb-3">{point.title}</h3>
-                  <p className="text-gray-600">{point.description}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Solutions Section */}
-      <section className="py-16 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">
-            How Ghost Team Solves These Challenges
-          </h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {industry.solutions.map((solution, index) => (
-              <Card key={index} className="p-6">
-                <CardContent>
-                  <div className="flex items-center gap-4 mb-4">
-                    <Image
-                      src={solution.icon}
-                      alt={solution.title}
-                      width={48}
-                      height={48}
-                      className="object-contain"
-                    />
-                    <h3 className="text-xl font-semibold">{solution.title}</h3>
-                  </div>
-                  <p className="text-gray-600">{solution.description}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ROI Calculator Section */}
-      {industry.roiCalculator && (
-        <section className="py-16 bg-primary text-primary-foreground">
-          <div className="container mx-auto px-4">
-            <h2 className="text-3xl font-bold text-center mb-4">
-              {industry.roiCalculator.title}
-            </h2>
-            <p className="text-xl text-center mb-12 max-w-2xl mx-auto">
-              {industry.roiCalculator.description}
-            </p>
-            <div className="grid md:grid-cols-3 gap-8">
-              <Card className="p-6 bg-white/10">
-                <CardContent>
-                  <h3 className="text-2xl font-bold mb-2">Time Saved</h3>
-                  <p className="text-lg">
-                    {industry.roiCalculator.calculator.timeSaved}
-                  </p>
-                </CardContent>
-              </Card>
-              <Card className="p-6 bg-white/10">
-                <CardContent>
-                  <h3 className="text-2xl font-bold mb-2">Cost Reduction</h3>
-                  <p className="text-lg">
-                    {industry.roiCalculator.calculator.costReduction}
-                  </p>
-                </CardContent>
-              </Card>
-              <Card className="p-6 bg-white/10">
-                <CardContent>
-                  <h3 className="text-2xl font-bold mb-2">Revenue Impact</h3>
-                  <p className="text-lg">
-                    {industry.roiCalculator.calculator.revenueIncrease}
-                  </p>
-                </CardContent>
-              </Card>
-            </div>
-          </div>
-        </section>
-      )}
-
-      {/* Testimonials Section */}
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">
-            Success Stories from {industry.name}
-          </h2>
-          <div className="grid md:grid-cols-2 gap-8">
-            {industry.testimonials.map((testimonial, index) => (
-              <Card key={index} className="p-6">
-                <CardContent>
-                  <blockquote className="text-lg italic mb-4">
-                    &ldquo;{testimonial.quote}&rdquo;
-                  </blockquote>
-                  <div className="text-gray-600">
-                    <p className="font-semibold">{testimonial.author}</p>
-                    <p>{testimonial.role}</p>
-                    <p>{testimonial.company}</p>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Integrations Section */}
-      {industry.integrations && (
-        <section className="py-16 bg-gray-50">
-          <div className="container mx-auto px-4">
-            <h2 className="text-3xl font-bold text-center mb-4">
-              {industry.integrations.title}
-            </h2>
-            <p className="text-xl text-center mb-12 max-w-2xl mx-auto">
-              {industry.integrations.description}
-            </p>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-              {industry.integrations.tools.map((tool, index) => (
-                <Card key={index} className="p-4">
-                  <CardContent className="flex items-center justify-center h-20">
-                    <p className="text-center font-medium">{tool}</p>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
-
-      {/* CTA Section */}
-      <section className="py-16 bg-primary text-primary-foreground">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold mb-4">{industry.cta.title}</h2>
-          <p className="text-xl mb-8 max-w-2xl mx-auto">
-            {industry.cta.description}
-          </p>
-          <Button
-            size="lg"
-            variant="secondary"
-            className="bg-white text-primary hover:bg-gray-100"
-            asChild
-          >
-            <Link
-              href="https://kufzvnot.forms.app/ghostteam"
-              target="_blank"
-              rel="noopener noreferrer"
+        {/* CTA Section */}
+        <section
+          className="py-20 bg-primary text-primary-foreground relative"
+          id="book-call"
+        >
+          <div className="container mx-auto px-4 flex flex-col items-center text-center gap-6">
+            <Image
+              src="/images/ghost_whitest_transparent.png"
+              alt="Ghost"
+              width={100}
+              height={100}
+              className="object-contain"
+            />
+            <h2 className="text-4xl font-bold mb-4">{industry.cta.title}</h2>
+            <p className="text-xl mb-6 max-w-2xl">{industry.cta.description}</p>
+            <Button
+              size="lg"
+              variant="secondary"
+              className="font-semibold text-black"
+              asChild
             >
-              {industry.cta.buttonText}
-            </Link>
-          </Button>
-        </div>
-      </section>
+              <Link
+                href="https://kufzvnot.forms.app/ghostteam"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {industry.cta.buttonText}
+              </Link>
+            </Button>
+          </div>
+        </section>
+
+        {/* Footer */}
+        <footer className="py-12 bg-gray-100">
+          <div className="container mx-auto px-4">
+            <div className="flex flex-col md:flex-row justify-between items-center">
+              <div className="mb-6 md:mb-0 w-full md:w-auto flex flex-col items-center md:items-start">
+                <Logo
+                  size="medium"
+                  textDirection="horizontal"
+                  className="text-gray-900"
+                />
+                <p className="text-gray-600 mt-2 text-center md:text-left">
+                  Empowering human genius with automation
+                </p>
+              </div>
+
+              <div className="flex flex-col md:flex-row gap-4 md:gap-12 items-start md:items-center">
+                <Link
+                  href="#features"
+                  className="text-gray-600 hover:text-gray-900"
+                >
+                  Features
+                </Link>
+                <Link
+                  href="#how-it-works"
+                  className="text-gray-600 hover:text-gray-900"
+                >
+                  How It Works
+                </Link>
+                <Link
+                  href="#pricing"
+                  className="text-gray-600 hover:text-gray-900"
+                >
+                  Pricing
+                </Link>
+                <Link
+                  href="/privacy"
+                  className="text-gray-600 hover:text-gray-900"
+                >
+                  Privacy
+                </Link>
+                <Link
+                  href="/terms"
+                  className="text-gray-600 hover:text-gray-900"
+                >
+                  Terms
+                </Link>
+              </div>
+            </div>
+
+            <Separator className="my-8" />
+
+            <div className="text-center text-gray-500 text-sm flex items-center justify-center">
+              <Logo
+                size="small"
+                asLink={false}
+                textDirection="horizontal"
+                className="text-gray-500"
+              />
+              <span className="ml-2">
+                © {new Date().getFullYear()} All rights reserved.
+              </span>
+            </div>
+          </div>
+        </footer>
+      </div>
     </main>
   );
 };
