@@ -106,8 +106,16 @@ const IndustryPageTemplate: React.FC<IndustryPageTemplateProps> = ({
 
               <div className="md:flex-1 text-left">
                 <blockquote className="text-2xl md:text-3xl lg:text-4xl font-medium text-gray-900 mb-6">
-                  &ldquo;Every marketer will get a &lsquo;ghost team.&rsquo;
-                  &mdash;run by one human and 5 bots.&rdquo;
+                  &ldquo;Every{" "}
+                  {industry.name.toLowerCase().includes("cmo")
+                    ? "marketer"
+                    : industry.name.toLowerCase().includes("cfo")
+                    ? "CFO"
+                    : industry.name.toLowerCase().includes("recruiter")
+                    ? "recruitment agency"
+                    : "business"}{" "}
+                  will get a &lsquo;ghost team.&rsquo; &mdash;run by one human
+                  and 5 bots.&rdquo;
                 </blockquote>
                 <div className="flex items-center">
                   <div className="mr-4">

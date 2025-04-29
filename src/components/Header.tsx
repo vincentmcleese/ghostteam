@@ -83,6 +83,13 @@ const Header: React.FC<HeaderProps> = ({ isBannerVisible }) => {
                     Fractional CMO
                   </Link>
                   <Link
+                    href="/fractionalCFO"
+                    className="block px-4 py-2 text-gray-600 hover:bg-gray-100"
+                    onClick={() => setIsIndustriesOpen(false)}
+                  >
+                    Fractional CFO
+                  </Link>
+                  <Link
                     href="/recruiters"
                     className="block px-4 py-2 text-gray-600 hover:bg-gray-100"
                     onClick={() => setIsIndustriesOpen(false)}
@@ -142,6 +149,16 @@ const Header: React.FC<HeaderProps> = ({ isBannerVisible }) => {
                     }}
                   >
                     Fractional CMO
+                  </Link>
+                  <Link
+                    href="/fractionalCFO"
+                    className="block text-gray-600 hover:text-gray-900 transition-colors text-lg"
+                    onClick={() => {
+                      setIsIndustriesOpen(false);
+                      setIsOpen(false);
+                    }}
+                  >
+                    Fractional CFO
                   </Link>
                   <Link
                     href="/recruiters"
