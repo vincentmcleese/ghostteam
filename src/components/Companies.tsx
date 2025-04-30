@@ -97,9 +97,10 @@ const Companies = () => {
                 <span className="text-sm text-gray-500">Case Study</span>
               </div>
               <blockquote className="text-lg md:text-xl font-medium text-gray-900 italic mb-4">
-                &ldquo;Ghostteam helped Clippit.fm grow from 0 to 1k daily
-                downloads and $6.6k MRR in 2 months, without a marketing
-                team.&ldquo;
+                &ldquo;Ghost Team turned my X account into a lead machine. The
+                lead magnet got 3.5 M views and the auto DM&rsquo;s from the
+                comments lead to 1.8 K email opt-ins—our daily sign-ups doubled
+                overnight.&ldquo;
               </blockquote>
               <div className="flex items-center gap-3">
                 <p className="font-semibold">Elliot Garreffa</p>

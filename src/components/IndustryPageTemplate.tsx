@@ -146,10 +146,8 @@ const IndustryPageTemplate: React.FC<IndustryPageTemplateProps> = ({
         <section className="w-full bg-primary text-primary-foreground py-8">
           <div className="container mx-auto px-6 md:px-4">
             <p className="text-xl md:text-2xl font-medium text-center">
-              &ldquo;Ghost Team turned my X account into a lead machine. The
-              lead magnet got 3.5 M views and the auto DM&rsquo;s from the
-              comments lead to 1.8 K email opt-ins—our daily sign-ups doubled
-              overnight.&rdquo;
+              Result: A steady stream of pre-qualified calls and a direct
+              increase in revenue - no extra headcount required.
             </p>
           </div>
         </section>
