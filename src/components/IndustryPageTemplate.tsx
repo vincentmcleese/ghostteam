@@ -191,20 +191,21 @@ const IndustryPageTemplate: React.FC<IndustryPageTemplateProps> = ({
                 {industry.integrations.description}
               </p>
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 max-w-7xl mx-auto">
-                {industry.integrations.tools.map((tool, index) => {
-                  const logo = <IntegrationLogo name={tool} size={64} />;
-                  if (!logo) return null;
-                  return (
+                {industry.integrations.tools
+                  .filter((tool) => {
+                    const logo = <IntegrationLogo name={tool} size={64} />;
+                    return logo !== null;
+                  })
+                  .map((tool, index) => (
                     <Card
                       key={index}
                       className="p-6 hover:shadow-md transition-shadow bg-white"
                     >
                       <CardContent className="flex items-center justify-center h-24">
-                        {logo}
+                        <IntegrationLogo name={tool} size={64} />
                       </CardContent>
                     </Card>
-                  );
-                })}
+                  ))}
               </div>
             </div>
           </section>
