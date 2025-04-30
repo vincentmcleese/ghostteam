@@ -38,11 +38,7 @@ const IntegrationLogo: React.FC<IntegrationLogoProps> = ({
   }, [name, size]);
 
   if (error || !logoUrl) {
-    return (
-      <div className="flex items-center justify-center w-full h-full">
-        <span className="text-gray-400 text-sm">{name}</span>
-      </div>
-    );
+    return null;
   }
 
   return (

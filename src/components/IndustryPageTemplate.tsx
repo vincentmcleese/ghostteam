@@ -6,7 +6,6 @@ import { Card, CardContent } from "@/components/ui/card";
 import Link from "next/link";
 import Image from "next/image";
 import Companies from "@/components/Companies";
-import LeadEngine from "@/components/LeadEngine";
 import ComparisonSection from "@/components/ComparisonSection";
 import { Separator } from "@/components/ui/separator";
 import { Logo } from "@/components/ui/logo";
@@ -192,16 +191,20 @@ const IndustryPageTemplate: React.FC<IndustryPageTemplateProps> = ({
                 {industry.integrations.description}
               </p>
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 max-w-7xl mx-auto">
-                {industry.integrations.tools.map((tool, index) => (
-                  <Card
-                    key={index}
-                    className="p-6 hover:shadow-md transition-shadow bg-white"
-                  >
-                    <CardContent className="flex items-center justify-center h-24">
-                      <IntegrationLogo name={tool} size={64} />
-                    </CardContent>
-                  </Card>
-                ))}
+                {industry.integrations.tools.map((tool, index) => {
+                  const logo = <IntegrationLogo name={tool} size={64} />;
+                  if (!logo) return null;
+                  return (
+                    <Card
+                      key={index}
+                      className="p-6 hover:shadow-md transition-shadow bg-white"
+                    >
+                      <CardContent className="flex items-center justify-center h-24">
+                        {logo}
+                      </CardContent>
+                    </Card>
+                  );
+                })}
               </div>
             </div>
           </section>
