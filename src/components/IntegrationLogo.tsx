@@ -24,7 +24,7 @@ const IntegrationLogo: React.FC<IntegrationLogoProps> = ({
           `https://logo.clearbit.com/${formattedName}.com?size=${size}`
         );
 
-        if (response.ok) {
+        if (response.ok && response.url) {
           setLogoUrl(response.url);
         } else {
           setError(true);

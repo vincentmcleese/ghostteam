@@ -6,6 +6,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import Link from "next/link";
 import Image from "next/image";
 import Companies from "@/components/Companies";
+import LeadEngine from "@/components/LeadEngine";
 import ComparisonSection from "@/components/ComparisonSection";
 import { Separator } from "@/components/ui/separator";
 import { Logo } from "@/components/ui/logo";
@@ -157,25 +158,7 @@ const IndustryPageTemplate: React.FC<IndustryPageTemplateProps> = ({
         <Companies />
 
         {/* Lead Engine Section */}
-        <section className="py-20 bg-gray-50">
-          <div className="container mx-auto px-4">
-            <h2 className="text-4xl font-bold text-center mb-4">
-              We build AI Lead Engine
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-7xl mx-auto">
-              <Card className="p-6 hover:shadow-md transition-shadow bg-white">
-                <CardContent className="flex items-center justify-center h-24">
-                  <IntegrationLogo name="AI" size={64} />
-                </CardContent>
-              </Card>
-              <Card className="p-6 hover:shadow-md transition-shadow bg-white">
-                <CardContent className="flex items-center justify-center h-24">
-                  <IntegrationLogo name="Automation" size={64} />
-                </CardContent>
-              </Card>
-            </div>
-          </div>
-        </section>
+        <LeadEngine />
 
         {/* Comparison Section */}
         <ComparisonSection />
@@ -193,8 +176,61 @@ const IndustryPageTemplate: React.FC<IndustryPageTemplateProps> = ({
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 max-w-7xl mx-auto">
                 {industry.integrations.tools
                   .filter((tool) => {
-                    const logo = <IntegrationLogo name={tool} size={64} />;
-                    return logo !== null;
+                    // Check if the tool name is in our list of known valid logos
+                    const validLogos = [
+                      "Google Analytics",
+                      "Google Ads",
+                      "Meta Ads",
+                      "LinkedIn Ads",
+                      "Twitter Ads",
+                      "Buffer",
+                      "Hootsuite",
+                      "Canva",
+                      "WordPress",
+                      "Shopify",
+                      "WooCommerce",
+                      "Zapier",
+                      "Slack",
+                      "Notion",
+                      "Asana",
+                      "Trello",
+                      "QuickBooks",
+                      "Xero",
+                      "NetSuite",
+                      "Sage",
+                      "Microsoft Dynamics",
+                      "FreshBooks",
+                      "Wave",
+                      "Zoho Books",
+                      "Bill.com",
+                      "Expensify",
+                      "Stripe",
+                      "Plaid",
+                      "Gusto",
+                      "ADP",
+                      "Paychex",
+                      "Sourcewhale",
+                      "LinkedIn Recruiter",
+                      "Bullhorn",
+                      "Workable",
+                      "Greenhouse",
+                      "Lever",
+                      "JobAdder",
+                      "Recruitee",
+                      "Teamtailor",
+                      "Recruiterflow",
+                      "Recruiterbox",
+                      "SmartRecruiters",
+                      "Zoho Recruit",
+                      "Recruiter.com",
+                      "RecruiterCRM",
+                      "Recruiterly",
+                      "Workday",
+                      "BambooHR",
+                      "HubSpot",
+                      "Mailchimp",
+                    ];
+                    return validLogos.includes(tool);
                   })
                   .map((tool, index) => (
                     <Card

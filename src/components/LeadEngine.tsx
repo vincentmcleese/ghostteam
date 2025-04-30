@@ -57,7 +57,6 @@ const LeadEngine: React.FC = () => {
             Ready-to-Close Calls.
           </h2>
           <div className="space-y-6 text-lg text-gray-600">
-            <p>What It Does</p>
             <p>
               We blend precision outreach with authority-building
               content—delivered in the channels your buyers already trust. Our
@@ -69,7 +68,7 @@ const LeadEngine: React.FC = () => {
 
         <div className="max-w-6xl mx-auto">
           <h3 className="text-3xl font-bold text-center mb-12">
-            How the Engine Works
+            How the Self-Scaling Growth Engine Works
           </h3>
           <div className="flex flex-col md:flex-row gap-8 items-stretch">
             {steps.map((step) => (
