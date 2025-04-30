@@ -61,16 +61,28 @@ const IndustryPageTemplate: React.FC<IndustryPageTemplateProps> = ({
           <div className="container mx-auto px-6 pt-12 pb-24 md:px-4 md:py-24">
             <div className="flex flex-col md:flex-row items-center justify-between gap-12 md:gap-16">
               <div className="flex-1 space-y-6 order-last md:order-none">
-                <h1
-                  className="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight [&_.underline]:decoration-primary [&_.underline]:decoration-4 [&_.underline]:underline-offset-4"
-                  dangerouslySetInnerHTML={{ __html: industry.heroTitle }}
-                />
+                <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight [&_.underline]:decoration-primary [&_.underline]:decoration-4 [&_.underline]:underline-offset-4">
+                  200% more inbound leads with AI powered funnels for{" "}
+                  <span className="underline">
+                    {industry.name.toLowerCase().includes("cmo")
+                      ? "fractional CMOs"
+                      : industry.name.toLowerCase().includes("cfo")
+                      ? "fractional CFOs"
+                      : industry.name.toLowerCase().includes("recruiter")
+                      ? "recruiters"
+                      : "businesses"}
+                  </span>
+                </h1>
                 <p className="text-lg md:text-xl text-gray-600 max-w-2xl">
-                  {industry.heroSubtitle}
+                  Like a full growth team working for you 24/7
                 </p>
                 <div className="w-fit">
                   <CallToActionButton />
                 </div>
+                <p className="text-lg text-gray-600 max-w-2xl">
+                  And get your free audit funnel. See how we can double your
+                  inbound leads in 90 days or less
+                </p>
               </div>
               <div className="w-full md:w-auto order-first md:order-none">
                 <div className="relative w-full">
@@ -134,8 +146,10 @@ const IndustryPageTemplate: React.FC<IndustryPageTemplateProps> = ({
         <section className="w-full bg-primary text-primary-foreground py-8">
           <div className="container mx-auto px-6 md:px-4">
             <p className="text-xl md:text-2xl font-medium text-center">
-              Result: A steady stream of pre-qualified calls and a direct
-              increase revenue—no extra headcount required.
+              &ldquo;Ghost Team turned my X account into a lead machine. The
+              lead magnet got 3.5 M views and the auto DM&rsquo;s from the
+              comments lead to 1.8 K email opt-ins—our daily sign-ups doubled
+              overnight.&rdquo;
             </p>
           </div>
         </section>
@@ -144,7 +158,25 @@ const IndustryPageTemplate: React.FC<IndustryPageTemplateProps> = ({
         <Companies />
 
         {/* Lead Engine Section */}
-        <LeadEngine />
+        <section className="py-20 bg-gray-50">
+          <div className="container mx-auto px-4">
+            <h2 className="text-4xl font-bold text-center mb-4">
+              We build AI Lead Engine
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-7xl mx-auto">
+              <Card className="p-6 hover:shadow-md transition-shadow bg-white">
+                <CardContent className="flex items-center justify-center h-24">
+                  <IntegrationLogo name="AI" size={64} />
+                </CardContent>
+              </Card>
+              <Card className="p-6 hover:shadow-md transition-shadow bg-white">
+                <CardContent className="flex items-center justify-center h-24">
+                  <IntegrationLogo name="Automation" size={64} />
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </section>
 
         {/* Comparison Section */}
         <ComparisonSection />
