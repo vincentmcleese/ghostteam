@@ -8,6 +8,7 @@ import Image from "next/image";
 import Companies from "@/components/Companies";
 import LeadEngine from "@/components/LeadEngine";
 import ComparisonSection from "@/components/ComparisonSection";
+import PricingSection from "@/components/PricingSection";
 import { Separator } from "@/components/ui/separator";
 import { Logo } from "@/components/ui/logo";
 import CallToActionButton from "@/components/ui/CallToActionButton";
@@ -160,6 +161,9 @@ const IndustryPageTemplate: React.FC<IndustryPageTemplateProps> = ({
 
         {/* Comparison Section */}
         <ComparisonSection />
+
+        {/* Pricing Section */}
+        <PricingSection />
 
         {/* Integrations Section */}
         {industry.integrations && (

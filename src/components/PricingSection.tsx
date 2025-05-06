@@ -10,7 +10,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Check } from "lucide-react";
+import { Check, Zap } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -23,6 +23,7 @@ interface PricingPlan {
   name: string;
   description: string;
   price: string;
+  priceSubtext?: string;
   features: PlanFeature[];
   ctaText: string;
   borderColor?: string;
@@ -31,6 +32,23 @@ interface PricingPlan {
 
 const PricingSection = () => {
   const plans: PricingPlan[] = [
+    {
+      icon: <Zap className="w-10 h-10 text-amber-500" />,
+      name: "Quick-Win Automation",
+      description: "One high-value automation with proven ROI.",
+      price: "$1,000",
+      priceSubtext: "one-time payment",
+      features: [
+        { text: "Business process audit" },
+        { text: "1 high-value automation setup" },
+        { text: "Full onboarding support" },
+        { text: "ROI measurement" },
+        { text: "Slack support during implementation" },
+        { text: "No recurring commitment" },
+      ],
+      ctaText: "Start Your AI Journey",
+      borderColor: "border-amber-400",
+    },
     {
       icon: (
         <Image
@@ -44,6 +62,7 @@ const PricingSection = () => {
       name: "Rapid Growth Team",
       description: "Essential automations to kickstart growth.",
       price: "$5,000",
+      priceSubtext: "/month",
       features: [
         { text: "10 automations" },
         { text: "1 dedicated automation specialist" },
@@ -68,6 +87,7 @@ const PricingSection = () => {
       name: "Full Service Growth Team",
       description: "Comprehensive automation and strategic support.",
       price: "$7,000",
+      priceSubtext: "/month",
       features: [
         { text: "Unlimited agent & automation requests/month" },
         { text: "1 dedicated automation specialist" },
@@ -94,17 +114,18 @@ const PricingSection = () => {
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Select the plan that best fits your automation needs and growth
-            goals. Both plans offer flexible, no-contract terms.
+            goals. From a single automation to comprehensive support, we have
+            options for every stage.
           </p>
         </div>
 
-        <div className="max-w-5xl mx-auto flex flex-col md:flex-row gap-8 justify-center items-stretch">
+        <div className="max-w-6xl mx-auto flex flex-col md:flex-row gap-8 justify-center items-stretch">
           {plans.map((plan, index) => (
             <Card
               key={index}
               className={`relative flex flex-col border-2 ${
                 plan.borderColor || "border-border"
-              } shadow-lg w-full md:w-1/2`}
+              } shadow-lg w-full md:w-1/3`}
             >
               {plan.popular && (
                 <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 z-10">
@@ -134,7 +155,9 @@ const PricingSection = () => {
                 </div>
                 <div className="mt-2">
                   <span className="text-4xl font-bold">{plan.price}</span>
-                  <span className="text-gray-500 ml-2">/month</span>
+                  <span className="text-gray-500 ml-2">
+                    {plan.priceSubtext}
+                  </span>
                 </div>
               </CardHeader>
 
@@ -144,7 +167,9 @@ const PricingSection = () => {
                     <li key={i} className="flex items-start">
                       <Check
                         className={`h-5 w-5 ${
-                          plan.borderColor === "border-primary"
+                          plan.name === "Quick-Win Automation"
+                            ? "text-amber-500"
+                            : plan.borderColor === "border-primary"
                             ? "text-primary"
                             : "text-muted-foreground"
                         } mr-2 flex-shrink-0 mt-0.5`}
@@ -158,7 +183,9 @@ const PricingSection = () => {
               <CardFooter>
                 <Button
                   className={`w-full ${
-                    plan.borderColor === "border-primary"
+                    plan.name === "Quick-Win Automation"
+                      ? "bg-amber-500 hover:bg-amber-600 text-white"
+                      : plan.borderColor === "border-primary"
                       ? "bg-primary hover:bg-primary/90 text-primary-foreground"
                       : "bg-black hover:bg-gray-800 text-white"
                   }`}
