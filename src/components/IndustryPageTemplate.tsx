@@ -68,10 +68,10 @@ const IndustryPageTemplate: React.FC<IndustryPageTemplateProps> = ({
                     {industry.name.toLowerCase().includes("cmo")
                       ? "fractional CMOs"
                       : industry.name.toLowerCase().includes("cfo")
-                      ? "fractional CFOs"
-                      : industry.name.toLowerCase().includes("recruiter")
-                      ? "recruiters"
-                      : "businesses"}
+                        ? "fractional CFOs"
+                        : industry.name.toLowerCase().includes("recruiter")
+                          ? "recruiters"
+                          : "businesses"}
                   </span>
                 </h1>
                 <p className="text-lg md:text-xl text-gray-600 max-w-2xl">
@@ -123,10 +123,10 @@ const IndustryPageTemplate: React.FC<IndustryPageTemplateProps> = ({
                   {industry.name.toLowerCase().includes("cmo")
                     ? "marketer"
                     : industry.name.toLowerCase().includes("cfo")
-                    ? "CFO"
-                    : industry.name.toLowerCase().includes("recruiter")
-                    ? "recruitment agency"
-                    : "business"}{" "}
+                      ? "CFO"
+                      : industry.name.toLowerCase().includes("recruiter")
+                        ? "recruitment agency"
+                        : "business"}{" "}
                   will get a &lsquo;ghost team.&rsquo; &mdash;run by one human
                   and 5 bots.&rdquo;
                 </blockquote>
@@ -271,11 +271,11 @@ const IndustryPageTemplate: React.FC<IndustryPageTemplateProps> = ({
               asChild
             >
               <Link
-                href="https://kufzvnot.forms.app/ghostteam"
+                href="https://calendly.com/elliot-ghostteam/30min"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                {industry.cta.buttonText}
+                Book a Strategy Call
               </Link>
             </Button>
           </div>

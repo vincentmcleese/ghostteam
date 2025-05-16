@@ -71,7 +71,7 @@ const PricingSection = () => {
         { text: "Weekly 45-min strategy call" },
         { text: "No contract, cancel any time" },
       ],
-      ctaText: "Get Started",
+      ctaText: "Book a Strategy Call",
       borderColor: "border-muted-foreground",
     },
     {
@@ -170,8 +170,8 @@ const PricingSection = () => {
                           plan.name === "Quick-Win Automation"
                             ? "text-amber-500"
                             : plan.borderColor === "border-primary"
-                            ? "text-primary"
-                            : "text-muted-foreground"
+                              ? "text-primary"
+                              : "text-muted-foreground"
                         } mr-2 flex-shrink-0 mt-0.5`}
                       />
                       <span>{feature.text}</span>
@@ -186,14 +186,14 @@ const PricingSection = () => {
                     plan.name === "Quick-Win Automation"
                       ? "bg-amber-500 hover:bg-amber-600 text-white"
                       : plan.borderColor === "border-primary"
-                      ? "bg-primary hover:bg-primary/90 text-primary-foreground"
-                      : "bg-black hover:bg-gray-800 text-white"
+                        ? "bg-primary hover:bg-primary/90 text-primary-foreground"
+                        : "bg-black hover:bg-gray-800 text-white"
                   }`}
                   size="lg"
                   asChild
                 >
                   <Link
-                    href="https://kufzvnot.forms.app/ghostteam"
+                    href="https://calendly.com/elliot-ghostteam/30min"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -209,7 +209,7 @@ const PricingSection = () => {
           <p className="text-muted-foreground">
             Questions about our service?{" "}
             <Link
-              href="https://kufzvnot.forms.app/ghostteam"
+              href="https://calendly.com/elliot-ghostteam/30min"
               className="text-primary font-medium"
               target="_blank"
               rel="noopener noreferrer"

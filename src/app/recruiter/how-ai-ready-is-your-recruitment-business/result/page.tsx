@@ -12,13 +12,40 @@ function ResultContent() {
   const [formData, setFormData] = useState({ firstName: "", email: "" });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setError(null);
+
     try {
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      const response = await fetch("/api/send-email", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: formData.email,
+          firstName: formData.firstName,
+          resultType,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || "Failed to send email");
+      }
+
       setIsSubmitted(true);
+    } catch (error) {
+      console.error("Error sending email:", error);
+      setError(
+        error instanceof Error
+          ? error.message
+          : "Failed to send email. Please try again."
+      );
     } finally {
       setIsSubmitting(false);
     }
@@ -80,6 +107,11 @@ function ResultContent() {
                 <h2 className="text-xl font-semibold mb-4">
                   🎁 Claim Your Personalized AI Recruiting Toolkit
                 </h2>
+                {error && (
+                  <div className="p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg">
+                    {error}
+                  </div>
+                )}
                 <p className="text-gray-600 mb-6">
                   Based on your result, we&apos;ll send you a tailored resource
                   packed with:

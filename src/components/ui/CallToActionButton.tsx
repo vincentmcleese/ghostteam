@@ -11,7 +11,7 @@ const CallToActionButton = () => (
       asChild
     >
       <Link
-        href="https://kufzvnot.forms.app/ghostteam"
+        href="https://calendly.com/elliot-ghostteam/30min"
         target="_blank"
         rel="noopener noreferrer"
         className="flex items-center justify-between w-full gap-3"
@@ -26,7 +26,7 @@ const CallToActionButton = () => (
           />
         </div>
         <span className="flex-grow text-center font-medium">
-          Let&apos;s talk
+          Book a Strategy Call
         </span>
         <div className="bg-white w-7 h-7 rounded-sm flex items-center justify-center flex-shrink-0">
           <ArrowUpRight

@@ -52,11 +52,11 @@ export default function Home() {
               asChild
             >
               <Link
-                href="https://kufzvnot.forms.app/ghostteam"
+                href="https://calendly.com/elliot-ghostteam/30min"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Book a Call
+                Book a Strategy Call
               </Link>
             </Button>
           </div>
