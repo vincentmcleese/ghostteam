@@ -4,7 +4,7 @@ import { NextResponse } from "next/server";
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 // Get the authorized email from environment variable or use a default
-const AUTHORIZED_EMAIL = process.env.AUTHORIZED_EMAIL || "vincent@ghostteam.ai";
+const AUTHORIZED_EMAIL = "vincent@ghostteam.ai";
 
 export async function POST(request: Request) {
   try {
@@ -39,7 +39,7 @@ export async function POST(request: Request) {
     const downloadLink = `${process.env.NEXT_PUBLIC_BASE_URL}/downloads/${resultType}-toolkit.pdf`;
 
     const { data, error } = await resend.emails.send({
-      from: "AI Recruiting Toolkit <onboarding@resend.dev>",
+      from: "Vincent from Ghost Team <vincent@ghostteam.ai>",
       to: recipientEmail,
       subject: "Your AI Recruiting Toolkit is Ready! 🎉",
       html: `
@@ -64,7 +64,7 @@ export async function POST(request: Request) {
 
           <p style="color: #666; font-size: 14px;">This link will expire in 7 days.</p>
           
-          <p>Best regards,<br>The AI Recruiting Team</p>
+          <p>Best regards,<br>Vincent<br>Ghost Team</p>
           
           ${
             process.env.NODE_ENV !== "production"
