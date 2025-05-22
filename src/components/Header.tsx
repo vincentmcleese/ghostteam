@@ -96,6 +96,13 @@ const Header: React.FC<HeaderProps> = ({ isBannerVisible }) => {
                   >
                     Recruiters
                   </Link>
+                  <Link
+                    href="/b2bsaas"
+                    className="block px-4 py-2 text-gray-600 hover:bg-gray-100"
+                    onClick={() => setIsIndustriesOpen(false)}
+                  >
+                    B2B SaaS
+                  </Link>
                 </div>
               )}
             </div>
@@ -169,6 +176,16 @@ const Header: React.FC<HeaderProps> = ({ isBannerVisible }) => {
                     }}
                   >
                     Recruiters
+                  </Link>
+                  <Link
+                    href="/b2bsaas"
+                    className="block text-gray-600 hover:text-gray-900 transition-colors text-lg"
+                    onClick={() => {
+                      setIsIndustriesOpen(false);
+                      setIsOpen(false);
+                    }}
+                  >
+                    B2B SaaS
                   </Link>
                 </div>
               )}
