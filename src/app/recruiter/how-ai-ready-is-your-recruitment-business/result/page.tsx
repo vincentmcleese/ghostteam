@@ -153,7 +153,7 @@ function ResultContent() {
                             <div className="flex items-center gap-2 text-primary">
                               <span className="text-lg">✅</span>
                               <span className="font-semibold">
-                                Checklists for AI implementation
+                                Checklist for AI implementation
                               </span>
                             </div>
                             <div className="flex items-center gap-2 text-primary">
