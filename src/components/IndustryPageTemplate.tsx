@@ -60,22 +60,31 @@ const IndustryPageTemplate: React.FC<IndustryPageTemplateProps> = ({
             }}
           />
           <div className="container mx-auto px-6 pt-12 pb-24 md:px-4 md:py-24">
-            <div className="flex flex-col md:flex-row items-center justify-between gap-12 md:gap-16">
-              <div className="flex-1 space-y-6 order-last md:order-none">
+            <div className="flex flex-col md:flex-row items-center justify-between gap-12 md:gap-6">
+              <div className="flex-1 space-y-6 order-last md:order-none md:max-w-[50%]">
                 <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight [&_.underline]:decoration-primary [&_.underline]:decoration-4 [&_.underline]:underline-offset-4">
-                  200% more inbound leads with AI powered funnels for{" "}
-                  <span className="underline">
-                    {industry.name.toLowerCase().includes("cmo")
-                      ? "fractional CMOs"
-                      : industry.name.toLowerCase().includes("cfo")
-                        ? "fractional CFOs"
-                        : industry.name.toLowerCase().includes("recruiter")
-                          ? "recruiters"
-                          : "businesses"}
-                  </span>
+                  {industry.heroTitle ? (
+                    <div
+                      dangerouslySetInnerHTML={{ __html: industry.heroTitle }}
+                    />
+                  ) : (
+                    <>
+                      200% more inbound leads with AI powered funnels for{" "}
+                      <span className="underline">
+                        {industry.name.toLowerCase().includes("cmo")
+                          ? "fractional CMOs"
+                          : industry.name.toLowerCase().includes("cfo")
+                            ? "fractional CFOs"
+                            : industry.name.toLowerCase().includes("recruiter")
+                              ? "recruiters"
+                              : "businesses"}
+                      </span>
+                    </>
+                  )}
                 </h1>
                 <p className="text-lg md:text-xl text-gray-600 max-w-2xl">
-                  Like a full growth team working for you 24/7
+                  {industry.heroSubtitle ||
+                    "Like a full growth team working for you 24/7"}
                 </p>
                 <div className="w-fit">
                   <CallToActionButton />
@@ -85,14 +94,14 @@ const IndustryPageTemplate: React.FC<IndustryPageTemplateProps> = ({
                   inbound leads in 90 days or less
                 </p>
               </div>
-              <div className="w-full md:w-auto order-first md:order-none">
-                <div className="relative w-full">
+              <div className="w-full md:w-1/2 flex justify-center items-center order-first md:order-none">
+                <div className="relative w-full max-w-md mx-auto">
                   <Image
                     src={industry.heroImage}
                     alt={`${industry.name} automation`}
-                    width={800}
-                    height={600}
-                    className="w-full h-auto"
+                    width={600}
+                    height={500}
+                    className="w-full h-auto rounded-lg shadow-lg"
                     priority
                   />
                 </div>

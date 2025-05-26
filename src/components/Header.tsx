@@ -119,6 +119,12 @@ const Header: React.FC<HeaderProps> = ({ isBannerVisible }) => {
               AI automations
             </Link>
             <Link
+              href="/community"
+              className="text-gray-600 hover:text-gray-900 transition-colors text-lg"
+            >
+              Community
+            </Link>
+            <Link
               href="#pricing"
               className="text-gray-600 hover:text-gray-900 transition-colors text-lg"
             >
@@ -203,6 +209,13 @@ const Header: React.FC<HeaderProps> = ({ isBannerVisible }) => {
               onClick={() => setIsOpen(false)}
             >
               AI automations
+            </Link>
+            <Link
+              href="/community"
+              className="block text-gray-600 hover:text-gray-900 transition-colors text-lg"
+              onClick={() => setIsOpen(false)}
+            >
+              Community
             </Link>
             <Link
               href="#pricing"
