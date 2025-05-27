@@ -1,13 +1,13 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { useEffect, useState } from "react";
+import EmailCaptureModal from "@/components/EmailCaptureModal";
 
 const CommunityPage = () => {
   const [slackInviteLink, setSlackInviteLink] = useState("");
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     // Fetch the current Slack invite link from localStorage or API
@@ -18,6 +18,14 @@ const CommunityPage = () => {
         "https://join.slack.com/t/20hoursai/shared_invite/your-default-link"
     );
   }, []);
+
+  const handleOpenModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
 
   return (
     <main className="flex min-h-screen flex-col items-center">
@@ -102,30 +110,30 @@ const CommunityPage = () => {
                       </span>
                     </a>
 
-                    {/* Richie */}
+                    {/* Ben - Replacing Richie */}
                     <a
-                      href="https://www.linkedin.com/in/richiedawes/"
+                      href="https://www.linkedin.com/in/"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="flex flex-col items-center text-center hover:opacity-90 transition-opacity"
                     >
                       <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-gray-100 mb-2">
                         <Image
-                          src="/images/avatars/richie.jpeg"
-                          alt="Richie"
+                          src="/images/avatars/ben.jpeg"
+                          alt="Ben"
                           width={64}
                           height={64}
                           className="w-full h-full object-cover"
                           onError={(e) => {
                             e.currentTarget.style.display = "none";
                             const parent = e.currentTarget.parentElement;
-                            if (parent) parent.innerHTML = "RD";
+                            if (parent) parent.innerHTML = "BJ";
                           }}
                         />
                       </div>
-                      <span className="font-medium text-sm">Richie</span>
+                      <span className="font-medium text-sm">Ben</span>
                       <span className="text-xs text-gray-500">
-                        CEO at Nolea AI
+                        Co-Founder at Canary Labs
                       </span>
                     </a>
 
@@ -179,27 +187,21 @@ const CommunityPage = () => {
                 </div>
               </div>
 
-              {/* Button - Moved above screenshot */}
+              {/* Button - Replaced with button that opens modal */}
               <div className="flex justify-center mb-8">
                 <Button
                   size="lg"
                   className="mt-4 bg-[#4A154B] hover:bg-[#611f64] text-white px-8 py-6 h-auto text-lg flex items-center gap-2"
-                  asChild
+                  onClick={handleOpenModal}
                 >
-                  <Link
-                    href={slackInviteLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <Image
-                      src="/images/slack-logo-white.png"
-                      alt="Slack Logo"
-                      width={24}
-                      height={24}
-                      className="mr-2"
-                    />
-                    Join Our Slack Community
-                  </Link>
+                  <Image
+                    src="/images/slack-logo-white.png"
+                    alt="Slack Logo"
+                    width={24}
+                    height={24}
+                    className="mr-2"
+                  />
+                  Join Our Slack Community
                 </Button>
               </div>
 
@@ -314,6 +316,13 @@ const CommunityPage = () => {
           </div>
         </section>
       </div>
+
+      {/* Email Capture Modal */}
+      <EmailCaptureModal
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+        slackInviteLink={slackInviteLink}
+      />
     </main>
   );
 };

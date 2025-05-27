@@ -107,16 +107,20 @@ const Header: React.FC<HeaderProps> = ({ isBannerVisible }) => {
               )}
             </div>
             <Link
-              href="#how-it-works"
+              href="/"
               className="text-gray-600 hover:text-gray-900 transition-colors text-lg"
+              onClick={(e) => {
+                setIsOpen(false);
+                // If already on homepage, just scroll to section
+                if (window.location.pathname === "/") {
+                  e.preventDefault();
+                  document
+                    .getElementById("how-it-works")
+                    ?.scrollIntoView({ behavior: "smooth" });
+                }
+              }}
             >
               How it works
-            </Link>
-            <Link
-              href="#automations"
-              className="text-gray-600 hover:text-gray-900 transition-colors text-lg"
-            >
-              AI automations
             </Link>
             <Link
               href="/community"
@@ -125,8 +129,18 @@ const Header: React.FC<HeaderProps> = ({ isBannerVisible }) => {
               Community
             </Link>
             <Link
-              href="#pricing"
+              href="/"
               className="text-gray-600 hover:text-gray-900 transition-colors text-lg"
+              onClick={(e) => {
+                setIsOpen(false);
+                // If already on homepage, just scroll to section
+                if (window.location.pathname === "/") {
+                  e.preventDefault();
+                  document
+                    .getElementById("pricing")
+                    ?.scrollIntoView({ behavior: "smooth" });
+                }
+              }}
             >
               Pricing
             </Link>
@@ -197,18 +211,20 @@ const Header: React.FC<HeaderProps> = ({ isBannerVisible }) => {
               )}
             </div>
             <Link
-              href="#how-it-works"
+              href="/"
               className="block text-gray-600 hover:text-gray-900 transition-colors text-lg"
-              onClick={() => setIsOpen(false)}
+              onClick={(e) => {
+                setIsOpen(false);
+                // If already on homepage, just scroll to section
+                if (window.location.pathname === "/") {
+                  e.preventDefault();
+                  document
+                    .getElementById("how-it-works")
+                    ?.scrollIntoView({ behavior: "smooth" });
+                }
+              }}
             >
               How it works
-            </Link>
-            <Link
-              href="#automations"
-              className="block text-gray-600 hover:text-gray-900 transition-colors text-lg"
-              onClick={() => setIsOpen(false)}
-            >
-              AI automations
             </Link>
             <Link
               href="/community"
@@ -218,9 +234,18 @@ const Header: React.FC<HeaderProps> = ({ isBannerVisible }) => {
               Community
             </Link>
             <Link
-              href="#pricing"
+              href="/"
               className="block text-gray-600 hover:text-gray-900 transition-colors text-lg"
-              onClick={() => setIsOpen(false)}
+              onClick={(e) => {
+                setIsOpen(false);
+                // If already on homepage, just scroll to section
+                if (window.location.pathname === "/") {
+                  e.preventDefault();
+                  document
+                    .getElementById("pricing")
+                    ?.scrollIntoView({ behavior: "smooth" });
+                }
+              }}
             >
               Pricing
             </Link>

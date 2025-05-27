@@ -11,6 +11,36 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import { Card } from "@/components/ui/card";
+import Autoplay from "embla-carousel-autoplay";
+
+// Client component wrapper for the carousel with autoplay
+const AutoplayCarousel = ({
+  children,
+  className,
+}: {
+  children: React.ReactNode;
+  className?: string;
+}) => {
+  const plugin = React.useRef(
+    Autoplay({
+      delay: 3000,
+      stopOnInteraction: true,
+    })
+  );
+
+  return (
+    <Carousel
+      opts={{
+        align: "center",
+        loop: true,
+      }}
+      plugins={[plugin.current]}
+      className={className}
+    >
+      {children}
+    </Carousel>
+  );
+};
 
 const Companies = () => {
   const categories = [
@@ -18,6 +48,8 @@ const Companies = () => {
     "SaaS",
     "Consumer apps",
     "Financial Services",
+    "Automotive",
+    "Non-profit",
   ];
 
   const clientLogos = [
@@ -51,6 +83,38 @@ const Companies = () => {
       logo: "/images/clients/mitti.png",
       url: "https://mitti.com/",
       width: 120,
+      height: 48,
+    },
+    {
+      id: 5,
+      name: "Stellantis",
+      logo: "/images/clients/stellantis.png",
+      url: "https://www.stellantis.com/",
+      width: 160,
+      height: 48,
+    },
+    {
+      id: 6,
+      name: "DTV",
+      logo: "/images/clients/dtv.png",
+      url: "https://www.dtv.com/",
+      width: 140,
+      height: 48,
+    },
+    {
+      id: 7,
+      name: "Fiat",
+      logo: "/images/clients/fiat.png",
+      url: "https://www.fiat.com/",
+      width: 120,
+      height: 48,
+    },
+    {
+      id: 8,
+      name: "UNICEF",
+      logo: "/images/clients/unicef.png",
+      url: "https://www.unicef.org/",
+      width: 160,
       height: 48,
     },
   ];
@@ -146,13 +210,7 @@ const Companies = () => {
         </div>
         <Separator className="mb-8" />
 
-        <Carousel
-          className="w-full max-w-5xl mx-auto"
-          opts={{
-            align: "center",
-            loop: true,
-          }}
-        >
+        <AutoplayCarousel className="w-full max-w-5xl mx-auto">
           <div className="flex justify-center mb-6">
             <CarouselPrevious className="relative static mr-2" />
             <CarouselNext className="relative static ml-2" />
@@ -161,7 +219,7 @@ const Companies = () => {
             {clientLogos.map((client) => (
               <CarouselItem
                 key={client.id}
-                className="basis-1/2 md:basis-1/3 lg:basis-1/4"
+                className="basis-1/3 md:basis-1/4 lg:basis-1/5"
               >
                 <Card className="h-32 flex items-center justify-center bg-white border border-gray-100">
                   <a
@@ -188,7 +246,7 @@ const Companies = () => {
               </CarouselItem>
             ))}
           </CarouselContent>
-        </Carousel>
+        </AutoplayCarousel>
       </div>
     </section>
   );

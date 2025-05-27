@@ -95,13 +95,13 @@ const IndustryPageTemplate: React.FC<IndustryPageTemplateProps> = ({
                 </p>
               </div>
               <div className="w-full md:w-1/2 flex justify-center items-center order-first md:order-none">
-                <div className="relative w-full max-w-md mx-auto">
+                <div className="relative w-full">
                   <Image
                     src={industry.heroImage}
                     alt={`${industry.name} automation`}
                     width={600}
                     height={500}
-                    className="w-full h-auto rounded-lg shadow-lg"
+                    className="w-full h-auto"
                     priority
                   />
                 </div>
