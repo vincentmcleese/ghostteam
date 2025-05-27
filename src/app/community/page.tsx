@@ -15,7 +15,7 @@ const CommunityPage = () => {
     // Default link in case none is set yet
     setSlackInviteLink(
       storedLink ||
-        "https://join.slack.com/t/20hoursai/shared_invite/your-default-link"
+        "https://join.slack.com/t/ghostteamai/shared_invite/your-default-link"
     );
   }, []);
 
@@ -209,7 +209,7 @@ const CommunityPage = () => {
                 <div className="w-full">
                   <Image
                     src="/images/joinslack.png"
-                    alt="20hours Slack Community"
+                    alt="Ghost Team Slack Community"
                     width={1200}
                     height={800}
                     className="w-full h-auto"

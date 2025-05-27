@@ -56,7 +56,10 @@ export default function EmailCaptureModal({
       // Send email to backend API
       const response = await fetch("/api/community-signup", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          "x-slack-invite-link": slackInviteLink,
+        },
         body: JSON.stringify({ email, firstName }),
       });
 
@@ -100,7 +103,7 @@ export default function EmailCaptureModal({
                 height={24}
                 className="bg-[#4A154B] p-1 rounded"
               />
-              <span className="font-medium">20hours AI Community</span>
+              <span className="font-medium">Ghost Team AI Community</span>
             </div>
 
             <div>

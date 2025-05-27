@@ -37,10 +37,10 @@ export async function POST(request: Request) {
     const { data, error } = await resend.emails.send({
       from: "Vincent from Ghost Team <vincent@ghostteam.ai>",
       to: recipientEmail,
-      subject: "Welcome to the 20hours AI Community! 🎉",
+      subject: "Welcome to the Ghost Team AI Community! 🎉",
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-          <h1 style="color: #333;">Welcome to the 20hours AI Community! 👋</h1>
+          <h1 style="color: #333;">Welcome to the Ghost Team AI Community! 👋</h1>
           <p>Hi ${firstName}!</p>
           
           <p>Thank you for joining our Slack community! We're excited to have you on board.</p>
@@ -53,6 +53,12 @@ export async function POST(request: Request) {
               <li>✅ Access exclusive automation templates</li>
               <li>✅ Get help with your AI implementation questions</li>
             </ul>
+          </div>
+
+          <div style="background-color: #4A154B; padding: 20px; border-radius: 8px; margin: 20px 0; text-align: center;">
+            <a href="${request.headers.get("origin")?.startsWith("http") ? request.headers.get("origin") : "https://ghostteam.ai"}/api/community-redirect?link=${encodeURIComponent(request.headers.get("x-slack-invite-link") || "https://join.slack.com/t/ghostteamai/shared_invite/your-default-link")}" style="background-color: #fff; color: #4A154B; text-decoration: none; padding: 12px 24px; border-radius: 4px; font-weight: bold; display: inline-block;">
+              Join Slack Community
+            </a>
           </div>
 
           <p>To get the most out of our community:</p>
