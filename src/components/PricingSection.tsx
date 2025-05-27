@@ -36,7 +36,7 @@ const PricingSection = () => {
       icon: <Zap className="w-10 h-10 text-amber-500" />,
       name: "Quick-Win Automation",
       description: "One high-value automation with proven ROI.",
-      price: "$999",
+      price: "$950",
       priceSubtext: "one-time payment",
       features: [
         { text: "Business process audit" },
@@ -61,7 +61,7 @@ const PricingSection = () => {
       ),
       name: "Rapid Growth Team",
       description: "Essential automations to kickstart growth.",
-      price: "$4,999",
+      price: "$4,900",
       priceSubtext: "/month",
       features: [
         { text: "10 automations" },
@@ -86,7 +86,7 @@ const PricingSection = () => {
       ),
       name: "Full Service Growth Team",
       description: "Comprehensive automation and strategic support.",
-      price: "$6,999",
+      price: "$7,200",
       priceSubtext: "/month",
       features: [
         { text: "Unlimited agent & automation requests/month" },
