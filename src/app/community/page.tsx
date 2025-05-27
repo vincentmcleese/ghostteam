@@ -201,7 +201,7 @@ const CommunityPage = () => {
                     height={24}
                     className="mr-2"
                   />
-                  Join Our Slack Community
+                  Apply to join
                 </Button>
               </div>
 
