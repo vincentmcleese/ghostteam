@@ -27,6 +27,8 @@
     "@radix-ui/react-label": "^2.1.7",
     "@radix-ui/react-separator": "^1.1.2",
     "@radix-ui/react-slot": "^1.1.2",
+    "@supabase/supabase-js": "^2.49.8",
+    "@types/uuid": "^10.0.0",
     "apify-client": "^2.12.5",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
@@ -38,7 +40,8 @@
     "react-dom": "^19.0.0",
     "resend": "^4.5.1",
     "tailwind-merge": "^3.3.0",
-    "tw-animate-css": "^1.2.5"
+    "tw-animate-css": "^1.2.5",
+    "uuid": "^11.1.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

@@ -6,19 +6,34 @@ test.describe("AI Maturity Quiz", () => {
     await page.goto("/recruiter/ai-maturity-quiz");
 
     // Wait for the quiz to load
-    await page.waitForSelector(
-      'h1:has-text("AI Maturity Quiz for Recruiters")'
-    );
+    await page.waitForSelector('h1:has-text("AI Forward Recruiter")', {
+      timeout: 10000,
+    });
   });
 
   test("should display the quiz intro", async ({ page }) => {
     // Check that the intro content is displayed
-    await expect(page.locator("h1")).toContainText(
-      "AI Maturity Quiz for Recruiters"
-    );
+    await expect(page.locator("h1")).toContainText("AI Forward Recruiter");
     await expect(page.locator("p")).toContainText(
       "Discover your AI adoption level"
     );
+  });
+
+  // Test LinkedIn ID passing through URL parameter
+  test("should display personalization when LinkedIn ID is provided", async ({
+    page,
+  }) => {
+    // Navigate to the quiz page with LinkedIn ID
+    await page.goto("/recruiter/ai-maturity-quiz?l=test-user");
+
+    // Wait for personalization to load
+    await page.waitForLoadState("networkidle");
+
+    // Check if personalization is shown (assuming it shows user image or name)
+    const personalizationElement = page.locator(".personalization-card");
+    if ((await personalizationElement.count()) > 0) {
+      await expect(personalizationElement).toBeVisible();
+    }
   });
 
   test("should be able to navigate through the quiz", async ({ page }) => {

@@ -3,14 +3,19 @@ import { Metadata } from "next";
 import { quizData } from "@/lib/quiz/quiz-data";
 import { QuizProvider } from "@/lib/quiz/quiz-context";
 import QuizResults from "@/components/quiz/QuizResults";
+import {
+  getQuizResultBySession,
+  getQuizResultByLinkedinId,
+} from "@/lib/quiz/getQuizResult";
 
 // Dynamic metadata for the result page
 export async function generateMetadata({
   searchParams,
 }: {
-  searchParams: { category?: string };
+  searchParams: Promise<{ category?: string }>;
 }): Promise<Metadata> {
-  const category = searchParams.category || "A";
+  const resolvedParams = await searchParams;
+  const category = resolvedParams.category || "A";
   const result = quizData.results[category];
 
   return {
@@ -69,6 +74,9 @@ export default async function ResultPage({
   // Safely extract parameters
   let category = "A"; // Default category
   let hasProfile = false;
+  let sessionId = "";
+  let linkedinId = "";
+  let savedResults = null;
 
   // Get category if it exists and is a string
   if (typeof resolvedParams.category === "string") {
@@ -80,29 +88,81 @@ export default async function ResultPage({
     hasProfile = true;
   }
 
-  // Create initial mock state
+  // Check for LinkedIn ID
+  if (typeof resolvedParams.linkedinId === "string") {
+    linkedinId = resolvedParams.linkedinId;
+  }
+
+  // Try to fetch saved results using available identifiers
+  // First check for session ID
+  if (typeof resolvedParams.session === "string") {
+    sessionId = resolvedParams.session;
+
+    try {
+      const { success, data } = await getQuizResultBySession(sessionId);
+
+      if (success && data) {
+        savedResults = data;
+        // Update category from saved results
+        category = data.result_category;
+
+        // Check if we have LinkedIn data
+        if (data.linkedin_data && data.linkedin_data.profileImage) {
+          hasProfile = true;
+        }
+      }
+    } catch (error) {
+      console.error("Error fetching saved quiz results by session:", error);
+    }
+  }
+
+  // If we couldn't find by session ID, try LinkedIn ID if available
+  if (!savedResults && linkedinId) {
+    try {
+      const { success, data } = await getQuizResultByLinkedinId(linkedinId);
+
+      if (success && data) {
+        savedResults = data;
+        // Update category from saved results
+        category = data.result_category;
+
+        // We know we have LinkedIn data since we found by LinkedIn ID
+        hasProfile = true;
+      }
+    } catch (error) {
+      console.error("Error fetching saved quiz results by LinkedIn ID:", error);
+    }
+  }
+
+  // Create initial state - use saved data if available
   const initialState = {
     currentQuestion: quizData.questions.length,
-    answers: quizData.questions.reduce(
-      (acc, q) => {
-        acc[q.id] = category;
-        return acc;
-      },
-      {} as Record<number, string>
-    ),
+    answers:
+      savedResults?.answers ||
+      quizData.questions.reduce(
+        (acc, q) => {
+          acc[q.id] = category;
+          return acc;
+        },
+        {} as Record<number, string>
+      ),
     isComplete: true,
     resultCategory: category,
-    averageScore: category === "A" ? 1.2 : category === "B" ? 2 : 2.8,
+    averageScore:
+      savedResults?.score ||
+      (category === "A" ? 1.2 : category === "B" ? 2 : 2.8),
     scoreDistribution: [
       0, 0, 1, 2, 3, 4, 5, 6, 5, 4, 3, 2, 1, 0, 0, 0, 0, 0, 0, 0, 0,
     ],
-    // Only include LinkedIn profile flag if the user had one during the quiz
-    linkedInProfile: hasProfile
-      ? {
-          profileImage: "/images/recruiter/profile-placeholder.png",
-          firstName: "User",
-        }
-      : undefined,
+    // Use LinkedIn profile from saved results if available
+    linkedInProfile:
+      savedResults?.linkedin_data ||
+      (hasProfile
+        ? {
+            profileImage: "/images/recruiter/profile-placeholder.png",
+            firstName: "User",
+          }
+        : undefined),
   };
 
   return (
