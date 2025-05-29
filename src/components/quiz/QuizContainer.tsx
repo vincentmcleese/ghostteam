@@ -1,68 +1,58 @@
 "use client";
 
-import { useState } from "react";
+import React, { useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { questions } from "@/lib/quiz/config";
-import QuestionCard from "./QuestionCard";
-import ProgressBar from "./ProgressBar";
-import Image from "next/image";
+import { useQuiz } from "@/lib/quiz/quiz-context";
+import QuizProgress from "./QuizProgress";
+import QuizQuestion from "./QuizQuestion";
+import { quizData } from "@/lib/quiz/quiz-data";
 
-const QuizContainer = () => {
+/**
+ * Main container for the quiz
+ */
+const QuizContainer: React.FC = () => {
+  const { state, dispatch } = useQuiz();
+  const { currentQuestion, isComplete, resultCategory } = state;
   const router = useRouter();
-  const [currentQuestion, setCurrentQuestion] = useState(0);
-  const [answers, setAnswers] = useState<Record<number, string>>({});
-  const [isCalculating, setIsCalculating] = useState(false);
 
-  const handleAnswer = async (questionId: number, value: string) => {
-    setAnswers((prev) => ({ ...prev, [questionId]: value }));
+  // If the current question is beyond the total questions, calculate results
+  useEffect(() => {
+    if (currentQuestion >= quizData.questions.length && !isComplete) {
+      dispatch({ type: "CALCULATE_RESULT" });
+    }
+  }, [currentQuestion, isComplete, dispatch]);
 
-    if (currentQuestion < questions.length - 1) {
-      setCurrentQuestion((prev) => prev + 1);
-    } else {
-      // Final question answered
-      setIsCalculating(true);
+  // Redirect to results page when calculation is complete
+  useEffect(() => {
+    if (isComplete && resultCategory) {
+      // In the future, this is where you would save to database
+      // Then redirect with the unique ID from the database
 
-      // Calculate result
-      const result = calculateResult({ ...answers, [questionId]: value });
-
-      // Artificial delay for better UX
-      await new Promise((resolve) => setTimeout(resolve, 2000));
-
-      // Navigate to results
-      router.push(
-        `/recruiter/how-ai-ready-is-your-recruitment-business/result?type=${result}`
+      // For now, redirect with the category as parameter
+      // Also pass LinkedIn ID if available
+      const linkedInProfile = state.linkedInProfile;
+      const url = new URL(
+        `/recruiter/ai-maturity-quiz/result`,
+        window.location.origin
       );
+
+      // Add parameters
+      url.searchParams.set("category", resultCategory);
+
+      // Pass the LinkedIn ID if we have it
+      if (linkedInProfile?.profileImage) {
+        url.searchParams.set("hasProfile", "true");
+      }
+
+      router.push(url.pathname + url.search);
     }
-  };
+  }, [isComplete, resultCategory, router, state.linkedInProfile]);
 
-  const handleBack = () => {
-    if (currentQuestion > 0) {
-      setCurrentQuestion((prev) => prev - 1);
-    }
-  };
-
-  const calculateResult = (answers: Record<number, string>) => {
-    const counts = { A: 0, B: 0, C: 0 };
-    Object.values(answers).forEach((value) => {
-      counts[value as keyof typeof counts]++;
-    });
-    if (counts.A >= counts.B && counts.A >= counts.C) return "Hustler";
-    if (counts.B >= counts.A && counts.B >= counts.C) return "Optimizer";
-    return "Scaler";
-  };
-
-  if (isCalculating) {
+  // Show loading state while calculating
+  if (currentQuestion >= quizData.questions.length && !isComplete) {
     return (
       <div className="min-h-[400px] flex flex-col items-center justify-center space-y-8">
-        <div className="relative w-32 h-32 animate-pulse">
-          <Image
-            src="/images/ghost_white_transparent.png"
-            alt="Ghost Logo"
-            width={128}
-            height={128}
-            className="object-contain"
-          />
-        </div>
+        <div className="w-16 h-16 border-4 border-t-blue-600 border-b-blue-600 border-l-transparent border-r-transparent rounded-full animate-spin"></div>
         <div className="text-center space-y-4">
           <h2 className="text-2xl font-semibold">
             Analyzing Your Responses...
@@ -75,17 +65,12 @@ const QuizContainer = () => {
     );
   }
 
+  // Show current question (results will be shown on the dedicated page)
   return (
     <div className="max-w-2xl mx-auto">
-      <ProgressBar current={currentQuestion + 1} total={questions.length} />
+      <QuizProgress />
       <div className="mt-8">
-        <QuestionCard
-          question={questions[currentQuestion]}
-          onAnswer={handleAnswer}
-          onBack={handleBack}
-          showBack={currentQuestion > 0}
-          selectedAnswer={answers[questions[currentQuestion].id]}
-        />
+        <QuizQuestion />
       </div>
     </div>
   );

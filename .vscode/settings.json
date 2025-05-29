@@ -1,0 +1,23 @@
+{
+    "typescript.tsdk": "node_modules/typescript/lib",
+    "typescript.enablePromptUseWorkspaceTsdk": true,
+    "typescript.tsserver.experimental.enableProjectDiagnostics": false,
+    "typescript.disableAutomaticTypeAcquisition": true,
+    "typescript.reportStyleChecksAsWarnings": false,
+    "typescript.preferences.importModuleSpecifier": "non-relative",
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": "explicit"
+    },
+    "eslint.validate": [
+        "typescript",
+        "typescriptreact",
+        "javascript",
+        "javascriptreact"
+    ],
+    "eslint.workingDirectories": [
+        {
+            "mode": "auto"
+        }
+    ]
+}

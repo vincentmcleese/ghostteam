@@ -20,6 +20,26 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
+## LinkedIn Personalization
+
+The AI Maturity Quiz includes a personalization feature that can pull in LinkedIn profile data to create a more personalized experience. This feature requires:
+
+1. An Apify API token set in your `.env.local` file:
+
+   ```
+   APIFY_API_TOKEN=your_api_token_here
+   ```
+
+2. A LinkedIn profile ID passed as a URL parameter:
+   - Using `?l=profile-id` or `?utm_linkedin=profile-id`
+   - Example: `/recruiter/ai-maturity-quiz?utm_linkedin=johndoe`
+
+The system will fetch the user's first name and profile picture to personalize the quiz experience.
+
+You can test this feature by visiting:
+
+- `/test-linkedin` - a test page to preview LinkedIn personalization
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:
