@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { usePathname } from "next/navigation";
 import AlertBanner from "@/components/AlertBanner";
 import Header from "@/components/Header";
 
@@ -9,7 +10,12 @@ interface MainLayoutProps {
 }
 
 const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
-  const [isBannerVisible, setIsBannerVisible] = useState(true);
+  const pathname = usePathname();
+
+  // Hide banner on quiz pages
+  const shouldShowBanner = !pathname.includes("/recruiter/ai-maturity-quiz");
+
+  const [isBannerVisible, setIsBannerVisible] = useState(shouldShowBanner);
 
   const handleCloseBanner = () => {
     setIsBannerVisible(false);

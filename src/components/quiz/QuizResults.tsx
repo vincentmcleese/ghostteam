@@ -1,10 +1,11 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { useQuiz } from "@/lib/quiz/quiz-context";
 import BenchmarkVisual from "./BenchmarkVisual";
 import { Button } from "@/components/ui/button";
+import EmailCaptureModal from "@/components/EmailCaptureModal";
 
 /**
  * Displays the quiz results focused on the benchmark visualization
@@ -12,6 +13,8 @@ import { Button } from "@/components/ui/button";
 const QuizResults: React.FC = () => {
   const { state, quizData } = useQuiz();
   const { resultCategory, averageScore, scoreDistribution } = state;
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [slackInviteLink, setSlackInviteLink] = useState("");
 
   // Always call hooks at the top level
   useEffect(() => {
@@ -19,6 +22,14 @@ const QuizResults: React.FC = () => {
       // Analytics tracking could go here
       console.log("Quiz result viewed:", resultCategory);
     }
+
+    // Fetch the current Slack invite link from localStorage or API
+    const storedLink = localStorage.getItem("slackInviteLink");
+    // Default link in case none is set yet
+    setSlackInviteLink(
+      storedLink ||
+        "https://join.slack.com/t/ghostteamai/shared_invite/your-default-link"
+    );
   }, [resultCategory]);
 
   // If no result category, we can't show results
@@ -31,9 +42,11 @@ const QuizResults: React.FC = () => {
   const result = quizData.results[resultCategory];
 
   const handleOpenModal = () => {
-    // In the future, this could open a modal
-    // For now, redirect to the community page
-    window.open("/community", "_blank");
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
   };
 
   return (
@@ -52,23 +65,45 @@ const QuizResults: React.FC = () => {
       </div>
 
       {/* Slack community CTA */}
-      <div className="bg-gradient-to-r from-indigo-600 to-purple-600 rounded-xl p-6 md:p-8 text-white shadow-lg">
+      <div className="bg-white rounded-xl p-6 md:p-8 shadow-lg mb-8">
         <div className="flex flex-col items-center">
-          <h2 className="text-xl md:text-2xl font-bold mb-3 text-center">
-            100+ recruiters have joined the Ghost Team AI recruitment community
+          <h2 className="text-xl md:text-2xl font-bold mb-4 text-center">
+            Join the leading AI powered recruitment community
           </h2>
-          <p className="mb-6 text-indigo-100 text-center max-w-3xl">
-            Implement top quick win implementations and connect with other
-            recruitment professionals leveraging AI
-          </p>
 
-          {/* High ROI AI Value Flows with Checkmarks */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8 w-full max-w-2xl">
-            <div className="flex items-center">
-              <div className="bg-white rounded-full p-1 mr-3 flex-shrink-0">
+          {/* Avatar Group */}
+          <div className="mb-6">
+            <p className="text-gray-700 mb-4 text-center font-medium">
+              Join 100+ peers thinking about agentic automations
+            </p>
+
+            <div className="flex justify-center">
+              <div className="flex -space-x-3 mr-2">
+                <div className="w-10 h-10 rounded-full border-2 border-white bg-purple-400 flex items-center justify-center text-white font-semibold">
+                  MK
+                </div>
+                <div className="w-10 h-10 rounded-full border-2 border-white bg-amber-400 flex items-center justify-center text-white font-semibold">
+                  RW
+                </div>
+                <div className="w-10 h-10 rounded-full border-2 border-white bg-pink-400 flex items-center justify-center text-white font-semibold">
+                  TP
+                </div>
+              </div>
+              <div className="flex items-center justify-center bg-gray-100 rounded-full px-3 py-1">
+                <span className="text-sm font-medium text-gray-600">
+                  +97 more
+                </span>
+              </div>
+            </div>
+          </div>
+
+          {/* Checkmark List */}
+          <div className="w-full max-w-xl mb-6">
+            <div className="flex items-start mb-4">
+              <div className="bg-primary rounded-full p-1 mr-3 flex-shrink-0">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5 text-green-500"
+                  className="h-4 w-4 text-white"
                   viewBox="0 0 20 20"
                   fill="currentColor"
                 >
@@ -79,16 +114,15 @@ const QuizResults: React.FC = () => {
                   />
                 </svg>
               </div>
-              <span className="text-white">
-                Warm outreach to network based on fundraise events from
-                Crunchbase
+              <span className="text-gray-700">
+                Examples of AI system workflows being used by real recruiters
               </span>
             </div>
-            <div className="flex items-center">
-              <div className="bg-white rounded-full p-1 mr-3 flex-shrink-0">
+            <div className="flex items-start mb-4">
+              <div className="bg-primary rounded-full p-1 mr-3 flex-shrink-0">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5 text-green-500"
+                  className="h-4 w-4 text-white"
                   viewBox="0 0 20 20"
                   fill="currentColor"
                 >
@@ -99,15 +133,15 @@ const QuizResults: React.FC = () => {
                   />
                 </svg>
               </div>
-              <span className="text-white">
-                Automated candidate qualification based on LinkedIn profiles
+              <span className="text-gray-700">
+                Stay up to date on what is possible
               </span>
             </div>
-            <div className="flex items-center">
-              <div className="bg-white rounded-full p-1 mr-3 flex-shrink-0">
+            <div className="flex items-start">
+              <div className="bg-primary rounded-full p-1 mr-3 flex-shrink-0">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5 text-green-500"
+                  className="h-4 w-4 text-white"
                   viewBox="0 0 20 20"
                   fill="currentColor"
                 >
@@ -118,32 +152,13 @@ const QuizResults: React.FC = () => {
                   />
                 </svg>
               </div>
-              <span className="text-white">
-                AI-powered interview question generation for specific roles
-              </span>
-            </div>
-            <div className="flex items-center">
-              <div className="bg-white rounded-full p-1 mr-3 flex-shrink-0">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5 text-green-500"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-              </div>
-              <span className="text-white">
-                Personalized outreach templates that scale with AI
+              <span className="text-gray-700">
+                Ask questions and get help setting up workflows
               </span>
             </div>
           </div>
 
-          {/* CTA Button - Styled like community page */}
+          {/* CTA Button */}
           <Button
             size="lg"
             className="mt-2 bg-[#4A154B] hover:bg-[#611f64] text-white px-8 py-6 h-auto text-lg flex items-center gap-2"
@@ -156,10 +171,28 @@ const QuizResults: React.FC = () => {
               height={24}
               className="mr-2"
             />
-            Request to join community
+            Apply to join
           </Button>
+
+          {/* Slack Screenshot */}
+          <div className="mt-8 w-full">
+            <Image
+              src="/images/joinslack.png"
+              alt="Ghost Team Slack Community"
+              width={1200}
+              height={800}
+              className="w-full h-auto rounded-lg shadow-md"
+            />
+          </div>
         </div>
       </div>
+
+      {/* Email Capture Modal */}
+      <EmailCaptureModal
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+        slackInviteLink={slackInviteLink}
+      />
     </div>
   );
 };

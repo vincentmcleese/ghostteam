@@ -25,9 +25,7 @@ const CallToActionButton = () => (
             className="object-contain"
           />
         </div>
-        <span className="flex-grow text-center font-medium">
-          Book a Strategy Call
-        </span>
+        <span className="flex-grow text-center font-medium">Book a Call</span>
         <div className="bg-white w-7 h-7 rounded-sm flex items-center justify-center flex-shrink-0">
           <ArrowUpRight
             className="w-5 h-5 text-primary transition-transform duration-150 ease-in-out group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
