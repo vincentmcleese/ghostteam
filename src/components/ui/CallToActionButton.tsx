@@ -11,7 +11,7 @@ const CallToActionButton = () => (
       asChild
     >
       <Link
-        href="https://calendly.com/elliot-ghostteam/30min"
+        href="https://form.typeform.com/to/KQBK1uye"
         target="_blank"
         rel="noopener noreferrer"
         className="flex items-center justify-between w-full gap-3"

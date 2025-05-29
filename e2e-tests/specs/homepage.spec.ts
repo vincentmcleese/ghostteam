@@ -41,7 +41,7 @@ test.describe("Homepage", () => {
         console.log(
           "No 'Book a Strategy Call' link found, trying any Calendly link"
         );
-        bookCallButton = page.locator('a[href*="calendly.com"]').first();
+        bookCallButton = page.locator('a[href*="typeform.com"]').first();
       }
     }
 
@@ -79,7 +79,7 @@ test.describe("Homepage", () => {
       // Verify the URL in the new tab contains calendly.com
       const newPageUrl = newPage.url();
       console.log(`New tab URL: ${newPageUrl}`);
-      expect(newPageUrl).toContain("calendly.com");
+      expect(newPageUrl).toContain("typeform.com");
 
       // Take a screenshot of the booking page
       await newPage.screenshot({
@@ -93,7 +93,7 @@ test.describe("Homepage", () => {
       // For links that navigate in the same tab
       // Set up navigation promise
       const navigationPromise = page.waitForNavigation({
-        url: (url) => url.toString().includes("calendly.com"),
+        url: (url) => url.toString().includes("typeform.com"),
         timeout: 30000,
       });
 
@@ -105,7 +105,7 @@ test.describe("Homepage", () => {
 
       // Verify we navigated to Calendly
       const currentUrl = page.url();
-      expect(currentUrl).toContain("calendly.com");
+      expect(currentUrl).toContain("typeform.com");
 
       // Take a screenshot of the booking page
       await page.screenshot({

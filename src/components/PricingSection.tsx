@@ -193,7 +193,7 @@ const PricingSection = () => {
                   asChild
                 >
                   <Link
-                    href="https://calendly.com/elliot-ghostteam/30min"
+                    href="https://form.typeform.com/to/KQBK1uye"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -209,7 +209,7 @@ const PricingSection = () => {
           <p className="text-muted-foreground">
             Questions about our service?{" "}
             <Link
-              href="https://calendly.com/elliot-ghostteam/30min"
+              href="https://form.typeform.com/to/KQBK1uye"
               className="text-primary font-medium"
               target="_blank"
               rel="noopener noreferrer"

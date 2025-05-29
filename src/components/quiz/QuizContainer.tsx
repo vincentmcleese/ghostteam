@@ -60,7 +60,7 @@ const QuizContainer: React.FC = () => {
 
           const averageScore =
             scoreValues.length > 0
-              ? scoreValues.reduce((sum, val) => sum + val, 0) /
+              ? scoreValues.reduce<number>((sum, val) => sum + val, 0) /
                 scoreValues.length
               : 0;
 
@@ -74,8 +74,9 @@ const QuizContainer: React.FC = () => {
                 // Basic profile info
                 id: linkedInProfile.id,
                 firstName: linkedInProfile.firstName,
-                lastName: linkedInProfile.lastName,
-                profileUrl: linkedInProfile.profileUrl,
+                lastName: linkedInProfile.lastName || null,
+                profileUrl:
+                  linkedInProfile.profileUrl || linkedInProfile.url || null,
                 profileImage: linkedInProfile.profileImage,
 
                 // Additional data if available

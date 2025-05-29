@@ -34,9 +34,18 @@ export interface QuizData {
 
 // LinkedIn profile information
 export interface LinkedInProfile {
+  id?: string;
   firstName?: string;
+  lastName?: string;
+  profileUrl?: string;
+  url?: string;
   profileImage?: string;
   headline?: string;
+  location?: string;
+  company?: string;
+  position?: string;
+  apiResponse?: any;
+  [key: string]: any; // Allow for additional properties
 }
 
 // Quiz state
