@@ -39,6 +39,7 @@ const QuizOption: React.FC<QuizOptionProps> = ({
     A: "bg-red-100 text-red-800",
     B: "bg-yellow-100 text-yellow-800",
     C: "bg-green-100 text-green-800",
+    D: "bg-gray-100 text-gray-800",
   };
 
   const headingColor =

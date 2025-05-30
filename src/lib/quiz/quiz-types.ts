@@ -5,7 +5,7 @@
 // Option in a quiz question
 export interface QuizOption {
   label: string;
-  score: "A" | "B" | "C";
+  score: "A" | "B" | "C" | "D";
   heading: string;
 }
 

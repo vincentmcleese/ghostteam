@@ -30,6 +30,11 @@ export const quizData: QuizData = {
           score: "C",
           heading: "Agent Scaling",
         },
+        {
+          label: "Not relevant for my job",
+          score: "D",
+          heading: "Not Applicable",
+        },
       ],
     },
     {
@@ -52,6 +57,11 @@ export const quizData: QuizData = {
             "I run multi-step outreach workflows that auto-personalize based on profile data",
           score: "C",
           heading: "Agent Scaling",
+        },
+        {
+          label: "Not relevant for my job",
+          score: "D",
+          heading: "Not Applicable",
         },
       ],
     },
@@ -77,6 +87,11 @@ export const quizData: QuizData = {
           score: "C",
           heading: "Agent Scaling",
         },
+        {
+          label: "Not relevant for my job",
+          score: "D",
+          heading: "Not Applicable",
+        },
       ],
     },
     {
@@ -100,6 +115,11 @@ export const quizData: QuizData = {
             "I evaluate new tools monthly and slot them into existing workflows if they save time",
           score: "C",
           heading: "Agent Scaling",
+        },
+        {
+          label: "Not relevant for my job",
+          score: "D",
+          heading: "Not Applicable",
         },
       ],
     },
@@ -127,6 +147,11 @@ export const quizData: QuizData = {
           score: "C",
           heading: "Agent Scaling",
         },
+        {
+          label: "Not relevant for my job",
+          score: "D",
+          heading: "Not Applicable",
+        },
       ],
     },
     {
@@ -151,6 +176,11 @@ export const quizData: QuizData = {
           score: "C",
           heading: "Agent Scaling",
         },
+        {
+          label: "Not relevant for my job",
+          score: "D",
+          heading: "Not Applicable",
+        },
       ],
     },
     {
@@ -174,6 +204,11 @@ export const quizData: QuizData = {
           score: "C",
           heading: "Agent Scaling",
         },
+        {
+          label: "Not relevant for my job",
+          score: "D",
+          heading: "Not Applicable",
+        },
       ],
     },
     {
@@ -196,6 +231,11 @@ export const quizData: QuizData = {
           label: "It's integrated into how I write, ideate, or analyze data",
           score: "C",
           heading: "Agent Scaling",
+        },
+        {
+          label: "Not relevant for my job",
+          score: "D",
+          heading: "Not Applicable",
         },
       ],
     },
@@ -232,7 +272,10 @@ export const calculateResultCategory = (
   const counts = { A: 0, B: 0, C: 0 };
 
   Object.values(answers).forEach((score) => {
-    counts[score as keyof typeof counts]++;
+    // Skip "D" answers (Not relevant for my job)
+    if (score !== "D") {
+      counts[score as keyof typeof counts]++;
+    }
   });
 
   // Find the most frequent score (or first in case of tie)
@@ -248,9 +291,13 @@ export const calculateAverageScore = (
   answers: Record<number, string>
 ): number => {
   const scoreMap = { A: 1, B: 2, C: 3 };
-  const scores = Object.values(answers).map(
-    (score) => scoreMap[score as keyof typeof scoreMap]
-  );
+  // Filter out "D" answers and map remaining answers to numeric scores
+  const scores = Object.values(answers)
+    .filter((score) => score !== "D")
+    .map((score) => scoreMap[score as keyof typeof scoreMap]);
+
+  // Return 2 (middle value) if no valid answers after filtering
+  if (scores.length === 0) return 2;
 
   const sum = scores.reduce((total, score) => total + score, 0);
   return sum / scores.length;

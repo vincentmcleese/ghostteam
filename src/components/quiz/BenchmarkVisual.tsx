@@ -112,7 +112,14 @@ const BenchmarkVisual: React.FC<BenchmarkVisualProps> = ({
 
     // If filtering by question, get the user's answer for that question
     const questionId = parseInt(selectedFilter.replace("question-", ""));
-    return (answers[questionId] as "A" | "B" | "C") || "B"; // Default to B if no answer
+    const answer = answers[questionId] as "A" | "B" | "C" | "D";
+
+    // If answer is "D" (Not relevant), return B as default
+    if (answer === "D") {
+      return "B";
+    }
+
+    return (answer as "A" | "B" | "C") || "B"; // Default to B if no answer
   };
 
   const userCategory = getUserCategory();
