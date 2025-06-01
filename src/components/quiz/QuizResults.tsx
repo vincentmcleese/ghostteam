@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import Image from "next/image";
 import { useQuiz } from "@/lib/quiz/quiz-context";
 import BenchmarkVisual from "./BenchmarkVisual";
@@ -15,31 +15,69 @@ const QuizResults: React.FC = () => {
   const { resultCategory, averageScore, scoreDistribution } = state;
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [slackInviteLink, setSlackInviteLink] = useState("");
+  const [isLoadingLink, setIsLoadingLink] = useState(true);
+  const [linkError, setLinkError] = useState("");
 
-  // Always call hooks at the top level
+  const fetchSlackLink = useCallback(async () => {
+    setIsLoadingLink(true);
+    setLinkError("");
+    try {
+      const response = await fetch("/api/slack-link");
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(
+          errorData.error || "Failed to fetch Slack link from API"
+        );
+      }
+      const data = await response.json();
+      setSlackInviteLink(data.slackInviteLink || "");
+      if (!data.slackInviteLink) {
+        setLinkError(
+          "Slack invitation link is not configured. Please contact support."
+        );
+      }
+    } catch (err: any) {
+      console.error("Fetch Slack link error (QuizResults):", err);
+      setLinkError(err.message || "Could not load Slack invitation link.");
+      // Fallback to a generic link if API fails or no link is set
+      setSlackInviteLink(
+        "https://join.slack.com/t/ghostteamai/shared_invite/your-default-link"
+      );
+    } finally {
+      setIsLoadingLink(false);
+    }
+  }, []);
+
   useEffect(() => {
     if (resultCategory) {
       // Analytics tracking could go here
       console.log("Quiz result viewed:", resultCategory);
     }
+    fetchSlackLink();
+  }, [resultCategory, fetchSlackLink]);
 
-    // Fetch the current Slack invite link from localStorage or API
-    const storedLink = localStorage.getItem("slackInviteLink");
-    // Default link in case none is set yet
-    setSlackInviteLink(
-      storedLink ||
-        "https://join.slack.com/t/ghostteamai/shared_invite/your-default-link"
+  // If no result category, we can't show results (or quiz data not loaded)
+  if (
+    !resultCategory ||
+    !averageScore ||
+    !scoreDistribution ||
+    !quizData.results[resultCategory]
+  ) {
+    // console.log("Missing data for results page:", {resultCategory, averageScore, scoreDistribution, quizDataResults: quizData.results[resultCategory]});
+    return (
+      <div className="min-h-[400px] flex flex-col items-center justify-center space-y-8">
+        <div className="w-16 h-16 border-4 border-t-blue-600 border-b-blue-600 border-l-transparent border-r-transparent rounded-full animate-spin"></div>
+        <div className="text-center space-y-4">
+          <h2 className="text-2xl font-semibold">Loading Results...</h2>
+          <p className="text-gray-600">
+            Please wait while we prepare your assessment results.
+          </p>
+        </div>
+      </div>
     );
-  }, [resultCategory]);
-
-  // If no result category, we can't show results
-  if (!resultCategory || !averageScore || !scoreDistribution) {
-    return null;
   }
 
-  // We can safely access quizData after checking resultCategory exists
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const result = quizData.results[resultCategory];
+  const result = quizData.results[resultCategory]; // Now safe to access
 
   const handleOpenModal = () => {
     setIsModalOpen(true);
@@ -59,8 +97,8 @@ const QuizResults: React.FC = () => {
 
         {/* Benchmark visualization - the focal point */}
         <BenchmarkVisual
-          userScore={averageScore}
-          distribution={scoreDistribution}
+          userScore={averageScore} // averageScore is already calculated and available
+          distribution={scoreDistribution} // scoreDistribution is also available
         />
       </div>
 
@@ -163,6 +201,10 @@ const QuizResults: React.FC = () => {
             size="lg"
             className="mt-2 bg-[#4A154B] hover:bg-[#611f64] text-white px-8 py-6 h-auto text-lg flex items-center gap-2"
             onClick={handleOpenModal}
+            disabled={
+              isLoadingLink ||
+              (!!linkError && !slackInviteLink.includes("your-default-link"))
+            }
           >
             <Image
               src="/images/slack-logo-white.png"
@@ -173,6 +215,9 @@ const QuizResults: React.FC = () => {
             />
             Apply to join
           </Button>
+          {linkError && (
+            <p className="text-center text-red-600 text-sm mt-2">{linkError}</p>
+          )}
 
           {/* Slack Screenshot */}
           <div className="mt-8 w-full">
@@ -191,7 +236,7 @@ const QuizResults: React.FC = () => {
       <EmailCaptureModal
         isOpen={isModalOpen}
         onClose={handleCloseModal}
-        slackInviteLink={slackInviteLink}
+        slackInviteLink={slackInviteLink} // Pass the fetched or fallback link
       />
     </div>
   );

@@ -1,8 +1,5 @@
 import { Metadata } from "next";
-import {
-  questions as quizQuestions,
-  results as quizResults,
-} from "./quiz/config";
+import { quizData } from "./quiz/quiz-data";
 
 // Base site information
 const siteName = "Ghost Team AI";
@@ -152,9 +149,9 @@ export function generateArticleStructuredData({
  */
 export function generateQuizStructuredData() {
   // Convert quiz questions to FAQ format for structured data
-  const faqQuestions = quizQuestions.map((q) => ({
-    question: q.text,
-    answer: q.options.map((opt) => opt.text).join(" | "),
+  const faqQuestions = quizData.questions.map((q) => ({
+    question: q.question,
+    answer: q.options.map((opt) => opt.label).join(" | "),
   }));
 
   return generateFAQStructuredData(faqQuestions);
@@ -193,8 +190,20 @@ export function generateQuizMetadata(): Metadata {
  */
 export function generateQuizResultMetadata(resultType?: string): Metadata {
   // Default result type if none specified
-  const type = resultType || "Hustler";
-  const result = quizResults[type];
+  const type = resultType || "A";
+  const result = quizData.results[type];
+
+  if (!result) {
+    // Fallback if the resultType is somehow invalid or not found
+    console.warn(
+      `Quiz result type "${type}" not found in quizData.results. Using default metadata.`
+    );
+    return generateMetadata({
+      title: "Quiz Results",
+      description: "View your quiz assessment results.",
+      path: "/recruiter/how-ai-ready-is-your-recruitment-business/result", // Generic path
+    });
+  }
 
   const title = `${result.title} - AI Readiness Quiz Results`;
   const description = `Your AI readiness assessment: ${result.description} Get personalized recommendations for your recruitment business.`;

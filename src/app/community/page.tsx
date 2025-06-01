@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import EmailCaptureModal from "@/components/EmailCaptureModal";
@@ -8,18 +8,49 @@ import EmailCaptureModal from "@/components/EmailCaptureModal";
 const CommunityPage = () => {
   const [slackInviteLink, setSlackInviteLink] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isLoadingLink, setIsLoadingLink] = useState(true);
+  const [linkError, setLinkError] = useState("");
 
-  useEffect(() => {
-    // Fetch the current Slack invite link from localStorage or API
-    const storedLink = localStorage.getItem("slackInviteLink");
-    // Default link in case none is set yet
-    setSlackInviteLink(
-      storedLink ||
+  const fetchSlackLink = useCallback(async () => {
+    setIsLoadingLink(true);
+    setLinkError("");
+    try {
+      const response = await fetch("/api/slack-link");
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || "Failed to fetch Slack link");
+      }
+      const data = await response.json();
+      setSlackInviteLink(data.slackInviteLink || "");
+      if (!data.slackInviteLink) {
+        setLinkError(
+          "The Slack invitation link is not currently available. Please check back later."
+        );
+      }
+    } catch (err: any) {
+      console.error("Fetch Slack link error:", err);
+      setLinkError(
+        err.message || "An error occurred while fetching the Slack link."
+      );
+      // Fallback to a generic link if API fails or no link is set, to allow modal to open
+      setSlackInviteLink(
         "https://join.slack.com/t/ghostteamai/shared_invite/your-default-link"
-    );
+      );
+    } finally {
+      setIsLoadingLink(false);
+    }
   }, []);
 
+  useEffect(() => {
+    fetchSlackLink();
+  }, [fetchSlackLink]);
+
   const handleOpenModal = () => {
+    if (!slackInviteLink && !isLoadingLink) {
+      // If still no link after loading (and not due to an error being displayed)
+      // and we haven't set a fallback, use a default or show specific message.
+      // For now, relying on fallback in fetchSlackLink or error message.
+    }
     setIsModalOpen(true);
   };
 
@@ -193,6 +224,11 @@ const CommunityPage = () => {
                   size="lg"
                   className="mt-4 bg-[#4A154B] hover:bg-[#611f64] text-white px-8 py-6 h-auto text-lg flex items-center gap-2"
                   onClick={handleOpenModal}
+                  disabled={
+                    isLoadingLink ||
+                    (!!linkError &&
+                      !slackInviteLink.includes("your-default-link"))
+                  }
                 >
                   <Image
                     src="/images/slack-logo-white.png"
@@ -204,6 +240,11 @@ const CommunityPage = () => {
                   Apply to join
                 </Button>
               </div>
+              {linkError && (
+                <p className="text-center text-red-600 text-sm mt-2">
+                  {linkError}
+                </p>
+              )}
 
               <div className="mt-8 mb-8">
                 <div className="w-full">
@@ -321,7 +362,7 @@ const CommunityPage = () => {
       <EmailCaptureModal
         isOpen={isModalOpen}
         onClose={handleCloseModal}
-        slackInviteLink={slackInviteLink}
+        slackInviteLink={slackInviteLink} // Pass the fetched or fallback link
       />
     </main>
   );
