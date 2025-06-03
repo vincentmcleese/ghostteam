@@ -37,8 +37,18 @@ const IntegrationLogo: React.FC<IntegrationLogoProps> = ({
     fetchLogo();
   }, [name, size]);
 
+  // If logo loading failed, display a fallback with the tool name
   if (error || !logoUrl) {
-    return null;
+    return (
+      <div
+        className="flex items-center justify-center w-full h-full bg-gray-50 rounded-md"
+        style={{ width: size, height: size }}
+      >
+        <div className="text-center text-sm font-medium text-gray-700 p-1">
+          {name}
+        </div>
+      </div>
+    );
   }
 
   return (

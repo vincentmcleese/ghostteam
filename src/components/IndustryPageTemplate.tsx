@@ -240,16 +240,41 @@ const IndustryPageTemplate: React.FC<IndustryPageTemplateProps> = ({
                       "BambooHR",
                       "HubSpot",
                       "Mailchimp",
+                      // Added missing logos:
+                      "Salesforce",
+                      "Outreach",
+                      "SalesLoft",
+                      "LinkedIn Sales Navigator",
+                      "Zoom",
+                      "Calendly",
+                      "Intercom",
+                      "Drift",
+                      "Segment",
+                      "Clearbit",
+                      "ZoomInfo",
+                      "Apollo",
+                      "6sense",
+                      "Google Workspace",
+                      "ClickUp",
+                      "Discord",
+                      "WhatsApp",
+                      "LinkedIn",
+                      "Instagram",
                     ];
                     return validLogos.includes(tool);
                   })
                   .map((tool, index) => (
                     <Card
                       key={index}
-                      className="p-6 hover:shadow-md transition-shadow bg-white"
+                      className="p-4 hover:shadow-md transition-shadow bg-white"
                     >
-                      <CardContent className="flex items-center justify-center h-24">
-                        <IntegrationLogo name={tool} size={64} />
+                      <CardContent className="flex flex-col items-center justify-center h-24 gap-2">
+                        <div className="w-16 h-16 flex items-center justify-center">
+                          <IntegrationLogo name={tool} size={64} />
+                        </div>
+                        <span className="text-xs text-center font-medium text-gray-600">
+                          {tool}
+                        </span>
                       </CardContent>
                     </Card>
                   ))}
