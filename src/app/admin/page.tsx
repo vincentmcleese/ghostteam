@@ -92,8 +92,8 @@ const AdminPage = () => {
           <div className="mb-6">
             <h1 className="text-2xl font-bold mb-2">Admin Dashboard</h1>
             <p className="text-gray-600">
-              Update the Slack community invitation link here. This link will be
-              used across the application.
+              Update the Slack community invitation link here. This link will
+              then be used across the application.
             </p>
           </div>
 
