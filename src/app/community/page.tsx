@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import EmailCaptureModal from "@/components/EmailCaptureModal";
@@ -8,49 +8,18 @@ import EmailCaptureModal from "@/components/EmailCaptureModal";
 const CommunityPage = () => {
   const [slackInviteLink, setSlackInviteLink] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isLoadingLink, setIsLoadingLink] = useState(true);
-  const [linkError, setLinkError] = useState("");
-
-  const fetchSlackLink = useCallback(async () => {
-    setIsLoadingLink(true);
-    setLinkError("");
-    try {
-      const response = await fetch("/api/slack-link");
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.error || "Failed to fetch Slack link");
-      }
-      const data = await response.json();
-      setSlackInviteLink(data.slackInviteLink || "");
-      if (!data.slackInviteLink) {
-        setLinkError(
-          "The Slack invitation link is not currently available. Please check back later."
-        );
-      }
-    } catch (err: any) {
-      console.error("Fetch Slack link error:", err);
-      setLinkError(
-        err.message || "An error occurred while fetching the Slack link."
-      );
-      // Fallback to a generic link if API fails or no link is set, to allow modal to open
-      setSlackInviteLink(
-        "https://join.slack.com/t/ghostteamai/shared_invite/your-default-link"
-      );
-    } finally {
-      setIsLoadingLink(false);
-    }
-  }, []);
 
   useEffect(() => {
-    fetchSlackLink();
-  }, [fetchSlackLink]);
+    // Fetch the current Slack invite link from localStorage or API
+    const storedLink = localStorage.getItem("slackInviteLink");
+    // Default link in case none is set yet
+    setSlackInviteLink(
+      storedLink ||
+      "https://join.slack.com/t/ghostteamai/shared_invite/your-default-link"
+    );
+  }, []);
 
   const handleOpenModal = () => {
-    if (!slackInviteLink && !isLoadingLink) {
-      // If still no link after loading (and not due to an error being displayed)
-      // and we haven't set a fallback, use a default or show specific message.
-      // For now, relying on fallback in fetchSlackLink or error message.
-    }
     setIsModalOpen(true);
   };
 
@@ -110,7 +79,7 @@ const CommunityPage = () => {
                       </div>
                       <span className="font-medium text-sm">Elliot</span>
                       <span className="text-xs text-gray-500">
-                        Founder Ghostteam
+                        Co-founder Ghost Team
                       </span>
                     </a>
 
@@ -137,7 +106,7 @@ const CommunityPage = () => {
                       </div>
                       <span className="font-medium text-sm">Sal</span>
                       <span className="text-xs text-gray-500">
-                        Co-founder LangSync
+                        Co-founder LangSync, ex-Google
                       </span>
                     </a>
 
@@ -191,7 +160,7 @@ const CommunityPage = () => {
                       </div>
                       <span className="font-medium text-sm">Albina</span>
                       <span className="text-xs text-gray-500">
-                        Service lead at Farfetch
+                        Service lead at Farfetch, ex-Google
                       </span>
                     </a>
                   </div>
@@ -223,31 +192,18 @@ const CommunityPage = () => {
                 <Button
                   size="lg"
                   className="mt-4 bg-[#4A154B] hover:bg-[#611f64] text-white px-8 py-6 h-auto text-lg flex items-center gap-2"
-                  asChild
+                  onClick={handleOpenModal}
                 >
-                  <a
-                    href="https://form.typeform.com/to/MdIRE7CS"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    tabIndex={0}
-                    aria-label="Join the community via Typeform"
-                  >
-                    <Image
-                      src="/images/slack-logo-white.png"
-                      alt="Slack Logo"
-                      width={24}
-                      height={24}
-                      className="mr-2"
-                    />
-                    Join Community
-                  </a>
+                  <Image
+                    src="/images/slack-logo-white.png"
+                    alt="Slack Logo"
+                    width={24}
+                    height={24}
+                    className="mr-2"
+                  />
+                  Apply to Join!!!
                 </Button>
               </div>
-              {linkError && (
-                <p className="text-center text-red-600 text-sm mt-2">
-                  {linkError}
-                </p>
-              )}
 
               <div className="mt-8 mb-8">
                 <div className="w-full">
@@ -365,7 +321,7 @@ const CommunityPage = () => {
       <EmailCaptureModal
         isOpen={isModalOpen}
         onClose={handleCloseModal}
-        slackInviteLink={slackInviteLink} // Pass the fetched or fallback link
+        slackInviteLink={slackInviteLink}
       />
     </main>
   );
