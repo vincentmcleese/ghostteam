@@ -223,21 +223,24 @@ const CommunityPage = () => {
                 <Button
                   size="lg"
                   className="mt-4 bg-[#4A154B] hover:bg-[#611f64] text-white px-8 py-6 h-auto text-lg flex items-center gap-2"
-                  onClick={handleOpenModal}
-                  disabled={
-                    isLoadingLink ||
-                    (!!linkError &&
-                      !slackInviteLink.includes("your-default-link"))
-                  }
+                  asChild
                 >
-                  <Image
-                    src="/images/slack-logo-white.png"
-                    alt="Slack Logo"
-                    width={24}
-                    height={24}
-                    className="mr-2"
-                  />
-                  Apply to join
+                  <a
+                    href="https://form.typeform.com/to/MdIRE7CS"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    tabIndex={0}
+                    aria-label="Join the community via Typeform"
+                  >
+                    <Image
+                      src="/images/slack-logo-white.png"
+                      alt="Slack Logo"
+                      width={24}
+                      height={24}
+                      className="mr-2"
+                    />
+                    Join Community
+                  </a>
                 </Button>
               </div>
               {linkError && (
