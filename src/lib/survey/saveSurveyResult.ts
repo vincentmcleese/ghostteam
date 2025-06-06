@@ -29,35 +29,80 @@ export const convertAnswersToLead = (
   };
 };
 
+// Helper function to send lead notification emails
+async function sendLeadNotification(leadData: any) {
+  try {
+    // Get base URL - handle different environments
+    const baseUrl =
+      process.env.NEXT_PUBLIC_BASE_URL ||
+      (typeof window !== "undefined"
+        ? window.location.origin
+        : "http://localhost:3000");
+
+    const response = await fetch(`${baseUrl}/api/lead-notification`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(leadData),
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      console.error("Failed to send lead notification:", errorData);
+      return false;
+    }
+
+    const result = await response.json();
+    console.log("Lead notification sent successfully:", result.message);
+    return true;
+  } catch (error) {
+    console.error("Error sending lead notification:", error);
+    return false;
+  }
+}
+
 // Function to save survey result to leads table
 export async function saveSurveyResult(answers: Record<number, SurveyAnswer>) {
   try {
     const leadData = convertAnswersToLead(answers);
 
+    const leadRecord = {
+      business_type: leadData.businessType,
+      business_description: leadData.businessDescription,
+      project_type: leadData.projectType,
+      help_needed: leadData.helpNeeded,
+      monthly_revenue: leadData.monthlyRevenue,
+      website_url: leadData.websiteUrl,
+      linkedin_url: leadData.linkedinUrl,
+      first_name: leadData.firstName,
+      last_name: leadData.lastName,
+      phone: leadData.phone,
+      email: leadData.email,
+      created_at: new Date().toISOString(),
+    };
+
     const { data, error } = await supabase
       .from("leads")
-      .insert([
-        {
-          business_type: leadData.businessType,
-          business_description: leadData.businessDescription,
-          project_type: leadData.projectType,
-          help_needed: leadData.helpNeeded,
-          monthly_revenue: leadData.monthlyRevenue,
-          website_url: leadData.websiteUrl,
-          linkedin_url: leadData.linkedinUrl,
-          first_name: leadData.firstName,
-          last_name: leadData.lastName,
-          phone: leadData.phone,
-          email: leadData.email,
-          created_at: new Date().toISOString(),
-        },
-      ])
+      .insert([leadRecord])
       .select();
 
     if (error) {
       console.error("Error saving lead:", error);
       return { success: false, error };
     }
+
+    console.log("Lead saved successfully:", data);
+
+    // Send notification emails after successful database save
+    // Note: We don't await this to avoid blocking the user response
+    // If email fails, it won't affect the lead submission
+    sendLeadNotification(leadRecord).catch((emailError) => {
+      console.error(
+        "Lead notification email failed (non-blocking):",
+        emailError
+      );
+    });
 
     return { success: true, data };
   } catch (error) {

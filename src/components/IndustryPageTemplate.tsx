@@ -304,13 +304,7 @@ const IndustryPageTemplate: React.FC<IndustryPageTemplateProps> = ({
               className="font-semibold text-black"
               asChild
             >
-              <Link
-                href="https://form.typeform.com/to/KQBK1uye"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Book a Strategy Call
-              </Link>
+              <Link href="/begin?utm_source=website">Book a Call</Link>
             </Button>
           </div>
         </section>

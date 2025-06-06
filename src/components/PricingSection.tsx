@@ -71,7 +71,7 @@ const PricingSection = () => {
         { text: "Weekly 45-min strategy call" },
         { text: "No contract, cancel any time" },
       ],
-      ctaText: "Book a Strategy Call",
+      ctaText: "Book a Call",
       borderColor: "border-muted-foreground",
     },
     {
@@ -99,7 +99,7 @@ const PricingSection = () => {
         { text: "Dashboard access (track all automations)" },
         { text: "No contract, cancel any time" },
       ],
-      ctaText: "Book a Strategy Call",
+      ctaText: "Book a Call",
       borderColor: "border-primary",
       popular: true,
     },
@@ -192,13 +192,7 @@ const PricingSection = () => {
                   size="lg"
                   asChild
                 >
-                  <Link
-                    href="https://form.typeform.com/to/KQBK1uye"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {plan.ctaText}
-                  </Link>
+                  <Link href="/begin?utm_source=website">{plan.ctaText}</Link>
                 </Button>
               </CardFooter>
             </Card>
@@ -209,12 +203,10 @@ const PricingSection = () => {
           <p className="text-muted-foreground">
             Questions about our service?{" "}
             <Link
-              href="https://form.typeform.com/to/KQBK1uye"
+              href="/begin?utm_source=website"
               className="text-primary font-medium"
-              target="_blank"
-              rel="noopener noreferrer"
             >
-              Schedule a call
+              Book a call
             </Link>{" "}
             to learn more.
           </p>

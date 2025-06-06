@@ -11,9 +11,7 @@ const CallToActionButton = () => (
       asChild
     >
       <Link
-        href="https://form.typeform.com/to/KQBK1uye"
-        target="_blank"
-        rel="noopener noreferrer"
+        href="/begin?utm_source=website"
         className="flex items-center justify-between w-full gap-3"
       >
         <div className="w-10 h-10 flex items-center justify-center flex-shrink-0">
