@@ -239,7 +239,7 @@ const CommunityPage = () => {
                       height={24}
                       className="mr-2"
                     />
-                    Join Community
+                    Join Community!
                   </a>
                 </Button>
               </div>

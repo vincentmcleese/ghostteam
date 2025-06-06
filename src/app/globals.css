@@ -4,7 +4,8 @@
 /* Custom Font for ghostteam.ai brand */
 @font-face {
   font-family: "Chunko";
-  src: url("/fonts/chunko-bold.otf") format("opentype"),
+  src:
+    url("/fonts/chunko-bold.otf") format("opentype"),
     url("/fonts/chunko-bold.ttf") format("truetype");
   font-weight: bold;
   font-style: normal;
@@ -129,4 +130,20 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+/* Custom animations for survey components */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.3s ease-out forwards;
 }
