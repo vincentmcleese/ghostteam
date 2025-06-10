@@ -1,11 +1,11 @@
 "use client";
 
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { useQuiz } from "@/lib/quiz/quiz-context";
 import BenchmarkVisual from "./BenchmarkVisual";
 import { Button } from "@/components/ui/button";
-import EmailCaptureModal from "@/components/EmailCaptureModal";
 
 /**
  * Displays the quiz results focused on the benchmark visualization
@@ -13,48 +13,13 @@ import EmailCaptureModal from "@/components/EmailCaptureModal";
 const QuizResults: React.FC = () => {
   const { state, quizData } = useQuiz();
   const { resultCategory, averageScore, scoreDistribution } = state;
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [slackInviteLink, setSlackInviteLink] = useState("");
-  const [isLoadingLink, setIsLoadingLink] = useState(true);
-  const [linkError, setLinkError] = useState("");
-
-  const fetchSlackLink = useCallback(async () => {
-    setIsLoadingLink(true);
-    setLinkError("");
-    try {
-      const response = await fetch("/api/slack-link");
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(
-          errorData.error || "Failed to fetch Slack link from API"
-        );
-      }
-      const data = await response.json();
-      setSlackInviteLink(data.slackInviteLink || "");
-      if (!data.slackInviteLink) {
-        setLinkError(
-          "Slack invitation link is not configured. Please contact support."
-        );
-      }
-    } catch (err: any) {
-      console.error("Fetch Slack link error (QuizResults):", err);
-      setLinkError(err.message || "Could not load Slack invitation link.");
-      // Fallback to a generic link if API fails or no link is set
-      setSlackInviteLink(
-        "https://join.slack.com/t/ghostteamai/shared_invite/your-default-link"
-      );
-    } finally {
-      setIsLoadingLink(false);
-    }
-  }, []);
 
   useEffect(() => {
     if (resultCategory) {
       // Analytics tracking could go here
       console.log("Quiz result viewed:", resultCategory);
     }
-    fetchSlackLink();
-  }, [resultCategory, fetchSlackLink]);
+  }, [resultCategory]);
 
   // If no result category, we can't show results (or quiz data not loaded)
   if (
@@ -78,14 +43,6 @@ const QuizResults: React.FC = () => {
   }
 
   const result = quizData.results[resultCategory]; // Now safe to access
-
-  const handleOpenModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
-  };
 
   return (
     <div className="w-full max-w-4xl mx-auto px-4">
@@ -200,24 +157,19 @@ const QuizResults: React.FC = () => {
           <Button
             size="lg"
             className="mt-2 bg-[#4A154B] hover:bg-[#611f64] text-white px-8 py-6 h-auto text-lg flex items-center gap-2"
-            onClick={handleOpenModal}
-            disabled={
-              isLoadingLink ||
-              (!!linkError && !slackInviteLink.includes("your-default-link"))
-            }
+            asChild
           >
-            <Image
-              src="/images/slack-logo-white.png"
-              alt="Slack Logo"
-              width={24}
-              height={24}
-              className="mr-2"
-            />
-            Apply to join
+            <Link href="https://form.typeform.com/to/MdIRE7CS">
+              <Image
+                src="/images/slack-logo-white.png"
+                alt="Slack Logo"
+                width={24}
+                height={24}
+                className="mr-2"
+              />
+              Apply to join
+            </Link>
           </Button>
-          {linkError && (
-            <p className="text-center text-red-600 text-sm mt-2">{linkError}</p>
-          )}
 
           {/* Slack Screenshot */}
           <div className="mt-8 w-full">
@@ -231,13 +183,6 @@ const QuizResults: React.FC = () => {
           </div>
         </div>
       </div>
-
-      {/* Email Capture Modal */}
-      <EmailCaptureModal
-        isOpen={isModalOpen}
-        onClose={handleCloseModal}
-        slackInviteLink={slackInviteLink} // Pass the fetched or fallback link
-      />
     </div>
   );
 };

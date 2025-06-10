@@ -1,32 +1,10 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import EmailCaptureModal from "@/components/EmailCaptureModal";
+import Link from "next/link";
 
 const CommunityPage = () => {
-  const [slackInviteLink, setSlackInviteLink] = useState("");
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  useEffect(() => {
-    // Fetch the current Slack invite link from localStorage or API
-    const storedLink = localStorage.getItem("slackInviteLink");
-    // Default link in case none is set yet
-    setSlackInviteLink(
-      storedLink ||
-      "https://join.slack.com/t/ghostteamai/shared_invite/your-default-link"
-    );
-  }, []);
-
-  const handleOpenModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
-  };
-
   return (
     <main className="flex min-h-screen flex-col items-center">
       <div className="w-full">
@@ -192,16 +170,18 @@ const CommunityPage = () => {
                 <Button
                   size="lg"
                   className="mt-4 bg-[#4A154B] hover:bg-[#611f64] text-white px-8 py-6 h-auto text-lg flex items-center gap-2"
-                  onClick={handleOpenModal}
+                  asChild
                 >
-                  <Image
-                    src="/images/slack-logo-white.png"
-                    alt="Slack Logo"
-                    width={24}
-                    height={24}
-                    className="mr-2"
-                  />
-                  Apply to Join!!!
+                  <Link href="https://form.typeform.com/to/MdIRE7CS">
+                    <Image
+                      src="/images/slack-logo-white.png"
+                      alt="Slack Logo"
+                      width={24}
+                      height={24}
+                      className="mr-2"
+                    />
+                    Apply to Join
+                  </Link>
                 </Button>
               </div>
 
@@ -316,13 +296,6 @@ const CommunityPage = () => {
           </div>
         </section>
       </div>
-
-      {/* Email Capture Modal */}
-      <EmailCaptureModal
-        isOpen={isModalOpen}
-        onClose={handleCloseModal}
-        slackInviteLink={slackInviteLink}
-      />
     </main>
   );
 };
