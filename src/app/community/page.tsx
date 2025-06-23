@@ -172,7 +172,7 @@ const CommunityPage = () => {
                   className="mt-4 bg-[#4A154B] hover:bg-[#611f64] text-white px-8 py-6 h-auto text-lg flex items-center gap-2"
                   asChild
                 >
-                  <Link href="https://form.typeform.com/to/MdIRE7CS">
+                  <Link href="/community/apply">
                     <Image
                       src="/images/slack-logo-white.png"
                       alt="Slack Logo"
