@@ -23,7 +23,7 @@ export default function Home() {
         <HowItWorks />
         <AutomationFeatures />
         <ComparisonSection />
-        <PricingSection />
+        {/* <PricingSection /> */}
 
         {/* CTA Section */}
         <section

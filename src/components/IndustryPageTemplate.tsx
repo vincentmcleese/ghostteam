@@ -172,7 +172,7 @@ const IndustryPageTemplate: React.FC<IndustryPageTemplateProps> = ({
         <ComparisonSection />
 
         {/* Pricing Section */}
-        <PricingSection />
+        {/* <PricingSection /> */}
 
         {/* Integrations Section */}
         {industry.integrations && (

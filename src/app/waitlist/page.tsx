@@ -101,18 +101,18 @@ export default function WaitlistPage() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="mb-12"
           >
-            <div className="bg-gradient-to-br from-emerald-50 to-teal-50 border border-emerald-200/60 rounded-xl p-8 mb-8 shadow-sm">
-              <div className="flex items-center justify-center mb-6">
-                <div className="bg-emerald-100 rounded-full p-3">
-                  <svg className="w-8 h-8 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="bg-gradient-to-br from-emerald-50 to-teal-50 border border-emerald-200/60 rounded-xl p-4 sm:p-8 mb-8 shadow-sm">
+              <div className="flex items-center justify-center mb-4 sm:mb-6">
+                <div className="bg-emerald-100 rounded-full p-2 sm:p-3">
+                  <svg className="w-6 h-6 sm:w-8 sm:h-8 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
                 </div>
               </div>
-              <h2 className="text-2xl font-bold text-emerald-800 mb-4 text-center">
+              <h2 className="text-xl sm:text-2xl font-bold text-emerald-800 mb-3 sm:mb-4 text-center">
                 Cohort 1 is full
               </h2>
-              <p className="text-lg text-emerald-700 text-center leading-relaxed">
+              <p className="text-base sm:text-lg text-emerald-700 text-center leading-relaxed">
                 <span className="font-semibold text-emerald-800">100 maximum reached.</span> Space is available for cohort 2.
                 <br />
                 <span className="font-medium">Join our exclusive waitlist for Cohort 2</span> and receive priority access when we launch.
