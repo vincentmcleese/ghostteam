@@ -421,6 +421,8 @@ const CommunityApplicationQuestion: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <input
               type="text"
+              name="firstName"
+              autoComplete="given-name"
               value={contactForm.firstName}
               onChange={(e) =>
                 setContactForm({ ...contactForm, firstName: e.target.value })
@@ -430,6 +432,8 @@ const CommunityApplicationQuestion: React.FC = () => {
             />
             <input
               type="text"
+              name="lastName"
+              autoComplete="family-name"
               value={contactForm.lastName}
               onChange={(e) =>
                 setContactForm({ ...contactForm, lastName: e.target.value })
@@ -440,6 +444,8 @@ const CommunityApplicationQuestion: React.FC = () => {
           </div>
           <input
             type="tel"
+            name="phone"
+            autoComplete="tel"
             value={contactForm.phone}
             onChange={(e) =>
               setContactForm({ ...contactForm, phone: e.target.value })
@@ -449,6 +455,8 @@ const CommunityApplicationQuestion: React.FC = () => {
           />
           <input
             type="email"
+            name="email"
+            autoComplete="email"
             value={contactForm.email}
             onChange={(e) =>
               setContactForm({ ...contactForm, email: e.target.value })
@@ -458,6 +466,8 @@ const CommunityApplicationQuestion: React.FC = () => {
           />
           <input
             type="text"
+            name="company"
+            autoComplete="organization"
             value={contactForm.company}
             onChange={(e) =>
               setContactForm({ ...contactForm, company: e.target.value })
