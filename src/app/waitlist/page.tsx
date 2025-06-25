@@ -139,9 +139,9 @@ export default function WaitlistPage() {
               </p>
             </div>
 
-            <p className="text-muted-foreground text-lg sm:text-xl mb-8">
+            {/* <p className="text-muted-foreground text-lg sm:text-xl mb-8">
               With just a prompt, create any AI Agent or Automation in n8n
-            </p>
+            </p> */}
           </motion.div>
 
           {/* Form or Success Message */}
@@ -183,111 +183,112 @@ export default function WaitlistPage() {
                 </div>
               </div>
             ) : (
-              <>
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  {error && (
-                    <div className="bg-red-50 border border-red-200 rounded-lg p-4 text-center">
-                      <p className="text-red-700 text-sm">{error}</p>
-                    </div>
-                  )}
-                  <div className="space-y-4">
-                    <div>
-                      <Label
-                        htmlFor="email"
-                        className="text-left block text-sm font-medium mb-2"
-                      >
-                        Email Address *
-                      </Label>
-                      <Input
-                        id="email"
-                        type="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        placeholder="your@email.com"
-                        required
-                        className="w-full"
-                      />
-                    </div>
-
-                    <div>
-                      <Label
-                        htmlFor="linkedin"
-                        className="text-left block text-sm font-medium mb-2"
-                      >
-                        LinkedIn URL *
-                      </Label>
-                      <Input
-                        id="linkedin"
-                        type="url"
-                        value={linkedinUrl}
-                        onChange={(e) => setLinkedinUrl(e.target.value)}
-                        placeholder="https://linkedin.com/in/yourprofile"
-                        required
-                        className="w-full"
-                      />
-                    </div>
+              <form onSubmit={handleSubmit} className="space-y-6">
+                {error && (
+                  <div className="bg-red-50 border border-red-200 rounded-lg p-4 text-center">
+                    <p className="text-red-700 text-sm">{error}</p>
+                  </div>
+                )}
+                <div className="space-y-4">
+                  <div>
+                    <Label
+                      htmlFor="email"
+                      className="text-left block text-sm font-medium mb-2"
+                    >
+                      Email Address *
+                    </Label>
+                    <Input
+                      id="email"
+                      type="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      placeholder="your@email.com"
+                      required
+                      className="w-full"
+                    />
                   </div>
 
-                  <Button
-                    type="submit"
-                    disabled={isSubmitting}
-                    size="lg"
-                    className="w-full text-base font-semibold"
-                  >
-                    <Image
-                      src="/images/ghost_whitest_transparent.png"
-                      alt="Ghost Logo"
-                      width={28}
-                      height={28}
-                      className="mr-2 h-7 w-7"
-                    />
-                    {isSubmitting
-                      ? "Joining Waitlist..."
-                      : "Join Cohort 2 Waitlist"}
-                  </Button>
-                </form>
-
-                <div className="border-t border-border pt-6 mt-6">
-                  <p className="text-sm text-muted-foreground mb-4">
-                    Want to connect with the community?
-                  </p>
-                  <Button
-                    type="button"
-                    variant="outline"
-                    onClick={() =>
-                      window.open("https://discord.gg/pfKVnH3P", "_blank")
-                    }
-                    className="w-full border-[#5865F2] text-[#5865F2] hover:bg-[#5865F2] hover:text-white"
-                  >
-                    <svg
-                      className="mr-2 h-5 w-5"
-                      viewBox="0 0 24 24"
-                      fill="currentColor"
+                  <div>
+                    <Label
+                      htmlFor="linkedin"
+                      className="text-left block text-sm font-medium mb-2"
                     >
-                      <path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419-.0189 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1568 2.4189Z" />
-                    </svg>
-                    Join Discord Community
-                  </Button>
+                      LinkedIn URL *
+                    </Label>
+                    <Input
+                      id="linkedin"
+                      type="url"
+                      value={linkedinUrl}
+                      onChange={(e) => setLinkedinUrl(e.target.value)}
+                      placeholder="https://linkedin.com/in/yourprofile"
+                      required
+                      className="w-full"
+                    />
+                  </div>
                 </div>
 
-                <div className="bg-primary text-white rounded-lg p-6 mt-6 flex flex-col items-center gap-4 text-center">
+                <Button
+                  type="submit"
+                  disabled={isSubmitting}
+                  size="lg"
+                  className="w-full text-base font-semibold"
+                >
                   <Image
                     src="/images/ghost_whitest_transparent.png"
                     alt="Ghost Logo"
-                    width={40}
-                    height={40}
-                    className="h-10 w-10"
+                    width={28}
+                    height={28}
+                    className="mr-2 h-7 w-7"
                   />
-                  <p className="font-semibold">
-                    Learn how AI & Automation can help you grow faster
-                  </p>
-                  <CallToActionButton />
-                </div>
-              </>
+                  {isSubmitting
+                    ? "Joining Waitlist..."
+                    : "Join Cohort 2 Waitlist"}
+                </Button>
+              </form>
+            )}
+            {!isSubmitted && (
+              <div className="border-t border-border pt-6 mt-6">
+                <p className="text-sm text-muted-foreground mb-4">
+                  Want to connect with the community?
+                </p>
+                <Button
+                  type="button"
+                  variant="outline"
+                  onClick={() =>
+                    window.open("https://discord.gg/pfKVnH3P", "_blank")
+                  }
+                  className="w-full border-[#5865F2] text-[#5865F2] hover:bg-[#5865F2] hover:text-white"
+                >
+                  <svg
+                    className="mr-2 h-5 w-5"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419-.0189 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1568 2.4189Z" />
+                  </svg>
+                  Join Discord Community
+                </Button>
+              </div>
             )}
           </motion.div>
         </motion.div>
       </div>
+
+      <section className="bg-primary py-12 sm:py-16">
+        <div className="mx-auto flex max-w-md flex-col items-center gap-4 px-6 text-center text-white">
+          <Image
+            src="/images/ghost_whitest_transparent.png"
+            alt="Ghost Logo"
+            width={48}
+            height={48}
+            className="h-12 w-12"
+          />
+          <h3 className="text-xl font-semibold">
+            Learn how AI & Automation can help you grow faster
+          </h3>
+          <CallToActionButton />
+        </div>
+      </section>
     </div>
   );
 }
