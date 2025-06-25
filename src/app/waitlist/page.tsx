@@ -126,7 +126,7 @@ export default function WaitlistPage() {
                 </div>
               </div>
               <h2 className="text-xl sm:text-2xl font-bold text-emerald-800 mb-3 sm:mb-4 text-center">
-                Registration is currently full
+                Cohort 1 registration is now full
               </h2>
               <p className="text-base sm:text-lg text-emerald-700 text-center leading-relaxed">
                 <span className="block font-semibold text-emerald-800">
@@ -270,7 +270,7 @@ export default function WaitlistPage() {
                   </Button>
                 </div>
 
-                <div className="border-t border-border pt-6 mt-6 flex flex-col items-center gap-4">
+                <div className="bg-primary text-white rounded-lg p-6 mt-6 flex flex-col items-center gap-4 text-center">
                   <Image
                     src="/images/ghost_whitest_transparent.png"
                     alt="Ghost Logo"
@@ -278,7 +278,7 @@ export default function WaitlistPage() {
                     height={40}
                     className="h-10 w-10"
                   />
-                  <p className="text-muted-foreground text-center">
+                  <p className="font-semibold">
                     Learn how AI & Automation can help you grow faster
                   </p>
                   <CallToActionButton />
