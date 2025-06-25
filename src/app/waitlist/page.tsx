@@ -270,25 +270,23 @@ export default function WaitlistPage() {
                 </Button>
               </div>
             )}
+
+            <div className="border-t border-border pt-6 mt-6 flex flex-col items-center gap-4 text-center">
+              <Image
+                src="/images/greenghost.png"
+                alt="Ghost Logo"
+                width={48}
+                height={48}
+                className="h-12 w-12"
+              />
+              <p className="text-foreground font-semibold">
+                Learn how AI & Automation can help you grow faster
+              </p>
+              <CallToActionButton />
+            </div>
           </motion.div>
         </motion.div>
       </div>
-
-      <section className="bg-primary py-12 sm:py-16">
-        <div className="mx-auto flex max-w-md flex-col items-center gap-4 px-6 text-center text-white">
-          <Image
-            src="/images/ghost_whitest_transparent.png"
-            alt="Ghost Logo"
-            width={48}
-            height={48}
-            className="h-12 w-12"
-          />
-          <h3 className="text-xl font-semibold">
-            Learn how AI & Automation can help you grow faster
-          </h3>
-          <CallToActionButton />
-        </div>
-      </section>
     </div>
   );
 }
