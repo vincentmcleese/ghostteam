@@ -11,7 +11,6 @@ import CallToActionButton from "@/components/ui/CallToActionButton";
 
 export default function WaitlistPage() {
   const [email, setEmail] = useState("");
-  const [linkedinUrl, setLinkedinUrl] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [error, setError] = useState("");
@@ -29,7 +28,6 @@ export default function WaitlistPage() {
         },
         body: JSON.stringify({
           email,
-          linkedinUrl,
         }),
       });
 
@@ -126,12 +124,9 @@ export default function WaitlistPage() {
                 </div>
               </div>
               <h2 className="text-xl sm:text-2xl font-bold text-emerald-800 mb-3 sm:mb-4 text-center">
-                Cohort 1 registration is now full
+                Cohort 1 is now full
               </h2>
               <p className="text-base sm:text-lg text-emerald-700 text-center leading-relaxed">
-                <span className="block font-semibold text-emerald-800">
-                  300 maximum reached.
-                </span>
                 <span className="block mt-2 font-medium">
                   Space is available for cohort 2. Join our exclusive waitlist
                   to receive priority access when we re-open soon.
@@ -167,7 +162,7 @@ export default function WaitlistPage() {
                   </p>
                   <Button
                     onClick={() =>
-                      window.open("https://discord.gg/pfKVnH3P", "_blank")
+                      window.open("https://discord.gg/BxAKPEXZ73", "_blank")
                     }
                     className="bg-[#5865F2] hover:bg-[#4752C4] text-white"
                   >
@@ -207,24 +202,6 @@ export default function WaitlistPage() {
                       className="w-full"
                     />
                   </div>
-
-                  <div>
-                    <Label
-                      htmlFor="linkedin"
-                      className="text-left block text-sm font-medium mb-2"
-                    >
-                      LinkedIn URL *
-                    </Label>
-                    <Input
-                      id="linkedin"
-                      type="url"
-                      value={linkedinUrl}
-                      onChange={(e) => setLinkedinUrl(e.target.value)}
-                      placeholder="https://linkedin.com/in/yourprofile"
-                      required
-                      className="w-full"
-                    />
-                  </div>
                 </div>
 
                 <Button
@@ -255,7 +232,7 @@ export default function WaitlistPage() {
                   type="button"
                   variant="outline"
                   onClick={() =>
-                    window.open("https://discord.gg/pfKVnH3P", "_blank")
+                    window.open("https://discord.gg/BxAKPEXZ73", "_blank")
                   }
                   className="w-full border-[#5865F2] text-[#5865F2] hover:bg-[#5865F2] hover:text-white"
                 >
