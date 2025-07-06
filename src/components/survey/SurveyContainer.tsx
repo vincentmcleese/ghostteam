@@ -30,9 +30,14 @@ const SurveyContainer: React.FC = () => {
 
           if (success) {
             dispatch({ type: "SUBMIT_SUCCESS" });
-            // Redirect to confirmation page after a brief delay
+            // Redirect to Calendly based on revenue after a brief delay
             setTimeout(() => {
-              router.push("/begin/confirmation");
+              const revenue = answers[5];
+              let calendlyUrl = "https://calendly.com/elliot-ghostteam/30-minute-meeting";
+              if (revenue === "under-10k") {
+                calendlyUrl = "https://calendly.com/elliot-ghostteam/30-min-meeting";
+              }
+              window.location.href = calendlyUrl;
             }, 1000);
           } else {
             dispatch({

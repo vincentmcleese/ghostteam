@@ -36,8 +36,8 @@ export interface ContactDetails {
   email: string;
 }
 
-// Survey answers can be string or ContactDetails
-export type SurveyAnswer = string | ContactDetails;
+// Answer to a survey question
+export type SurveyAnswer = string | { value: string; otherText?: string } | ContactDetails;
 
 // Survey state
 export interface SurveyState {
@@ -53,9 +53,9 @@ export type SurveyAction =
   | { type: "NEXT_QUESTION" }
   | { type: "PREVIOUS_QUESTION" }
   | {
-      type: "ANSWER_QUESTION";
-      payload: { questionId: number; answer: SurveyAnswer };
-    }
+    type: "ANSWER_QUESTION";
+    payload: { questionId: number; answer: SurveyAnswer };
+  }
   | { type: "SUBMIT_START" }
   | { type: "SUBMIT_SUCCESS" }
   | { type: "SUBMIT_ERROR"; payload: string }

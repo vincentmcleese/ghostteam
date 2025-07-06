@@ -29,6 +29,9 @@ const SurveyQuestion: React.FC = () => {
   // Get the current question data
   const question: SurveyQuestionType = surveyData.questions[currentQuestion];
 
+  // Helper to check if this is the 'How did you hear about us?' question
+  const isHearAboutUsQuestion = question.question === "How did you hear about us?";
+
   // Update local state when question changes
   useEffect(() => {
     const currentAnswer = answers[question?.id];
@@ -221,6 +224,11 @@ const SurveyQuestion: React.FC = () => {
     }
   }, [question?.inputType, textValue, handleTextSubmit]);
 
+  // Helper type guard for 'other' answer object
+  function isOtherAnswer(val: unknown): val is { value: string; otherText?: string } {
+    return typeof val === 'object' && val !== null && 'value' in val;
+  }
+
   if (!question) {
     return null;
   }
@@ -241,17 +249,41 @@ const SurveyQuestion: React.FC = () => {
 
       {/* Multiple Choice */}
       {question.inputType === "multiple-choice" && (
-        <div className="space-y-2">
-          {question.options?.map((option, index) => (
-            <SurveyOption
-              key={`${question.id}-${option.value}`}
-              option={option}
-              isSelected={selectedAnswer === option.value}
-              onSelect={handleAnswer}
-              index={index}
-            />
-          ))}
-        </div>
+        <>
+          <div className="space-y-2">
+            {question.options?.map((option, index) => (
+              <SurveyOption
+                key={`${question.id}-${option.value}`}
+                option={option}
+                isSelected={isHearAboutUsQuestion
+                  ? (isOtherAnswer(selectedAnswer) && selectedAnswer.value === option.value) || selectedAnswer === option.value
+                  : selectedAnswer === option.value}
+                onSelect={(value) => {
+                  if (isHearAboutUsQuestion && value === "other") {
+                    handleAnswer({ value: "other", otherText: "" } as any);
+                  } else if (isHearAboutUsQuestion) {
+                    handleAnswer({ value } as any);
+                  } else {
+                    handleAnswer(value);
+                  }
+                }}
+                index={index}
+              />
+            ))}
+          </div>
+          {/* Show input if 'Other' is selected */}
+          {isHearAboutUsQuestion && isOtherAnswer(selectedAnswer) && selectedAnswer.value === "other" && (
+            <div className="mt-4">
+              <input
+                type="text"
+                value={selectedAnswer.otherText || ""}
+                onChange={e => handleAnswer({ value: "other", otherText: e.target.value } as any)}
+                placeholder="Please specify..."
+                className="w-full p-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-lg"
+              />
+            </div>
+          )}
+        </>
       )}
 
       {/* Short Text */}
@@ -425,15 +457,19 @@ const SurveyQuestion: React.FC = () => {
           </button>
         )}
 
-        {question.inputType === "multiple-choice" && selectedAnswer && (
-          <button
-            className="ml-auto px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium"
-            onClick={handleNext}
-            type="button"
-          >
-            Continue ↵
-          </button>
-        )}
+        {question.inputType === "multiple-choice" && (
+          isHearAboutUsQuestion
+            ? ((isOtherAnswer(selectedAnswer) && selectedAnswer.value === "other" && selectedAnswer.otherText && selectedAnswer.otherText.trim()) || (isOtherAnswer(selectedAnswer) && selectedAnswer.value && selectedAnswer.value !== "other"))
+            : (typeof selectedAnswer === "string" && selectedAnswer)
+        ) && (
+            <button
+              className="ml-auto px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium"
+              onClick={handleNext}
+              type="button"
+            >
+              Continue ↵
+            </button>
+          )}
       </div>
     </div>
   );

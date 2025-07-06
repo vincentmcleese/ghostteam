@@ -40,8 +40,8 @@ export interface CommunityContactDetails {
   hearAboutUsOther?: string;
 }
 
-// Community application answers can be string, string array, or ContactDetails
-export type CommunityApplicationAnswer = string | string[] | CommunityContactDetails;
+// Answer to a community application question
+export type CommunityApplicationAnswer = string | string[] | { value: string; otherText?: string } | CommunityContactDetails;
 
 // Community application state
 export interface CommunityApplicationState {
@@ -57,9 +57,9 @@ export type CommunityApplicationAction =
   | { type: "NEXT_QUESTION" }
   | { type: "PREVIOUS_QUESTION" }
   | {
-      type: "ANSWER_QUESTION";
-      payload: { questionId: number; answer: CommunityApplicationAnswer };
-    }
+    type: "ANSWER_QUESTION";
+    payload: { questionId: number; answer: CommunityApplicationAnswer };
+  }
   | { type: "SUBMIT_START" }
   | { type: "SUBMIT_SUCCESS" }
   | { type: "SUBMIT_ERROR"; payload: string }
