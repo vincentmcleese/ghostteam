@@ -431,7 +431,15 @@ const SurveyQuestion: React.FC = () => {
             className="w-full p-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-lg"
           />
           <button
-            onClick={handleContactSubmit}
+            onClick={() => {
+              if (isContactValid()) {
+                dispatch({
+                  type: "ANSWER_QUESTION",
+                  payload: { questionId: question.id, answer: contactForm },
+                });
+                dispatch({ type: "NEXT_QUESTION" });
+              }
+            }}
             disabled={!isContactValid()}
             className={cn(
               "px-6 py-3 rounded-lg font-medium transition-colors w-full",
@@ -440,7 +448,7 @@ const SurveyQuestion: React.FC = () => {
                 : "bg-gray-300 text-gray-500 cursor-not-allowed"
             )}
           >
-            Submit Survey
+            Continue ↵
           </button>
         </div>
       )}
