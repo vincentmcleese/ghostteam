@@ -31,10 +31,12 @@ const CommunityApplicationQuestion: React.FC = () => {
   const inputRef = useRef<HTMLInputElement>(null);
 
   // Get the current question data
-  const question: CommunityApplicationQuestionType = applicationData.questions[currentQuestion];
+  const question: CommunityApplicationQuestionType =
+    applicationData.questions[currentQuestion];
 
   // Helper to check if this is the 'How did you hear about us?' question
-  const isHearAboutUsQuestion = question.question === "How did you hear about us?";
+  const isHearAboutUsQuestion =
+    question.question === "How did you hear about us?";
 
   // Update local state when question changes
   useEffect(() => {
@@ -45,7 +47,10 @@ const CommunityApplicationQuestion: React.FC = () => {
       !Array.isArray(currentAnswer)
     ) {
       setContactForm(currentAnswer as CommunityContactDetails);
-    } else if (question?.inputType === "multiple-select" && Array.isArray(currentAnswer)) {
+    } else if (
+      question?.inputType === "multiple-select" &&
+      Array.isArray(currentAnswer)
+    ) {
       setMultiSelectValues(currentAnswer);
     } else if (typeof currentAnswer === "string") {
       setTextValue(currentAnswer);
@@ -89,7 +94,7 @@ const CommunityApplicationQuestion: React.FC = () => {
   const handleMultiSelectAnswer = useCallback(
     (value: string) => {
       const newValues = multiSelectValues.includes(value)
-        ? multiSelectValues.filter(v => v !== value)
+        ? multiSelectValues.filter((v) => v !== value)
         : [...multiSelectValues, value];
 
       setMultiSelectValues(newValues);
@@ -147,6 +152,7 @@ const CommunityApplicationQuestion: React.FC = () => {
         type: "ANSWER_QUESTION",
         payload: { questionId: question.id, answer: contactForm },
       });
+      dispatch({ type: "NEXT_QUESTION" });
     }
   }, [contactForm, dispatch, question.id]);
 
@@ -204,7 +210,11 @@ const CommunityApplicationQuestion: React.FC = () => {
 
   // Keyboard shortcuts for multiple choice
   useEffect(() => {
-    if (question?.inputType !== "multiple-choice" && question?.inputType !== "multiple-select") return;
+    if (
+      question?.inputType !== "multiple-choice" &&
+      question?.inputType !== "multiple-select"
+    )
+      return;
 
     const handleKeyDown = (e: KeyboardEvent) => {
       // Don't trigger shortcuts if user is typing in an input
@@ -232,7 +242,11 @@ const CommunityApplicationQuestion: React.FC = () => {
         if (selectedAnswer) {
           if (question.inputType === "multiple-choice") {
             handleNext();
-          } else if (question.inputType === "multiple-select" && Array.isArray(selectedAnswer) && selectedAnswer.length > 0) {
+          } else if (
+            question.inputType === "multiple-select" &&
+            Array.isArray(selectedAnswer) &&
+            selectedAnswer.length > 0
+          ) {
             handleNext();
           }
         }
@@ -266,8 +280,10 @@ const CommunityApplicationQuestion: React.FC = () => {
   }, [question?.inputType, textValue, handleTextSubmit]);
 
   // Helper type guard for 'other' answer object
-  function isOtherAnswer(val: unknown): val is { value: string; otherText?: string } {
-    return typeof val === 'object' && val !== null && 'value' in val;
+  function isOtherAnswer(
+    val: unknown
+  ): val is { value: string; otherText?: string } {
+    return typeof val === "object" && val !== null && "value" in val;
   }
 
   if (!question) {
@@ -296,9 +312,13 @@ const CommunityApplicationQuestion: React.FC = () => {
               <CommunityApplicationOption
                 key={`${question.id}-${option.value}`}
                 option={option}
-                isSelected={isHearAboutUsQuestion
-                  ? (isOtherAnswer(selectedAnswer) && selectedAnswer.value === option.value) || selectedAnswer === option.value
-                  : selectedAnswer === option.value}
+                isSelected={
+                  isHearAboutUsQuestion
+                    ? (isOtherAnswer(selectedAnswer) &&
+                        selectedAnswer.value === option.value) ||
+                      selectedAnswer === option.value
+                    : selectedAnswer === option.value
+                }
                 onSelect={(value) => {
                   if (isHearAboutUsQuestion && value === "other") {
                     handleAnswer({ value: "other", otherText: "" } as any);
@@ -314,17 +334,24 @@ const CommunityApplicationQuestion: React.FC = () => {
             ))}
           </div>
           {/* Show input if 'Other' is selected */}
-          {isHearAboutUsQuestion && isOtherAnswer(selectedAnswer) && selectedAnswer.value === "other" && (
-            <div className="mt-4">
-              <input
-                type="text"
-                value={selectedAnswer.otherText || ""}
-                onChange={e => handleAnswer({ value: "other", otherText: e.target.value } as any)}
-                placeholder="Please specify..."
-                className="w-full p-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-lg"
-              />
-            </div>
-          )}
+          {isHearAboutUsQuestion &&
+            isOtherAnswer(selectedAnswer) &&
+            selectedAnswer.value === "other" && (
+              <div className="mt-4">
+                <input
+                  type="text"
+                  value={selectedAnswer.otherText || ""}
+                  onChange={(e) =>
+                    handleAnswer({
+                      value: "other",
+                      otherText: e.target.value,
+                    } as any)
+                  }
+                  placeholder="Please specify..."
+                  className="w-full p-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-lg"
+                />
+              </div>
+            )}
         </>
       )}
 
@@ -335,7 +362,10 @@ const CommunityApplicationQuestion: React.FC = () => {
             <CommunityApplicationOption
               key={`${question.id}-${option.value}`}
               option={option}
-              isSelected={Array.isArray(selectedAnswer) && selectedAnswer.includes(option.value)}
+              isSelected={
+                Array.isArray(selectedAnswer) &&
+                selectedAnswer.includes(option.value)
+              }
               onSelect={handleMultiSelectAnswer}
               index={index}
               isMultiSelect={true}
@@ -515,7 +545,11 @@ const CommunityApplicationQuestion: React.FC = () => {
             <select
               value={contactForm.hearAboutUs}
               onChange={(e) =>
-                setContactForm({ ...contactForm, hearAboutUs: e.target.value, hearAboutUsOther: "" })
+                setContactForm({
+                  ...contactForm,
+                  hearAboutUs: e.target.value,
+                  hearAboutUsOther: "",
+                })
               }
               className="w-full p-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-lg"
             >
@@ -531,7 +565,10 @@ const CommunityApplicationQuestion: React.FC = () => {
                 type="text"
                 value={contactForm.hearAboutUsOther}
                 onChange={(e) =>
-                  setContactForm({ ...contactForm, hearAboutUsOther: e.target.value })
+                  setContactForm({
+                    ...contactForm,
+                    hearAboutUsOther: e.target.value,
+                  })
                 }
                 placeholder="Please specify..."
                 className="w-full p-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-lg"
@@ -566,20 +603,27 @@ const CommunityApplicationQuestion: React.FC = () => {
           </button>
         )}
 
-        {((question.inputType === "multiple-choice" && (
-          isHearAboutUsQuestion
-            ? ((isOtherAnswer(selectedAnswer) && selectedAnswer.value === "other" && selectedAnswer.otherText && selectedAnswer.otherText.trim()) || (isOtherAnswer(selectedAnswer) && selectedAnswer.value && selectedAnswer.value !== "other"))
-            : (typeof selectedAnswer === "string" && selectedAnswer)
-        )) ||
-          (question.inputType === "multiple-select" && Array.isArray(selectedAnswer) && selectedAnswer.length > 0)) && (
-            <button
-              className="ml-auto px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium"
-              onClick={handleNext}
-              type="button"
-            >
-              Continue ↵
-            </button>
-          )}
+        {((question.inputType === "multiple-choice" &&
+          (isHearAboutUsQuestion
+            ? (isOtherAnswer(selectedAnswer) &&
+                selectedAnswer.value === "other" &&
+                selectedAnswer.otherText &&
+                selectedAnswer.otherText.trim()) ||
+              (isOtherAnswer(selectedAnswer) &&
+                selectedAnswer.value &&
+                selectedAnswer.value !== "other")
+            : typeof selectedAnswer === "string" && selectedAnswer)) ||
+          (question.inputType === "multiple-select" &&
+            Array.isArray(selectedAnswer) &&
+            selectedAnswer.length > 0)) && (
+          <button
+            className="ml-auto px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium"
+            onClick={handleNext}
+            type="button"
+          >
+            Continue ↵
+          </button>
+        )}
       </div>
     </div>
   );
