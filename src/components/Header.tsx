@@ -128,22 +128,6 @@ const Header: React.FC<HeaderProps> = ({ isBannerVisible }) => {
             >
               Community
             </Link>
-            <Link
-              href="/"
-              className="text-gray-600 hover:text-gray-900 transition-colors text-lg"
-              onClick={(e) => {
-                setIsOpen(false);
-                // If already on homepage, just scroll to section
-                if (window.location.pathname === "/") {
-                  e.preventDefault();
-                  document
-                    .getElementById("pricing")
-                    ?.scrollIntoView({ behavior: "smooth" });
-                }
-              }}
-            >
-              Pricing
-            </Link>
           </div>
         </nav>
 
@@ -232,22 +216,6 @@ const Header: React.FC<HeaderProps> = ({ isBannerVisible }) => {
               onClick={() => setIsOpen(false)}
             >
               Community
-            </Link>
-            <Link
-              href="/"
-              className="block text-gray-600 hover:text-gray-900 transition-colors text-lg"
-              onClick={(e) => {
-                setIsOpen(false);
-                // If already on homepage, just scroll to section
-                if (window.location.pathname === "/") {
-                  e.preventDefault();
-                  document
-                    .getElementById("pricing")
-                    ?.scrollIntoView({ behavior: "smooth" });
-                }
-              }}
-            >
-              Pricing
             </Link>
             <CallToActionButton />
           </div>
