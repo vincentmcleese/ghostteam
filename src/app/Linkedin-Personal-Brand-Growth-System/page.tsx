@@ -6,7 +6,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import Image from "next/image";
-import { FloatingVideoPlayer } from "@/components/FloatingVideoPlayer";
 import CallToActionButton from "@/components/ui/CallToActionButton";
 
 export default function LinkedinPersonalBrandGrowthSystemPage() {
@@ -47,7 +46,6 @@ export default function LinkedinPersonalBrandGrowthSystemPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-background to-background/80">
-      <FloatingVideoPlayer />
       <div className="relative isolate py-6 sm:py-12 lg:py-20">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -142,9 +140,15 @@ export default function LinkedinPersonalBrandGrowthSystemPage() {
             )}
 
             <div className="border-t border-border pt-6 mt-6 flex flex-col items-center gap-4 text-center">
+              <Image
+                src="/images/greenghost.png"
+                alt="Ghost Logo"
+                width={48}
+                height={48}
+                className="h-12 w-12"
+              />
               <p className="text-foreground font-semibold">
-                Discover how AI automation can transform your LinkedIn presence.
-                Schedule a call to learn more.
+                Learn how AI & Automation can help you grow faster
               </p>
               <CallToActionButton />
             </div>
