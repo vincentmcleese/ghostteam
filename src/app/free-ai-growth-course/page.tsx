@@ -70,7 +70,7 @@ export default function FreeAiGrowthCoursePage() {
                 priority
               />
               
-              <h1 className="text-foreground font-[Chunko] text-3xl tracking-wide sm:text-5xl lg:text-6xl">
+              <h1 className="text-foreground font-bold text-3xl tracking-wide sm:text-5xl lg:text-6xl">
                 <span className="from-primary bg-gradient-to-r to-teal-400 bg-clip-text text-transparent">
                   Build AI systems and scale on social platforms{" "}
                 </span>
