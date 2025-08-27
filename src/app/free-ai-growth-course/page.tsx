@@ -70,20 +70,20 @@ export default function FreeAiGrowthCoursePage() {
                 priority
               />
               
-              <h1 className="text-foreground font-bold text-3xl tracking-wide sm:text-5xl lg:text-6xl leading-relaxed">
+              <h1 className="text-foreground font-bold text-3xl tracking-wide sm:text-5xl lg:text-6xl">
                 <span className="from-primary bg-gradient-to-r to-teal-400 bg-clip-text text-transparent block">
                   Build AI systems and scale on social platforms
                 </span>
-                <span className="bg-black text-white px-2 py-1 rounded inline-block mt-4">
+                <span className="bg-black text-white px-2 py-1 rounded inline-block mt-2">
                   for $0.00
                 </span>
               </h1>
               
-              <p className="text-foreground font-semibold text-xl sm:text-2xl max-w-2xl mt-6">
+              <p className="text-foreground font-semibold text-xl sm:text-2xl max-w-2xl mt-4">
                 by learning automation that actually ships and content that actually converts
               </p>
               
-              <p className="text-muted-foreground text-base sm:text-lg max-w-3xl mt-6">
+              <p className="text-muted-foreground text-base sm:text-lg max-w-3xl mt-4">
                 This complete playbook shows the exact AI workflows and growth tactics we used to get 60+ calls booked every 30 days and 8M+ impressions across LinkedIn & TikTok 🚀
               </p>
 
