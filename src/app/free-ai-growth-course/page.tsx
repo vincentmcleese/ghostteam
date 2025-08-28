@@ -122,7 +122,7 @@ export default function FreeAiGrowthCoursePage() {
                   You're on the list!
                 </h3>
                 <p className="text-green-700 mb-2">
-                  We'll email you as soon as the course is ready.
+                  We'll email you soon with access
                 </p>
               </div>
             ) : (
